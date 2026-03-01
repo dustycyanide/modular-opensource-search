@@ -1,0 +1,84 @@
+{
+  "queries": [
+    {
+      "id": "Q-OCR-001",
+      "family": "document",
+      "query": "python ocr document pipeline async",
+      "top_k": 5,
+      "expected_repos": ["OCRmyPDF", "pytesseract"],
+      "expected_capabilities": ["ocr_processing", "document_ingestion_pipeline", "async_processing_engine"]
+    },
+    {
+      "id": "Q-OCR-002",
+      "family": "document",
+      "query": "apache python ocr processing",
+      "top_k": 5,
+      "expected_repos": ["pytesseract"],
+      "expected_capabilities": ["ocr_processing"]
+    },
+    {
+      "id": "Q-API-001",
+      "family": "api",
+      "query": "python api service",
+      "top_k": 5,
+      "expected_repos": ["flask", "fastapi"],
+      "expected_capabilities": ["api_service"]
+    },
+    {
+      "id": "Q-API-002",
+      "family": "api",
+      "query": "python fastapi router endpoint",
+      "top_k": 5,
+      "expected_repos": ["fastapi"],
+      "expected_capabilities": ["api_service"]
+    },
+    {
+      "id": "Q-CLI-001",
+      "family": "cli",
+      "query": "python cli command tooling",
+      "top_k": 5,
+      "expected_repos": ["click", "typer", "OCRmyPDF"],
+      "expected_capabilities": ["cli_tooling"]
+    },
+    {
+      "id": "Q-ASYNC-001",
+      "family": "async",
+      "query": "python async queue worker",
+      "top_k": 5,
+      "expected_repos": ["celery", "rq", "OCRmyPDF"],
+      "expected_capabilities": ["async_processing_engine"]
+    },
+    {
+      "id": "Q-DATA-001",
+      "family": "data",
+      "query": "python orm migration database",
+      "top_k": 5,
+      "expected_repos": ["sqlalchemy", "django"],
+      "expected_capabilities": ["database_persistence"]
+    },
+    {
+      "id": "Q-FILTER-001",
+      "family": "filters",
+      "query": "gpl python ocr pipeline",
+      "top_k": 5,
+      "expected_repos": ["OCRmyPDF"],
+      "expected_capabilities": ["ocr_processing", "document_ingestion_pipeline"]
+    },
+    {
+      "id": "Q-FILTER-002",
+      "family": "filters",
+      "query": "apache python cli",
+      "top_k": 5,
+      "expected_repos": ["typer"],
+      "expected_capabilities": ["cli_tooling"]
+    },
+    {
+      "id": "Q-NEG-001",
+      "family": "negative",
+      "query": "python http client library",
+      "top_k": 5,
+      "expected_repos": ["requests"],
+      "expected_capabilities": []
+    }
+  ]
+}

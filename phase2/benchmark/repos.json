@@ -1,0 +1,16 @@
+{
+  "repos": [
+    {"name": "OCRmyPDF", "url": "https://github.com/ocrmypdf/OCRmyPDF.git", "priority": "high"},
+    {"name": "requests", "url": "https://github.com/psf/requests.git", "priority": "high"},
+    {"name": "flask", "url": "https://github.com/pallets/flask.git", "priority": "high"},
+    {"name": "click", "url": "https://github.com/pallets/click.git", "priority": "high"},
+    {"name": "pytesseract", "url": "https://github.com/madmaze/pytesseract.git", "priority": "high"},
+    {"name": "fastapi", "url": "https://github.com/fastapi/fastapi.git", "priority": "medium"},
+    {"name": "typer", "url": "https://github.com/fastapi/typer.git", "priority": "medium"},
+    {"name": "celery", "url": "https://github.com/celery/celery.git", "priority": "medium"},
+    {"name": "rq", "url": "https://github.com/rq/rq.git", "priority": "medium"},
+    {"name": "sqlalchemy", "url": "https://github.com/sqlalchemy/sqlalchemy.git", "priority": "medium"},
+    {"name": "django", "url": "https://github.com/django/django.git", "priority": "medium"},
+    {"name": "pydantic", "url": "https://github.com/pydantic/pydantic.git", "priority": "low"}
+  ]
+}

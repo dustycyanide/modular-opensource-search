@@ -1,0 +1,28 @@
+{
+  "name": "candidate_cli_recall_v1",
+  "description": "Broadens CLI framework detection to improve click/typer recall",
+  "capabilities": {
+    "cli_tooling": {
+      "required_groups": [
+        [
+          "\\bargparse\\.ArgumentParser\\b",
+          "@click\\.(command|group|option)\\(",
+          "\\bTyper\\(",
+          "\\bclick\\.command\\(",
+          "\\bclass\\s+Command\\b",
+          "\\bclass\\s+Group\\b",
+          "\\bContext\\b"
+        ]
+      ],
+      "support_patterns": [
+        "__main__",
+        "\\bsys\\.argv\\b",
+        "\\bmain\\(",
+        "\\binvoke\\(",
+        "\\bcommand\\b",
+        "\\boption\\b"
+      ],
+      "min_support": 0
+    }
+  }
+}

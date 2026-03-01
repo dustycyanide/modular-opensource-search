@@ -1,0 +1,957 @@
+{
+  "source_report": "/Users/dustycyanide/Documents/projects/modular_opensource/experiment_capability_search_v1/phase2/reports/baseline_report.json",
+  "mode": "hybrid",
+  "families": {
+    "document": {
+      "positive_repos": [
+        "OCRmyPDF",
+        "pytesseract"
+      ],
+      "negative_repos": [],
+      "candidate_tokens": [
+        {
+          "token": "assert",
+          "pos": 883,
+          "neg": 0,
+          "ratio": 884.0
+        },
+        {
+          "token": "pdf",
+          "pos": 821,
+          "neg": 0,
+          "ratio": 822.0
+        },
+        {
+          "token": "import",
+          "pos": 654,
+          "neg": 0,
+          "ratio": 655.0
+        },
+        {
+          "token": "resources",
+          "pos": 400,
+          "neg": 0,
+          "ratio": 401.0
+        },
+        {
+          "token": "page",
+          "pos": 371,
+          "neg": 0,
+          "ratio": 372.0
+        },
+        {
+          "token": "test",
+          "pos": 371,
+          "neg": 0,
+          "ratio": 372.0
+        },
+        {
+          "token": "pytest",
+          "pos": 361,
+          "neg": 0,
+          "ratio": 362.0
+        },
+        {
+          "token": "not",
+          "pos": 311,
+          "neg": 0,
+          "ratio": 312.0
+        },
+        {
+          "token": "ocrmypdf",
+          "pos": 303,
+          "neg": 0,
+          "ratio": 304.0
+        },
+        {
+          "token": "text",
+          "pos": 291,
+          "neg": 0,
+          "ratio": 292.0
+        },
+        {
+          "token": "image",
+          "pos": 274,
+          "neg": 0,
+          "ratio": 275.0
+        },
+        {
+          "token": "multi_font_manager",
+          "pos": 256,
+          "neg": 0,
+          "ratio": 257.0
+        },
+        {
+          "token": "outpdf",
+          "pos": 243,
+          "neg": 0,
+          "ratio": 244.0
+        },
+        {
+          "token": "path",
+          "pos": 211,
+          "neg": 0,
+          "ratio": 212.0
+        },
+        {
+          "token": "tmp_path",
+          "pos": 209,
+          "neg": 0,
+          "ratio": 210.0
+        },
+        {
+          "token": "outdir",
+          "pos": 197,
+          "neg": 0,
+          "ratio": 198.0
+        },
+        {
+          "token": "tests",
+          "pos": 188,
+          "neg": 0,
+          "ratio": 189.0
+        },
+        {
+          "token": "pikepdf",
+          "pos": 184,
+          "neg": 0,
+          "ratio": 185.0
+        },
+        {
+          "token": "result",
+          "pos": 176,
+          "neg": 0,
+          "ratio": 177.0
+        },
+        {
+          "token": "renderer",
+          "pos": 161,
+          "neg": 0,
+          "ratio": 162.0
+        },
+        {
+          "token": "bbox",
+          "pos": 155,
+          "neg": 0,
+          "ratio": 156.0
+        },
+        {
+          "token": "output",
+          "pos": 153,
+          "neg": 0,
+          "ratio": 154.0
+        },
+        {
+          "token": "options",
+          "pos": 145,
+          "neg": 0,
+          "ratio": 146.0
+        },
+        {
+          "token": "name",
+          "pos": 144,
+          "neg": 0,
+          "ratio": 145.0
+        },
+        {
+          "token": "ocrclass",
+          "pos": 143,
+          "neg": 0,
+          "ratio": 144.0
+        },
+        {
+          "token": "parser",
+          "pos": 141,
+          "neg": 0,
+          "ratio": 142.0
+        },
+        {
+          "token": "line",
+          "pos": 139,
+          "neg": 0,
+          "ratio": 140.0
+        },
+        {
+          "token": "caplog",
+          "pos": 134,
+          "neg": 0,
+          "ratio": 135.0
+        },
+        {
+          "token": "input_file",
+          "pos": 132,
+          "neg": 0,
+          "ratio": 133.0
+        },
+        {
+          "token": "ocrelement",
+          "pos": 132,
+          "neg": 0,
+          "ratio": 133.0
+        }
+      ]
+    },
+    "api": {
+      "positive_repos": [
+        "flask"
+      ],
+      "negative_repos": [
+        "flask"
+      ],
+      "candidate_tokens": [
+        {
+          "token": "app",
+          "pos": 1917,
+          "neg": 1917,
+          "ratio": 1.0
+        },
+        {
+          "token": "flask",
+          "pos": 1139,
+          "neg": 1139,
+          "ratio": 1.0
+        },
+        {
+          "token": "assert",
+          "pos": 1049,
+          "neg": 1049,
+          "ratio": 1.0
+        },
+        {
+          "token": "import",
+          "pos": 663,
+          "neg": 663,
+          "ratio": 1.0
+        },
+        {
+          "token": "client",
+          "pos": 561,
+          "neg": 561,
+          "ratio": 1.0
+        },
+        {
+          "token": "get",
+          "pos": 502,
+          "neg": 502,
+          "ratio": 1.0
+        },
+        {
+          "token": "not",
+          "pos": 476,
+          "neg": 476,
+          "ratio": 1.0
+        },
+        {
+          "token": "name",
+          "pos": 461,
+          "neg": 461,
+          "ratio": 1.0
+        },
+        {
+          "token": "data",
+          "pos": 441,
+          "neg": 441,
+          "ratio": 1.0
+        },
+        {
+          "token": "request",
+          "pos": 433,
+          "neg": 433,
+          "ratio": 1.0
+        },
+        {
+          "token": "str",
+          "pos": 413,
+          "neg": 413,
+          "ratio": 1.0
+        },
+        {
+          "token": "value",
+          "pos": 412,
+          "neg": 412,
+          "ratio": 1.0
+        },
+        {
+          "token": "any",
+          "pos": 340,
+          "neg": 340,
+          "ratio": 1.0
+        },
+        {
+          "token": "route",
+          "pos": 299,
+          "neg": 299,
+          "ratio": 1.0
+        },
+        {
+          "token": "index",
+          "pos": 282,
+          "neg": 282,
+          "ratio": 1.0
+        },
+        {
+          "token": "blueprint",
+          "pos": 280,
+          "neg": 280,
+          "ratio": 1.0
+        },
+        {
+          "token": "response",
+          "pos": 276,
+          "neg": 276,
+          "ratio": 1.0
+        },
+        {
+          "token": "config",
+          "pos": 275,
+          "neg": 275,
+          "ratio": 1.0
+        },
+        {
+          "token": "path",
+          "pos": 267,
+          "neg": 267,
+          "ratio": 1.0
+        },
+        {
+          "token": "param",
+          "pos": 258,
+          "neg": 258,
+          "ratio": 1.0
+        },
+        {
+          "token": "ctx",
+          "pos": 224,
+          "neg": 224,
+          "ratio": 1.0
+        },
+        {
+          "token": "test",
+          "pos": 219,
+          "neg": 219,
+          "ratio": 1.0
+        },
+        {
+          "token": "context",
+          "pos": 217,
+          "neg": 217,
+          "ratio": 1.0
+        },
+        {
+          "token": "__name__",
+          "pos": 210,
+          "neg": 210,
+          "ratio": 1.0
+        },
+        {
+          "token": "session",
+          "pos": 207,
+          "neg": 207,
+          "ratio": 1.0
+        },
+        {
+          "token": "foo",
+          "pos": 202,
+          "neg": 202,
+          "ratio": 1.0
+        },
+        {
+          "token": "json",
+          "pos": 198,
+          "neg": 198,
+          "ratio": 1.0
+        },
+        {
+          "token": "will",
+          "pos": 191,
+          "neg": 191,
+          "ratio": 1.0
+        },
+        {
+          "token": "raise",
+          "pos": 185,
+          "neg": 185,
+          "ratio": 1.0
+        },
+        {
+          "token": "type",
+          "pos": 180,
+          "neg": 180,
+          "ratio": 1.0
+        }
+      ]
+    },
+    "cli": {
+      "positive_repos": [
+        "OCRmyPDF"
+      ],
+      "negative_repos": [],
+      "candidate_tokens": [
+        {
+          "token": "assert",
+          "pos": 833,
+          "neg": 0,
+          "ratio": 834.0
+        },
+        {
+          "token": "pdf",
+          "pos": 808,
+          "neg": 0,
+          "ratio": 809.0
+        },
+        {
+          "token": "import",
+          "pos": 571,
+          "neg": 0,
+          "ratio": 572.0
+        },
+        {
+          "token": "resources",
+          "pos": 400,
+          "neg": 0,
+          "ratio": 401.0
+        },
+        {
+          "token": "page",
+          "pos": 368,
+          "neg": 0,
+          "ratio": 369.0
+        },
+        {
+          "token": "test",
+          "pos": 339,
+          "neg": 0,
+          "ratio": 340.0
+        },
+        {
+          "token": "pytest",
+          "pos": 322,
+          "neg": 0,
+          "ratio": 323.0
+        },
+        {
+          "token": "ocrmypdf",
+          "pos": 303,
+          "neg": 0,
+          "ratio": 304.0
+        },
+        {
+          "token": "not",
+          "pos": 288,
+          "neg": 0,
+          "ratio": 289.0
+        },
+        {
+          "token": "text",
+          "pos": 287,
+          "neg": 0,
+          "ratio": 288.0
+        },
+        {
+          "token": "multi_font_manager",
+          "pos": 256,
+          "neg": 0,
+          "ratio": 257.0
+        },
+        {
+          "token": "outpdf",
+          "pos": 243,
+          "neg": 0,
+          "ratio": 244.0
+        },
+        {
+          "token": "image",
+          "pos": 221,
+          "neg": 0,
+          "ratio": 222.0
+        },
+        {
+          "token": "tmp_path",
+          "pos": 209,
+          "neg": 0,
+          "ratio": 210.0
+        },
+        {
+          "token": "outdir",
+          "pos": 197,
+          "neg": 0,
+          "ratio": 198.0
+        },
+        {
+          "token": "path",
+          "pos": 191,
+          "neg": 0,
+          "ratio": 192.0
+        },
+        {
+          "token": "tests",
+          "pos": 186,
+          "neg": 0,
+          "ratio": 187.0
+        },
+        {
+          "token": "pikepdf",
+          "pos": 184,
+          "neg": 0,
+          "ratio": 185.0
+        },
+        {
+          "token": "renderer",
+          "pos": 161,
+          "neg": 0,
+          "ratio": 162.0
+        },
+        {
+          "token": "bbox",
+          "pos": 155,
+          "neg": 0,
+          "ratio": 156.0
+        },
+        {
+          "token": "options",
+          "pos": 145,
+          "neg": 0,
+          "ratio": 146.0
+        },
+        {
+          "token": "ocrclass",
+          "pos": 143,
+          "neg": 0,
+          "ratio": 144.0
+        },
+        {
+          "token": "parser",
+          "pos": 141,
+          "neg": 0,
+          "ratio": 142.0
+        },
+        {
+          "token": "name",
+          "pos": 140,
+          "neg": 0,
+          "ratio": 141.0
+        },
+        {
+          "token": "caplog",
+          "pos": 134,
+          "neg": 0,
+          "ratio": 135.0
+        },
+        {
+          "token": "ocrelement",
+          "pos": 132,
+          "neg": 0,
+          "ratio": 133.0
+        },
+        {
+          "token": "pages",
+          "pos": 132,
+          "neg": 0,
+          "ratio": 133.0
+        },
+        {
+          "token": "input_file",
+          "pos": 130,
+          "neg": 0,
+          "ratio": 131.0
+        },
+        {
+          "token": "line",
+          "pos": 130,
+          "neg": 0,
+          "ratio": 131.0
+        },
+        {
+          "token": "plugins",
+          "pos": 128,
+          "neg": 0,
+          "ratio": 129.0
+        }
+      ]
+    },
+    "async": {
+      "positive_repos": [
+        "OCRmyPDF"
+      ],
+      "negative_repos": [],
+      "candidate_tokens": [
+        {
+          "token": "assert",
+          "pos": 833,
+          "neg": 0,
+          "ratio": 834.0
+        },
+        {
+          "token": "pdf",
+          "pos": 808,
+          "neg": 0,
+          "ratio": 809.0
+        },
+        {
+          "token": "import",
+          "pos": 571,
+          "neg": 0,
+          "ratio": 572.0
+        },
+        {
+          "token": "resources",
+          "pos": 400,
+          "neg": 0,
+          "ratio": 401.0
+        },
+        {
+          "token": "page",
+          "pos": 368,
+          "neg": 0,
+          "ratio": 369.0
+        },
+        {
+          "token": "test",
+          "pos": 339,
+          "neg": 0,
+          "ratio": 340.0
+        },
+        {
+          "token": "pytest",
+          "pos": 322,
+          "neg": 0,
+          "ratio": 323.0
+        },
+        {
+          "token": "ocrmypdf",
+          "pos": 303,
+          "neg": 0,
+          "ratio": 304.0
+        },
+        {
+          "token": "not",
+          "pos": 288,
+          "neg": 0,
+          "ratio": 289.0
+        },
+        {
+          "token": "text",
+          "pos": 287,
+          "neg": 0,
+          "ratio": 288.0
+        },
+        {
+          "token": "multi_font_manager",
+          "pos": 256,
+          "neg": 0,
+          "ratio": 257.0
+        },
+        {
+          "token": "outpdf",
+          "pos": 243,
+          "neg": 0,
+          "ratio": 244.0
+        },
+        {
+          "token": "image",
+          "pos": 221,
+          "neg": 0,
+          "ratio": 222.0
+        },
+        {
+          "token": "tmp_path",
+          "pos": 209,
+          "neg": 0,
+          "ratio": 210.0
+        },
+        {
+          "token": "outdir",
+          "pos": 197,
+          "neg": 0,
+          "ratio": 198.0
+        },
+        {
+          "token": "path",
+          "pos": 191,
+          "neg": 0,
+          "ratio": 192.0
+        },
+        {
+          "token": "tests",
+          "pos": 186,
+          "neg": 0,
+          "ratio": 187.0
+        },
+        {
+          "token": "pikepdf",
+          "pos": 184,
+          "neg": 0,
+          "ratio": 185.0
+        },
+        {
+          "token": "renderer",
+          "pos": 161,
+          "neg": 0,
+          "ratio": 162.0
+        },
+        {
+          "token": "bbox",
+          "pos": 155,
+          "neg": 0,
+          "ratio": 156.0
+        },
+        {
+          "token": "options",
+          "pos": 145,
+          "neg": 0,
+          "ratio": 146.0
+        },
+        {
+          "token": "ocrclass",
+          "pos": 143,
+          "neg": 0,
+          "ratio": 144.0
+        },
+        {
+          "token": "parser",
+          "pos": 141,
+          "neg": 0,
+          "ratio": 142.0
+        },
+        {
+          "token": "name",
+          "pos": 140,
+          "neg": 0,
+          "ratio": 141.0
+        },
+        {
+          "token": "caplog",
+          "pos": 134,
+          "neg": 0,
+          "ratio": 135.0
+        },
+        {
+          "token": "ocrelement",
+          "pos": 132,
+          "neg": 0,
+          "ratio": 133.0
+        },
+        {
+          "token": "pages",
+          "pos": 132,
+          "neg": 0,
+          "ratio": 133.0
+        },
+        {
+          "token": "input_file",
+          "pos": 130,
+          "neg": 0,
+          "ratio": 131.0
+        },
+        {
+          "token": "line",
+          "pos": 130,
+          "neg": 0,
+          "ratio": 131.0
+        },
+        {
+          "token": "plugins",
+          "pos": 128,
+          "neg": 0,
+          "ratio": 129.0
+        }
+      ]
+    },
+    "filters": {
+      "positive_repos": [
+        "OCRmyPDF"
+      ],
+      "negative_repos": [],
+      "candidate_tokens": [
+        {
+          "token": "assert",
+          "pos": 833,
+          "neg": 0,
+          "ratio": 834.0
+        },
+        {
+          "token": "pdf",
+          "pos": 808,
+          "neg": 0,
+          "ratio": 809.0
+        },
+        {
+          "token": "import",
+          "pos": 571,
+          "neg": 0,
+          "ratio": 572.0
+        },
+        {
+          "token": "resources",
+          "pos": 400,
+          "neg": 0,
+          "ratio": 401.0
+        },
+        {
+          "token": "page",
+          "pos": 368,
+          "neg": 0,
+          "ratio": 369.0
+        },
+        {
+          "token": "test",
+          "pos": 339,
+          "neg": 0,
+          "ratio": 340.0
+        },
+        {
+          "token": "pytest",
+          "pos": 322,
+          "neg": 0,
+          "ratio": 323.0
+        },
+        {
+          "token": "ocrmypdf",
+          "pos": 303,
+          "neg": 0,
+          "ratio": 304.0
+        },
+        {
+          "token": "not",
+          "pos": 288,
+          "neg": 0,
+          "ratio": 289.0
+        },
+        {
+          "token": "text",
+          "pos": 287,
+          "neg": 0,
+          "ratio": 288.0
+        },
+        {
+          "token": "multi_font_manager",
+          "pos": 256,
+          "neg": 0,
+          "ratio": 257.0
+        },
+        {
+          "token": "outpdf",
+          "pos": 243,
+          "neg": 0,
+          "ratio": 244.0
+        },
+        {
+          "token": "image",
+          "pos": 221,
+          "neg": 0,
+          "ratio": 222.0
+        },
+        {
+          "token": "tmp_path",
+          "pos": 209,
+          "neg": 0,
+          "ratio": 210.0
+        },
+        {
+          "token": "outdir",
+          "pos": 197,
+          "neg": 0,
+          "ratio": 198.0
+        },
+        {
+          "token": "path",
+          "pos": 191,
+          "neg": 0,
+          "ratio": 192.0
+        },
+        {
+          "token": "tests",
+          "pos": 186,
+          "neg": 0,
+          "ratio": 187.0
+        },
+        {
+          "token": "pikepdf",
+          "pos": 184,
+          "neg": 0,
+          "ratio": 185.0
+        },
+        {
+          "token": "renderer",
+          "pos": 161,
+          "neg": 0,
+          "ratio": 162.0
+        },
+        {
+          "token": "bbox",
+          "pos": 155,
+          "neg": 0,
+          "ratio": 156.0
+        },
+        {
+          "token": "options",
+          "pos": 145,
+          "neg": 0,
+          "ratio": 146.0
+        },
+        {
+          "token": "ocrclass",
+          "pos": 143,
+          "neg": 0,
+          "ratio": 144.0
+        },
+        {
+          "token": "parser",
+          "pos": 141,
+          "neg": 0,
+          "ratio": 142.0
+        },
+        {
+          "token": "name",
+          "pos": 140,
+          "neg": 0,
+          "ratio": 141.0
+        },
+        {
+          "token": "caplog",
+          "pos": 134,
+          "neg": 0,
+          "ratio": 135.0
+        },
+        {
+          "token": "ocrelement",
+          "pos": 132,
+          "neg": 0,
+          "ratio": 133.0
+        },
+        {
+          "token": "pages",
+          "pos": 132,
+          "neg": 0,
+          "ratio": 133.0
+        },
+        {
+          "token": "input_file",
+          "pos": 130,
+          "neg": 0,
+          "ratio": 131.0
+        },
+        {
+          "token": "line",
+          "pos": 130,
+          "neg": 0,
+          "ratio": 131.0
+        },
+        {
+          "token": "plugins",
+          "pos": 128,
+          "neg": 0,
+          "ratio": 129.0
+        }
+      ]
+    },
+    "negative": {
+      "positive_repos": [],
+      "negative_repos": [
+        "OCRmyPDF",
+        "flask"
+      ],
+      "candidate_tokens": []
+    }
+  }
+}

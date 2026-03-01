@@ -1,0 +1,1886 @@
+{
+  "generated_at": "2026-03-01T03:05:35.055623+00:00",
+  "config": {
+    "repos_file": "/Users/dustycyanide/Documents/projects/modular_opensource/experiment_capability_search_v1/phase2/benchmark/repos.json",
+    "queries_file": "/Users/dustycyanide/Documents/projects/modular_opensource/experiment_capability_search_v1/phase2/benchmark/queries.json",
+    "repos_root": "/Users/dustycyanide/Documents/projects/modular_opensource/experiment_capability_search_v1/repos",
+    "db_path": "/Users/dustycyanide/Documents/projects/modular_opensource/experiment_capability_search_v1/data/capabilities_phase2.db",
+    "validator_pack": "/Users/dustycyanide/Documents/projects/modular_opensource/experiment_capability_search_v1/phase2/validator_packs/candidate_cli_recall_v1.json",
+    "max_repos": 5,
+    "modes": [
+      "lexical",
+      "semantic",
+      "hybrid"
+    ]
+  },
+  "repos_indexed": [
+    "OCRmyPDF",
+    "requests",
+    "flask",
+    "click",
+    "pytesseract"
+  ],
+  "ingest_summary": [
+    {
+      "repo": "OCRmyPDF",
+      "cards_added": 5,
+      "path": "/Users/dustycyanide/Documents/projects/modular_opensource/experiment_capability_search_v1/repos/OCRmyPDF"
+    },
+    {
+      "repo": "requests",
+      "cards_added": 1,
+      "path": "/Users/dustycyanide/Documents/projects/modular_opensource/experiment_capability_search_v1/repos/requests"
+    },
+    {
+      "repo": "flask",
+      "cards_added": 3,
+      "path": "/Users/dustycyanide/Documents/projects/modular_opensource/experiment_capability_search_v1/repos/flask"
+    },
+    {
+      "repo": "click",
+      "cards_added": 2,
+      "path": "/Users/dustycyanide/Documents/projects/modular_opensource/experiment_capability_search_v1/repos/click"
+    },
+    {
+      "repo": "pytesseract",
+      "cards_added": 2,
+      "path": "/Users/dustycyanide/Documents/projects/modular_opensource/experiment_capability_search_v1/repos/pytesseract"
+    }
+  ],
+  "query_results": [
+    {
+      "id": "Q-OCR-001",
+      "family": "document",
+      "query": "python ocr document pipeline async",
+      "top_k": 5,
+      "expected_repos": [
+        "OCRmyPDF",
+        "pytesseract"
+      ],
+      "expected_capabilities": [
+        "async_processing_engine",
+        "document_ingestion_pipeline",
+        "ocr_processing"
+      ],
+      "mode_results": {
+        "lexical": {
+          "repo_precision_at_k": 1.0,
+          "repo_coverage_at_k": 1.0,
+          "capability_precision_at_k": 1.0,
+          "error_counts": {
+            "extraction_fp": 0,
+            "extraction_fn": 0,
+            "ranking_fp": 0,
+            "ranking_fn": 0,
+            "filter_error": 0,
+            "evidence_gap": 0,
+            "unknown": 0
+          },
+          "errors": [],
+          "results": [
+            {
+              "repo": "OCRmyPDF",
+              "card_type": "capability",
+              "title": "OCRmyPDF: OCR processing",
+              "capability": "ocr_processing",
+              "confidence": 0.95,
+              "license": "GPL",
+              "language": "Python",
+              "evidence_preview": [
+                "misc/_webservice.py",
+                "misc/batch.py",
+                "misc/bisect_pdf.py",
+                "misc/example_plugin.py"
+              ]
+            },
+            {
+              "repo": "pytesseract",
+              "card_type": "capability",
+              "title": "pytesseract: OCR processing",
+              "capability": "ocr_processing",
+              "confidence": 0.95,
+              "license": "Apache-2.0",
+              "language": "Python",
+              "evidence_preview": [
+                "pytesseract/__init__.py",
+                "pytesseract/pytesseract.py"
+              ]
+            },
+            {
+              "repo": "OCRmyPDF",
+              "card_type": "capability",
+              "title": "OCRmyPDF: Asynchronous processing engine",
+              "capability": "async_processing_engine",
+              "confidence": 0.95,
+              "license": "GPL",
+              "language": "Python",
+              "evidence_preview": [
+                "src/ocrmypdf/_concurrent.py",
+                "src/ocrmypdf/_jobcontext.py",
+                "src/ocrmypdf/_metadata.py",
+                "src/ocrmypdf/_pipeline.py"
+              ]
+            },
+            {
+              "repo": "OCRmyPDF",
+              "card_type": "capability",
+              "title": "OCRmyPDF: Document ingestion pipeline",
+              "capability": "document_ingestion_pipeline",
+              "confidence": 0.95,
+              "license": "GPL",
+              "language": "Python",
+              "evidence_preview": [
+                "bin/bump_version.py",
+                "misc/_webservice.py",
+                "misc/batch.py",
+                "misc/bisect_pdf.py"
+              ]
+            }
+          ]
+        },
+        "semantic": {
+          "repo_precision_at_k": 1.0,
+          "repo_coverage_at_k": 1.0,
+          "capability_precision_at_k": 1.0,
+          "error_counts": {
+            "extraction_fp": 0,
+            "extraction_fn": 0,
+            "ranking_fp": 0,
+            "ranking_fn": 0,
+            "filter_error": 0,
+            "evidence_gap": 0,
+            "unknown": 0
+          },
+          "errors": [],
+          "results": [
+            {
+              "repo": "OCRmyPDF",
+              "card_type": "capability",
+              "title": "OCRmyPDF: Asynchronous processing engine",
+              "capability": "async_processing_engine",
+              "confidence": 0.95,
+              "license": "GPL",
+              "language": "Python",
+              "evidence_preview": [
+                "src/ocrmypdf/_concurrent.py",
+                "src/ocrmypdf/_jobcontext.py",
+                "src/ocrmypdf/_metadata.py",
+                "src/ocrmypdf/_pipeline.py"
+              ]
+            },
+            {
+              "repo": "pytesseract",
+              "card_type": "capability",
+              "title": "pytesseract: OCR processing",
+              "capability": "ocr_processing",
+              "confidence": 0.95,
+              "license": "Apache-2.0",
+              "language": "Python",
+              "evidence_preview": [
+                "pytesseract/__init__.py",
+                "pytesseract/pytesseract.py"
+              ]
+            },
+            {
+              "repo": "OCRmyPDF",
+              "card_type": "capability",
+              "title": "OCRmyPDF: OCR processing",
+              "capability": "ocr_processing",
+              "confidence": 0.95,
+              "license": "GPL",
+              "language": "Python",
+              "evidence_preview": [
+                "misc/_webservice.py",
+                "misc/batch.py",
+                "misc/bisect_pdf.py",
+                "misc/example_plugin.py"
+              ]
+            },
+            {
+              "repo": "OCRmyPDF",
+              "card_type": "capability",
+              "title": "OCRmyPDF: Document ingestion pipeline",
+              "capability": "document_ingestion_pipeline",
+              "confidence": 0.95,
+              "license": "GPL",
+              "language": "Python",
+              "evidence_preview": [
+                "bin/bump_version.py",
+                "misc/_webservice.py",
+                "misc/batch.py",
+                "misc/bisect_pdf.py"
+              ]
+            }
+          ]
+        },
+        "hybrid": {
+          "repo_precision_at_k": 1.0,
+          "repo_coverage_at_k": 1.0,
+          "capability_precision_at_k": 1.0,
+          "error_counts": {
+            "extraction_fp": 0,
+            "extraction_fn": 0,
+            "ranking_fp": 0,
+            "ranking_fn": 0,
+            "filter_error": 0,
+            "evidence_gap": 0,
+            "unknown": 0
+          },
+          "errors": [],
+          "results": [
+            {
+              "repo": "OCRmyPDF",
+              "card_type": "capability",
+              "title": "OCRmyPDF: Asynchronous processing engine",
+              "capability": "async_processing_engine",
+              "confidence": 0.95,
+              "license": "GPL",
+              "language": "Python",
+              "evidence_preview": [
+                "src/ocrmypdf/_concurrent.py",
+                "src/ocrmypdf/_jobcontext.py",
+                "src/ocrmypdf/_metadata.py",
+                "src/ocrmypdf/_pipeline.py"
+              ]
+            },
+            {
+              "repo": "OCRmyPDF",
+              "card_type": "capability",
+              "title": "OCRmyPDF: OCR processing",
+              "capability": "ocr_processing",
+              "confidence": 0.95,
+              "license": "GPL",
+              "language": "Python",
+              "evidence_preview": [
+                "misc/_webservice.py",
+                "misc/batch.py",
+                "misc/bisect_pdf.py",
+                "misc/example_plugin.py"
+              ]
+            },
+            {
+              "repo": "pytesseract",
+              "card_type": "capability",
+              "title": "pytesseract: OCR processing",
+              "capability": "ocr_processing",
+              "confidence": 0.95,
+              "license": "Apache-2.0",
+              "language": "Python",
+              "evidence_preview": [
+                "pytesseract/__init__.py",
+                "pytesseract/pytesseract.py"
+              ]
+            },
+            {
+              "repo": "OCRmyPDF",
+              "card_type": "capability",
+              "title": "OCRmyPDF: Document ingestion pipeline",
+              "capability": "document_ingestion_pipeline",
+              "confidence": 0.95,
+              "license": "GPL",
+              "language": "Python",
+              "evidence_preview": [
+                "bin/bump_version.py",
+                "misc/_webservice.py",
+                "misc/batch.py",
+                "misc/bisect_pdf.py"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "Q-OCR-002",
+      "family": "document",
+      "query": "apache python ocr processing",
+      "top_k": 5,
+      "expected_repos": [
+        "pytesseract"
+      ],
+      "expected_capabilities": [
+        "ocr_processing"
+      ],
+      "mode_results": {
+        "lexical": {
+          "repo_precision_at_k": 1.0,
+          "repo_coverage_at_k": 1.0,
+          "capability_precision_at_k": 1.0,
+          "error_counts": {
+            "extraction_fp": 0,
+            "extraction_fn": 0,
+            "ranking_fp": 0,
+            "ranking_fn": 0,
+            "filter_error": 0,
+            "evidence_gap": 0,
+            "unknown": 0
+          },
+          "errors": [],
+          "results": [
+            {
+              "repo": "pytesseract",
+              "card_type": "capability",
+              "title": "pytesseract: OCR processing",
+              "capability": "ocr_processing",
+              "confidence": 0.95,
+              "license": "Apache-2.0",
+              "language": "Python",
+              "evidence_preview": [
+                "pytesseract/__init__.py",
+                "pytesseract/pytesseract.py"
+              ]
+            }
+          ]
+        },
+        "semantic": {
+          "repo_precision_at_k": 1.0,
+          "repo_coverage_at_k": 1.0,
+          "capability_precision_at_k": 1.0,
+          "error_counts": {
+            "extraction_fp": 0,
+            "extraction_fn": 0,
+            "ranking_fp": 0,
+            "ranking_fn": 0,
+            "filter_error": 0,
+            "evidence_gap": 0,
+            "unknown": 0
+          },
+          "errors": [],
+          "results": [
+            {
+              "repo": "pytesseract",
+              "card_type": "capability",
+              "title": "pytesseract: OCR processing",
+              "capability": "ocr_processing",
+              "confidence": 0.95,
+              "license": "Apache-2.0",
+              "language": "Python",
+              "evidence_preview": [
+                "pytesseract/__init__.py",
+                "pytesseract/pytesseract.py"
+              ]
+            }
+          ]
+        },
+        "hybrid": {
+          "repo_precision_at_k": 1.0,
+          "repo_coverage_at_k": 1.0,
+          "capability_precision_at_k": 1.0,
+          "error_counts": {
+            "extraction_fp": 0,
+            "extraction_fn": 0,
+            "ranking_fp": 0,
+            "ranking_fn": 0,
+            "filter_error": 0,
+            "evidence_gap": 0,
+            "unknown": 0
+          },
+          "errors": [],
+          "results": [
+            {
+              "repo": "pytesseract",
+              "card_type": "capability",
+              "title": "pytesseract: OCR processing",
+              "capability": "ocr_processing",
+              "confidence": 0.95,
+              "license": "Apache-2.0",
+              "language": "Python",
+              "evidence_preview": [
+                "pytesseract/__init__.py",
+                "pytesseract/pytesseract.py"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "Q-API-001",
+      "family": "api",
+      "query": "python api service",
+      "top_k": 5,
+      "expected_repos": [
+        "fastapi",
+        "flask"
+      ],
+      "expected_capabilities": [
+        "api_service"
+      ],
+      "mode_results": {
+        "lexical": {
+          "repo_precision_at_k": 1.0,
+          "repo_coverage_at_k": 0.5,
+          "capability_precision_at_k": 1.0,
+          "error_counts": {
+            "extraction_fp": 0,
+            "extraction_fn": 0,
+            "ranking_fp": 0,
+            "ranking_fn": 1,
+            "filter_error": 0,
+            "evidence_gap": 0,
+            "unknown": 0
+          },
+          "errors": [
+            {
+              "type": "ranking_fn",
+              "detail": "missing expected repo: fastapi"
+            }
+          ],
+          "results": [
+            {
+              "repo": "flask",
+              "card_type": "capability",
+              "title": "flask: API service",
+              "capability": "api_service",
+              "confidence": 0.95,
+              "license": "Other",
+              "language": "Python",
+              "evidence_preview": [
+                "src/flask/__init__.py",
+                "src/flask/app.py",
+                "src/flask/blueprints.py",
+                "src/flask/ctx.py"
+              ]
+            }
+          ]
+        },
+        "semantic": {
+          "repo_precision_at_k": 1.0,
+          "repo_coverage_at_k": 0.5,
+          "capability_precision_at_k": 1.0,
+          "error_counts": {
+            "extraction_fp": 0,
+            "extraction_fn": 0,
+            "ranking_fp": 0,
+            "ranking_fn": 1,
+            "filter_error": 0,
+            "evidence_gap": 0,
+            "unknown": 0
+          },
+          "errors": [
+            {
+              "type": "ranking_fn",
+              "detail": "missing expected repo: fastapi"
+            }
+          ],
+          "results": [
+            {
+              "repo": "flask",
+              "card_type": "capability",
+              "title": "flask: API service",
+              "capability": "api_service",
+              "confidence": 0.95,
+              "license": "Other",
+              "language": "Python",
+              "evidence_preview": [
+                "src/flask/__init__.py",
+                "src/flask/app.py",
+                "src/flask/blueprints.py",
+                "src/flask/ctx.py"
+              ]
+            }
+          ]
+        },
+        "hybrid": {
+          "repo_precision_at_k": 1.0,
+          "repo_coverage_at_k": 0.5,
+          "capability_precision_at_k": 1.0,
+          "error_counts": {
+            "extraction_fp": 0,
+            "extraction_fn": 0,
+            "ranking_fp": 0,
+            "ranking_fn": 1,
+            "filter_error": 0,
+            "evidence_gap": 0,
+            "unknown": 0
+          },
+          "errors": [
+            {
+              "type": "ranking_fn",
+              "detail": "missing expected repo: fastapi"
+            }
+          ],
+          "results": [
+            {
+              "repo": "flask",
+              "card_type": "capability",
+              "title": "flask: API service",
+              "capability": "api_service",
+              "confidence": 0.95,
+              "license": "Other",
+              "language": "Python",
+              "evidence_preview": [
+                "src/flask/__init__.py",
+                "src/flask/app.py",
+                "src/flask/blueprints.py",
+                "src/flask/ctx.py"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "Q-API-002",
+      "family": "api",
+      "query": "python fastapi router endpoint",
+      "top_k": 5,
+      "expected_repos": [
+        "fastapi"
+      ],
+      "expected_capabilities": [
+        "api_service"
+      ],
+      "mode_results": {
+        "lexical": {
+          "repo_precision_at_k": 0.0,
+          "repo_coverage_at_k": 0.0,
+          "capability_precision_at_k": 1.0,
+          "error_counts": {
+            "extraction_fp": 0,
+            "extraction_fn": 0,
+            "ranking_fp": 1,
+            "ranking_fn": 1,
+            "filter_error": 0,
+            "evidence_gap": 0,
+            "unknown": 0
+          },
+          "errors": [
+            {
+              "type": "ranking_fn",
+              "detail": "missing expected repo: fastapi"
+            },
+            {
+              "type": "ranking_fp",
+              "rank": 1,
+              "detail": "unexpected repo flask"
+            }
+          ],
+          "results": [
+            {
+              "repo": "flask",
+              "card_type": "capability",
+              "title": "flask: API service",
+              "capability": "api_service",
+              "confidence": 0.95,
+              "license": "Other",
+              "language": "Python",
+              "evidence_preview": [
+                "src/flask/__init__.py",
+                "src/flask/app.py",
+                "src/flask/blueprints.py",
+                "src/flask/ctx.py"
+              ]
+            }
+          ]
+        },
+        "semantic": {
+          "repo_precision_at_k": 0.0,
+          "repo_coverage_at_k": 0.0,
+          "capability_precision_at_k": 1.0,
+          "error_counts": {
+            "extraction_fp": 0,
+            "extraction_fn": 0,
+            "ranking_fp": 1,
+            "ranking_fn": 1,
+            "filter_error": 0,
+            "evidence_gap": 0,
+            "unknown": 0
+          },
+          "errors": [
+            {
+              "type": "ranking_fn",
+              "detail": "missing expected repo: fastapi"
+            },
+            {
+              "type": "ranking_fp",
+              "rank": 1,
+              "detail": "unexpected repo flask"
+            }
+          ],
+          "results": [
+            {
+              "repo": "flask",
+              "card_type": "capability",
+              "title": "flask: API service",
+              "capability": "api_service",
+              "confidence": 0.95,
+              "license": "Other",
+              "language": "Python",
+              "evidence_preview": [
+                "src/flask/__init__.py",
+                "src/flask/app.py",
+                "src/flask/blueprints.py",
+                "src/flask/ctx.py"
+              ]
+            }
+          ]
+        },
+        "hybrid": {
+          "repo_precision_at_k": 0.0,
+          "repo_coverage_at_k": 0.0,
+          "capability_precision_at_k": 1.0,
+          "error_counts": {
+            "extraction_fp": 0,
+            "extraction_fn": 0,
+            "ranking_fp": 1,
+            "ranking_fn": 1,
+            "filter_error": 0,
+            "evidence_gap": 0,
+            "unknown": 0
+          },
+          "errors": [
+            {
+              "type": "ranking_fn",
+              "detail": "missing expected repo: fastapi"
+            },
+            {
+              "type": "ranking_fp",
+              "rank": 1,
+              "detail": "unexpected repo flask"
+            }
+          ],
+          "results": [
+            {
+              "repo": "flask",
+              "card_type": "capability",
+              "title": "flask: API service",
+              "capability": "api_service",
+              "confidence": 0.95,
+              "license": "Other",
+              "language": "Python",
+              "evidence_preview": [
+                "src/flask/__init__.py",
+                "src/flask/app.py",
+                "src/flask/blueprints.py",
+                "src/flask/ctx.py"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "Q-CLI-001",
+      "family": "cli",
+      "query": "python cli command tooling",
+      "top_k": 5,
+      "expected_repos": [
+        "OCRmyPDF",
+        "click",
+        "typer"
+      ],
+      "expected_capabilities": [
+        "cli_tooling"
+      ],
+      "mode_results": {
+        "lexical": {
+          "repo_precision_at_k": 0.667,
+          "repo_coverage_at_k": 0.667,
+          "capability_precision_at_k": 1.0,
+          "error_counts": {
+            "extraction_fp": 0,
+            "extraction_fn": 0,
+            "ranking_fp": 1,
+            "ranking_fn": 1,
+            "filter_error": 0,
+            "evidence_gap": 0,
+            "unknown": 0
+          },
+          "errors": [
+            {
+              "type": "ranking_fn",
+              "detail": "missing expected repo: typer"
+            },
+            {
+              "type": "ranking_fp",
+              "rank": 1,
+              "detail": "unexpected repo flask"
+            }
+          ],
+          "results": [
+            {
+              "repo": "flask",
+              "card_type": "capability",
+              "title": "flask: CLI tooling",
+              "capability": "cli_tooling",
+              "confidence": 0.95,
+              "license": "Other",
+              "language": "Python",
+              "evidence_preview": [
+                ".devcontainer/on-create-command.sh",
+                "src/flask/__main__.py",
+                "src/flask/blueprints.py",
+                "src/flask/ctx.py"
+              ]
+            },
+            {
+              "repo": "click",
+              "card_type": "capability",
+              "title": "click: CLI tooling",
+              "capability": "cli_tooling",
+              "confidence": 0.95,
+              "license": "Other",
+              "language": "Python",
+              "evidence_preview": [
+                ".devcontainer/on-create-command.sh",
+                "src/click/__init__.py",
+                "src/click/_utils.py",
+                "src/click/core.py"
+              ]
+            },
+            {
+              "repo": "OCRmyPDF",
+              "card_type": "capability",
+              "title": "OCRmyPDF: CLI tooling",
+              "capability": "cli_tooling",
+              "confidence": 0.95,
+              "license": "GPL",
+              "language": "Python",
+              "evidence_preview": [
+                "misc/_webservice.py",
+                "misc/batch.py",
+                "misc/bisect_pdf.py",
+                "misc/example_plugin.py"
+              ]
+            }
+          ]
+        },
+        "semantic": {
+          "repo_precision_at_k": 0.667,
+          "repo_coverage_at_k": 0.667,
+          "capability_precision_at_k": 1.0,
+          "error_counts": {
+            "extraction_fp": 0,
+            "extraction_fn": 0,
+            "ranking_fp": 1,
+            "ranking_fn": 1,
+            "filter_error": 0,
+            "evidence_gap": 0,
+            "unknown": 0
+          },
+          "errors": [
+            {
+              "type": "ranking_fn",
+              "detail": "missing expected repo: typer"
+            },
+            {
+              "type": "ranking_fp",
+              "rank": 2,
+              "detail": "unexpected repo flask"
+            }
+          ],
+          "results": [
+            {
+              "repo": "click",
+              "card_type": "capability",
+              "title": "click: CLI tooling",
+              "capability": "cli_tooling",
+              "confidence": 0.95,
+              "license": "Other",
+              "language": "Python",
+              "evidence_preview": [
+                ".devcontainer/on-create-command.sh",
+                "src/click/__init__.py",
+                "src/click/_utils.py",
+                "src/click/core.py"
+              ]
+            },
+            {
+              "repo": "flask",
+              "card_type": "capability",
+              "title": "flask: CLI tooling",
+              "capability": "cli_tooling",
+              "confidence": 0.95,
+              "license": "Other",
+              "language": "Python",
+              "evidence_preview": [
+                ".devcontainer/on-create-command.sh",
+                "src/flask/__main__.py",
+                "src/flask/blueprints.py",
+                "src/flask/ctx.py"
+              ]
+            },
+            {
+              "repo": "OCRmyPDF",
+              "card_type": "capability",
+              "title": "OCRmyPDF: CLI tooling",
+              "capability": "cli_tooling",
+              "confidence": 0.95,
+              "license": "GPL",
+              "language": "Python",
+              "evidence_preview": [
+                "misc/_webservice.py",
+                "misc/batch.py",
+                "misc/bisect_pdf.py",
+                "misc/example_plugin.py"
+              ]
+            }
+          ]
+        },
+        "hybrid": {
+          "repo_precision_at_k": 0.667,
+          "repo_coverage_at_k": 0.667,
+          "capability_precision_at_k": 1.0,
+          "error_counts": {
+            "extraction_fp": 0,
+            "extraction_fn": 0,
+            "ranking_fp": 1,
+            "ranking_fn": 1,
+            "filter_error": 0,
+            "evidence_gap": 0,
+            "unknown": 0
+          },
+          "errors": [
+            {
+              "type": "ranking_fn",
+              "detail": "missing expected repo: typer"
+            },
+            {
+              "type": "ranking_fp",
+              "rank": 1,
+              "detail": "unexpected repo flask"
+            }
+          ],
+          "results": [
+            {
+              "repo": "flask",
+              "card_type": "capability",
+              "title": "flask: CLI tooling",
+              "capability": "cli_tooling",
+              "confidence": 0.95,
+              "license": "Other",
+              "language": "Python",
+              "evidence_preview": [
+                ".devcontainer/on-create-command.sh",
+                "src/flask/__main__.py",
+                "src/flask/blueprints.py",
+                "src/flask/ctx.py"
+              ]
+            },
+            {
+              "repo": "click",
+              "card_type": "capability",
+              "title": "click: CLI tooling",
+              "capability": "cli_tooling",
+              "confidence": 0.95,
+              "license": "Other",
+              "language": "Python",
+              "evidence_preview": [
+                ".devcontainer/on-create-command.sh",
+                "src/click/__init__.py",
+                "src/click/_utils.py",
+                "src/click/core.py"
+              ]
+            },
+            {
+              "repo": "OCRmyPDF",
+              "card_type": "capability",
+              "title": "OCRmyPDF: CLI tooling",
+              "capability": "cli_tooling",
+              "confidence": 0.95,
+              "license": "GPL",
+              "language": "Python",
+              "evidence_preview": [
+                "misc/_webservice.py",
+                "misc/batch.py",
+                "misc/bisect_pdf.py",
+                "misc/example_plugin.py"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "Q-ASYNC-001",
+      "family": "async",
+      "query": "python async queue worker",
+      "top_k": 5,
+      "expected_repos": [
+        "OCRmyPDF",
+        "celery",
+        "rq"
+      ],
+      "expected_capabilities": [
+        "async_processing_engine"
+      ],
+      "mode_results": {
+        "lexical": {
+          "repo_precision_at_k": 1.0,
+          "repo_coverage_at_k": 0.333,
+          "capability_precision_at_k": 1.0,
+          "error_counts": {
+            "extraction_fp": 0,
+            "extraction_fn": 0,
+            "ranking_fp": 0,
+            "ranking_fn": 2,
+            "filter_error": 0,
+            "evidence_gap": 0,
+            "unknown": 0
+          },
+          "errors": [
+            {
+              "type": "ranking_fn",
+              "detail": "missing expected repo: celery"
+            },
+            {
+              "type": "ranking_fn",
+              "detail": "missing expected repo: rq"
+            }
+          ],
+          "results": [
+            {
+              "repo": "OCRmyPDF",
+              "card_type": "capability",
+              "title": "OCRmyPDF: Asynchronous processing engine",
+              "capability": "async_processing_engine",
+              "confidence": 0.95,
+              "license": "GPL",
+              "language": "Python",
+              "evidence_preview": [
+                "src/ocrmypdf/_concurrent.py",
+                "src/ocrmypdf/_jobcontext.py",
+                "src/ocrmypdf/_metadata.py",
+                "src/ocrmypdf/_pipeline.py"
+              ]
+            }
+          ]
+        },
+        "semantic": {
+          "repo_precision_at_k": 1.0,
+          "repo_coverage_at_k": 0.333,
+          "capability_precision_at_k": 1.0,
+          "error_counts": {
+            "extraction_fp": 0,
+            "extraction_fn": 0,
+            "ranking_fp": 0,
+            "ranking_fn": 2,
+            "filter_error": 0,
+            "evidence_gap": 0,
+            "unknown": 0
+          },
+          "errors": [
+            {
+              "type": "ranking_fn",
+              "detail": "missing expected repo: celery"
+            },
+            {
+              "type": "ranking_fn",
+              "detail": "missing expected repo: rq"
+            }
+          ],
+          "results": [
+            {
+              "repo": "OCRmyPDF",
+              "card_type": "capability",
+              "title": "OCRmyPDF: Asynchronous processing engine",
+              "capability": "async_processing_engine",
+              "confidence": 0.95,
+              "license": "GPL",
+              "language": "Python",
+              "evidence_preview": [
+                "src/ocrmypdf/_concurrent.py",
+                "src/ocrmypdf/_jobcontext.py",
+                "src/ocrmypdf/_metadata.py",
+                "src/ocrmypdf/_pipeline.py"
+              ]
+            }
+          ]
+        },
+        "hybrid": {
+          "repo_precision_at_k": 1.0,
+          "repo_coverage_at_k": 0.333,
+          "capability_precision_at_k": 1.0,
+          "error_counts": {
+            "extraction_fp": 0,
+            "extraction_fn": 0,
+            "ranking_fp": 0,
+            "ranking_fn": 2,
+            "filter_error": 0,
+            "evidence_gap": 0,
+            "unknown": 0
+          },
+          "errors": [
+            {
+              "type": "ranking_fn",
+              "detail": "missing expected repo: celery"
+            },
+            {
+              "type": "ranking_fn",
+              "detail": "missing expected repo: rq"
+            }
+          ],
+          "results": [
+            {
+              "repo": "OCRmyPDF",
+              "card_type": "capability",
+              "title": "OCRmyPDF: Asynchronous processing engine",
+              "capability": "async_processing_engine",
+              "confidence": 0.95,
+              "license": "GPL",
+              "language": "Python",
+              "evidence_preview": [
+                "src/ocrmypdf/_concurrent.py",
+                "src/ocrmypdf/_jobcontext.py",
+                "src/ocrmypdf/_metadata.py",
+                "src/ocrmypdf/_pipeline.py"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "Q-DATA-001",
+      "family": "data",
+      "query": "python orm migration database",
+      "top_k": 5,
+      "expected_repos": [
+        "django",
+        "sqlalchemy"
+      ],
+      "expected_capabilities": [
+        "database_persistence"
+      ],
+      "mode_results": {
+        "lexical": {
+          "repo_precision_at_k": 0.0,
+          "repo_coverage_at_k": 0.0,
+          "capability_precision_at_k": 0.0,
+          "error_counts": {
+            "extraction_fp": 0,
+            "extraction_fn": 1,
+            "ranking_fp": 0,
+            "ranking_fn": 2,
+            "filter_error": 0,
+            "evidence_gap": 0,
+            "unknown": 0
+          },
+          "errors": [
+            {
+              "type": "ranking_fn",
+              "detail": "missing expected repo: django"
+            },
+            {
+              "type": "ranking_fn",
+              "detail": "missing expected repo: sqlalchemy"
+            },
+            {
+              "type": "extraction_fn",
+              "detail": "missing expected capability: database_persistence"
+            }
+          ],
+          "results": []
+        },
+        "semantic": {
+          "repo_precision_at_k": 0.0,
+          "repo_coverage_at_k": 0.0,
+          "capability_precision_at_k": 0.0,
+          "error_counts": {
+            "extraction_fp": 0,
+            "extraction_fn": 1,
+            "ranking_fp": 0,
+            "ranking_fn": 2,
+            "filter_error": 0,
+            "evidence_gap": 0,
+            "unknown": 0
+          },
+          "errors": [
+            {
+              "type": "ranking_fn",
+              "detail": "missing expected repo: django"
+            },
+            {
+              "type": "ranking_fn",
+              "detail": "missing expected repo: sqlalchemy"
+            },
+            {
+              "type": "extraction_fn",
+              "detail": "missing expected capability: database_persistence"
+            }
+          ],
+          "results": []
+        },
+        "hybrid": {
+          "repo_precision_at_k": 0.0,
+          "repo_coverage_at_k": 0.0,
+          "capability_precision_at_k": 0.0,
+          "error_counts": {
+            "extraction_fp": 0,
+            "extraction_fn": 1,
+            "ranking_fp": 0,
+            "ranking_fn": 2,
+            "filter_error": 0,
+            "evidence_gap": 0,
+            "unknown": 0
+          },
+          "errors": [
+            {
+              "type": "ranking_fn",
+              "detail": "missing expected repo: django"
+            },
+            {
+              "type": "ranking_fn",
+              "detail": "missing expected repo: sqlalchemy"
+            },
+            {
+              "type": "extraction_fn",
+              "detail": "missing expected capability: database_persistence"
+            }
+          ],
+          "results": []
+        }
+      }
+    },
+    {
+      "id": "Q-FILTER-001",
+      "family": "filters",
+      "query": "gpl python ocr pipeline",
+      "top_k": 5,
+      "expected_repos": [
+        "OCRmyPDF"
+      ],
+      "expected_capabilities": [
+        "document_ingestion_pipeline",
+        "ocr_processing"
+      ],
+      "mode_results": {
+        "lexical": {
+          "repo_precision_at_k": 1.0,
+          "repo_coverage_at_k": 1.0,
+          "capability_precision_at_k": 0.5,
+          "error_counts": {
+            "extraction_fp": 1,
+            "extraction_fn": 1,
+            "ranking_fp": 0,
+            "ranking_fn": 0,
+            "filter_error": 0,
+            "evidence_gap": 0,
+            "unknown": 0
+          },
+          "errors": [
+            {
+              "type": "extraction_fn",
+              "detail": "missing expected capability: document_ingestion_pipeline"
+            },
+            {
+              "type": "extraction_fp",
+              "rank": 2,
+              "detail": "unexpected capability async_processing_engine"
+            }
+          ],
+          "results": [
+            {
+              "repo": "OCRmyPDF",
+              "card_type": "capability",
+              "title": "OCRmyPDF: OCR processing",
+              "capability": "ocr_processing",
+              "confidence": 0.95,
+              "license": "GPL",
+              "language": "Python",
+              "evidence_preview": [
+                "misc/_webservice.py",
+                "misc/batch.py",
+                "misc/bisect_pdf.py",
+                "misc/example_plugin.py"
+              ]
+            },
+            {
+              "repo": "OCRmyPDF",
+              "card_type": "capability",
+              "title": "OCRmyPDF: Asynchronous processing engine",
+              "capability": "async_processing_engine",
+              "confidence": 0.95,
+              "license": "GPL",
+              "language": "Python",
+              "evidence_preview": [
+                "src/ocrmypdf/_concurrent.py",
+                "src/ocrmypdf/_jobcontext.py",
+                "src/ocrmypdf/_metadata.py",
+                "src/ocrmypdf/_pipeline.py"
+              ]
+            }
+          ]
+        },
+        "semantic": {
+          "repo_precision_at_k": 1.0,
+          "repo_coverage_at_k": 1.0,
+          "capability_precision_at_k": 0.5,
+          "error_counts": {
+            "extraction_fp": 1,
+            "extraction_fn": 1,
+            "ranking_fp": 0,
+            "ranking_fn": 0,
+            "filter_error": 0,
+            "evidence_gap": 0,
+            "unknown": 0
+          },
+          "errors": [
+            {
+              "type": "extraction_fn",
+              "detail": "missing expected capability: document_ingestion_pipeline"
+            },
+            {
+              "type": "extraction_fp",
+              "rank": 2,
+              "detail": "unexpected capability async_processing_engine"
+            }
+          ],
+          "results": [
+            {
+              "repo": "OCRmyPDF",
+              "card_type": "capability",
+              "title": "OCRmyPDF: OCR processing",
+              "capability": "ocr_processing",
+              "confidence": 0.95,
+              "license": "GPL",
+              "language": "Python",
+              "evidence_preview": [
+                "misc/_webservice.py",
+                "misc/batch.py",
+                "misc/bisect_pdf.py",
+                "misc/example_plugin.py"
+              ]
+            },
+            {
+              "repo": "OCRmyPDF",
+              "card_type": "capability",
+              "title": "OCRmyPDF: Asynchronous processing engine",
+              "capability": "async_processing_engine",
+              "confidence": 0.95,
+              "license": "GPL",
+              "language": "Python",
+              "evidence_preview": [
+                "src/ocrmypdf/_concurrent.py",
+                "src/ocrmypdf/_jobcontext.py",
+                "src/ocrmypdf/_metadata.py",
+                "src/ocrmypdf/_pipeline.py"
+              ]
+            }
+          ]
+        },
+        "hybrid": {
+          "repo_precision_at_k": 1.0,
+          "repo_coverage_at_k": 1.0,
+          "capability_precision_at_k": 0.5,
+          "error_counts": {
+            "extraction_fp": 1,
+            "extraction_fn": 1,
+            "ranking_fp": 0,
+            "ranking_fn": 0,
+            "filter_error": 0,
+            "evidence_gap": 0,
+            "unknown": 0
+          },
+          "errors": [
+            {
+              "type": "extraction_fn",
+              "detail": "missing expected capability: document_ingestion_pipeline"
+            },
+            {
+              "type": "extraction_fp",
+              "rank": 2,
+              "detail": "unexpected capability async_processing_engine"
+            }
+          ],
+          "results": [
+            {
+              "repo": "OCRmyPDF",
+              "card_type": "capability",
+              "title": "OCRmyPDF: OCR processing",
+              "capability": "ocr_processing",
+              "confidence": 0.95,
+              "license": "GPL",
+              "language": "Python",
+              "evidence_preview": [
+                "misc/_webservice.py",
+                "misc/batch.py",
+                "misc/bisect_pdf.py",
+                "misc/example_plugin.py"
+              ]
+            },
+            {
+              "repo": "OCRmyPDF",
+              "card_type": "capability",
+              "title": "OCRmyPDF: Asynchronous processing engine",
+              "capability": "async_processing_engine",
+              "confidence": 0.95,
+              "license": "GPL",
+              "language": "Python",
+              "evidence_preview": [
+                "src/ocrmypdf/_concurrent.py",
+                "src/ocrmypdf/_jobcontext.py",
+                "src/ocrmypdf/_metadata.py",
+                "src/ocrmypdf/_pipeline.py"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "Q-FILTER-002",
+      "family": "filters",
+      "query": "apache python cli",
+      "top_k": 5,
+      "expected_repos": [
+        "typer"
+      ],
+      "expected_capabilities": [
+        "cli_tooling"
+      ],
+      "mode_results": {
+        "lexical": {
+          "repo_precision_at_k": 0.0,
+          "repo_coverage_at_k": 0.0,
+          "capability_precision_at_k": 0.0,
+          "error_counts": {
+            "extraction_fp": 0,
+            "extraction_fn": 1,
+            "ranking_fp": 0,
+            "ranking_fn": 1,
+            "filter_error": 0,
+            "evidence_gap": 0,
+            "unknown": 0
+          },
+          "errors": [
+            {
+              "type": "ranking_fn",
+              "detail": "missing expected repo: typer"
+            },
+            {
+              "type": "extraction_fn",
+              "detail": "missing expected capability: cli_tooling"
+            }
+          ],
+          "results": []
+        },
+        "semantic": {
+          "repo_precision_at_k": 0.0,
+          "repo_coverage_at_k": 0.0,
+          "capability_precision_at_k": 0.0,
+          "error_counts": {
+            "extraction_fp": 0,
+            "extraction_fn": 1,
+            "ranking_fp": 0,
+            "ranking_fn": 1,
+            "filter_error": 0,
+            "evidence_gap": 0,
+            "unknown": 0
+          },
+          "errors": [
+            {
+              "type": "ranking_fn",
+              "detail": "missing expected repo: typer"
+            },
+            {
+              "type": "extraction_fn",
+              "detail": "missing expected capability: cli_tooling"
+            }
+          ],
+          "results": []
+        },
+        "hybrid": {
+          "repo_precision_at_k": 0.0,
+          "repo_coverage_at_k": 0.0,
+          "capability_precision_at_k": 0.0,
+          "error_counts": {
+            "extraction_fp": 0,
+            "extraction_fn": 1,
+            "ranking_fp": 0,
+            "ranking_fn": 1,
+            "filter_error": 0,
+            "evidence_gap": 0,
+            "unknown": 0
+          },
+          "errors": [
+            {
+              "type": "ranking_fn",
+              "detail": "missing expected repo: typer"
+            },
+            {
+              "type": "extraction_fn",
+              "detail": "missing expected capability: cli_tooling"
+            }
+          ],
+          "results": []
+        }
+      }
+    },
+    {
+      "id": "Q-NEG-001",
+      "family": "negative",
+      "query": "python http client library",
+      "top_k": 5,
+      "expected_repos": [
+        "requests"
+      ],
+      "expected_capabilities": [],
+      "mode_results": {
+        "lexical": {
+          "repo_precision_at_k": 0.0,
+          "repo_coverage_at_k": 0.0,
+          "capability_precision_at_k": 1.0,
+          "error_counts": {
+            "extraction_fp": 0,
+            "extraction_fn": 0,
+            "ranking_fp": 4,
+            "ranking_fn": 1,
+            "filter_error": 0,
+            "evidence_gap": 0,
+            "unknown": 0
+          },
+          "errors": [
+            {
+              "type": "ranking_fn",
+              "detail": "missing expected repo: requests"
+            },
+            {
+              "type": "ranking_fp",
+              "rank": 1,
+              "detail": "off-target result flask:api_service"
+            },
+            {
+              "type": "ranking_fp",
+              "rank": 2,
+              "detail": "off-target result OCRmyPDF:cli_tooling"
+            },
+            {
+              "type": "ranking_fp",
+              "rank": 3,
+              "detail": "off-target result flask:cli_tooling"
+            },
+            {
+              "type": "ranking_fp",
+              "rank": 4,
+              "detail": "off-target result click:cli_tooling"
+            }
+          ],
+          "results": [
+            {
+              "repo": "flask",
+              "card_type": "capability",
+              "title": "flask: API service",
+              "capability": "api_service",
+              "confidence": 0.95,
+              "license": "Other",
+              "language": "Python",
+              "evidence_preview": [
+                "src/flask/__init__.py",
+                "src/flask/app.py",
+                "src/flask/blueprints.py",
+                "src/flask/ctx.py"
+              ]
+            },
+            {
+              "repo": "OCRmyPDF",
+              "card_type": "capability",
+              "title": "OCRmyPDF: CLI tooling",
+              "capability": "cli_tooling",
+              "confidence": 0.95,
+              "license": "GPL",
+              "language": "Python",
+              "evidence_preview": [
+                "misc/_webservice.py",
+                "misc/batch.py",
+                "misc/bisect_pdf.py",
+                "misc/example_plugin.py"
+              ]
+            },
+            {
+              "repo": "flask",
+              "card_type": "capability",
+              "title": "flask: CLI tooling",
+              "capability": "cli_tooling",
+              "confidence": 0.95,
+              "license": "Other",
+              "language": "Python",
+              "evidence_preview": [
+                ".devcontainer/on-create-command.sh",
+                "src/flask/__main__.py",
+                "src/flask/blueprints.py",
+                "src/flask/ctx.py"
+              ]
+            },
+            {
+              "repo": "click",
+              "card_type": "capability",
+              "title": "click: CLI tooling",
+              "capability": "cli_tooling",
+              "confidence": 0.95,
+              "license": "Other",
+              "language": "Python",
+              "evidence_preview": [
+                ".devcontainer/on-create-command.sh",
+                "src/click/__init__.py",
+                "src/click/_utils.py",
+                "src/click/core.py"
+              ]
+            }
+          ]
+        },
+        "semantic": {
+          "repo_precision_at_k": 0.0,
+          "repo_coverage_at_k": 0.0,
+          "capability_precision_at_k": 1.0,
+          "error_counts": {
+            "extraction_fp": 0,
+            "extraction_fn": 0,
+            "ranking_fp": 4,
+            "ranking_fn": 1,
+            "filter_error": 0,
+            "evidence_gap": 0,
+            "unknown": 0
+          },
+          "errors": [
+            {
+              "type": "ranking_fn",
+              "detail": "missing expected repo: requests"
+            },
+            {
+              "type": "ranking_fp",
+              "rank": 1,
+              "detail": "off-target result flask:api_service"
+            },
+            {
+              "type": "ranking_fp",
+              "rank": 2,
+              "detail": "off-target result flask:cli_tooling"
+            },
+            {
+              "type": "ranking_fp",
+              "rank": 3,
+              "detail": "off-target result OCRmyPDF:cli_tooling"
+            },
+            {
+              "type": "ranking_fp",
+              "rank": 4,
+              "detail": "off-target result click:cli_tooling"
+            }
+          ],
+          "results": [
+            {
+              "repo": "flask",
+              "card_type": "capability",
+              "title": "flask: API service",
+              "capability": "api_service",
+              "confidence": 0.95,
+              "license": "Other",
+              "language": "Python",
+              "evidence_preview": [
+                "src/flask/__init__.py",
+                "src/flask/app.py",
+                "src/flask/blueprints.py",
+                "src/flask/ctx.py"
+              ]
+            },
+            {
+              "repo": "flask",
+              "card_type": "capability",
+              "title": "flask: CLI tooling",
+              "capability": "cli_tooling",
+              "confidence": 0.95,
+              "license": "Other",
+              "language": "Python",
+              "evidence_preview": [
+                ".devcontainer/on-create-command.sh",
+                "src/flask/__main__.py",
+                "src/flask/blueprints.py",
+                "src/flask/ctx.py"
+              ]
+            },
+            {
+              "repo": "OCRmyPDF",
+              "card_type": "capability",
+              "title": "OCRmyPDF: CLI tooling",
+              "capability": "cli_tooling",
+              "confidence": 0.95,
+              "license": "GPL",
+              "language": "Python",
+              "evidence_preview": [
+                "misc/_webservice.py",
+                "misc/batch.py",
+                "misc/bisect_pdf.py",
+                "misc/example_plugin.py"
+              ]
+            },
+            {
+              "repo": "click",
+              "card_type": "capability",
+              "title": "click: CLI tooling",
+              "capability": "cli_tooling",
+              "confidence": 0.95,
+              "license": "Other",
+              "language": "Python",
+              "evidence_preview": [
+                ".devcontainer/on-create-command.sh",
+                "src/click/__init__.py",
+                "src/click/_utils.py",
+                "src/click/core.py"
+              ]
+            }
+          ]
+        },
+        "hybrid": {
+          "repo_precision_at_k": 0.0,
+          "repo_coverage_at_k": 0.0,
+          "capability_precision_at_k": 1.0,
+          "error_counts": {
+            "extraction_fp": 0,
+            "extraction_fn": 0,
+            "ranking_fp": 4,
+            "ranking_fn": 1,
+            "filter_error": 0,
+            "evidence_gap": 0,
+            "unknown": 0
+          },
+          "errors": [
+            {
+              "type": "ranking_fn",
+              "detail": "missing expected repo: requests"
+            },
+            {
+              "type": "ranking_fp",
+              "rank": 1,
+              "detail": "off-target result flask:api_service"
+            },
+            {
+              "type": "ranking_fp",
+              "rank": 2,
+              "detail": "off-target result OCRmyPDF:cli_tooling"
+            },
+            {
+              "type": "ranking_fp",
+              "rank": 3,
+              "detail": "off-target result flask:cli_tooling"
+            },
+            {
+              "type": "ranking_fp",
+              "rank": 4,
+              "detail": "off-target result click:cli_tooling"
+            }
+          ],
+          "results": [
+            {
+              "repo": "flask",
+              "card_type": "capability",
+              "title": "flask: API service",
+              "capability": "api_service",
+              "confidence": 0.95,
+              "license": "Other",
+              "language": "Python",
+              "evidence_preview": [
+                "src/flask/__init__.py",
+                "src/flask/app.py",
+                "src/flask/blueprints.py",
+                "src/flask/ctx.py"
+              ]
+            },
+            {
+              "repo": "OCRmyPDF",
+              "card_type": "capability",
+              "title": "OCRmyPDF: CLI tooling",
+              "capability": "cli_tooling",
+              "confidence": 0.95,
+              "license": "GPL",
+              "language": "Python",
+              "evidence_preview": [
+                "misc/_webservice.py",
+                "misc/batch.py",
+                "misc/bisect_pdf.py",
+                "misc/example_plugin.py"
+              ]
+            },
+            {
+              "repo": "flask",
+              "card_type": "capability",
+              "title": "flask: CLI tooling",
+              "capability": "cli_tooling",
+              "confidence": 0.95,
+              "license": "Other",
+              "language": "Python",
+              "evidence_preview": [
+                ".devcontainer/on-create-command.sh",
+                "src/flask/__main__.py",
+                "src/flask/blueprints.py",
+                "src/flask/ctx.py"
+              ]
+            },
+            {
+              "repo": "click",
+              "card_type": "capability",
+              "title": "click: CLI tooling",
+              "capability": "cli_tooling",
+              "confidence": 0.95,
+              "license": "Other",
+              "language": "Python",
+              "evidence_preview": [
+                ".devcontainer/on-create-command.sh",
+                "src/click/__init__.py",
+                "src/click/_utils.py",
+                "src/click/core.py"
+              ]
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "aggregates": {
+    "by_mode": {
+      "lexical": {
+        "avg_repo_precision": 0.567,
+        "avg_repo_coverage": 0.45,
+        "avg_capability_precision": 0.75,
+        "avg_errors_total": 1.9
+      },
+      "semantic": {
+        "avg_repo_precision": 0.567,
+        "avg_repo_coverage": 0.45,
+        "avg_capability_precision": 0.75,
+        "avg_errors_total": 1.9
+      },
+      "hybrid": {
+        "avg_repo_precision": 0.567,
+        "avg_repo_coverage": 0.45,
+        "avg_capability_precision": 0.75,
+        "avg_errors_total": 1.9
+      }
+    },
+    "by_mode_family": {
+      "lexical": {
+        "document": {
+          "avg_repo_precision": 1.0,
+          "avg_repo_coverage": 1.0,
+          "avg_capability_precision": 1.0,
+          "avg_errors_total": 0
+        },
+        "api": {
+          "avg_repo_precision": 0.5,
+          "avg_repo_coverage": 0.25,
+          "avg_capability_precision": 1.0,
+          "avg_errors_total": 1.5
+        },
+        "cli": {
+          "avg_repo_precision": 0.667,
+          "avg_repo_coverage": 0.667,
+          "avg_capability_precision": 1.0,
+          "avg_errors_total": 2
+        },
+        "async": {
+          "avg_repo_precision": 1.0,
+          "avg_repo_coverage": 0.333,
+          "avg_capability_precision": 1.0,
+          "avg_errors_total": 2
+        },
+        "data": {
+          "avg_repo_precision": 0.0,
+          "avg_repo_coverage": 0.0,
+          "avg_capability_precision": 0.0,
+          "avg_errors_total": 3
+        },
+        "filters": {
+          "avg_repo_precision": 0.5,
+          "avg_repo_coverage": 0.5,
+          "avg_capability_precision": 0.25,
+          "avg_errors_total": 2
+        },
+        "negative": {
+          "avg_repo_precision": 0.0,
+          "avg_repo_coverage": 0.0,
+          "avg_capability_precision": 1.0,
+          "avg_errors_total": 5
+        }
+      },
+      "semantic": {
+        "document": {
+          "avg_repo_precision": 1.0,
+          "avg_repo_coverage": 1.0,
+          "avg_capability_precision": 1.0,
+          "avg_errors_total": 0
+        },
+        "api": {
+          "avg_repo_precision": 0.5,
+          "avg_repo_coverage": 0.25,
+          "avg_capability_precision": 1.0,
+          "avg_errors_total": 1.5
+        },
+        "cli": {
+          "avg_repo_precision": 0.667,
+          "avg_repo_coverage": 0.667,
+          "avg_capability_precision": 1.0,
+          "avg_errors_total": 2
+        },
+        "async": {
+          "avg_repo_precision": 1.0,
+          "avg_repo_coverage": 0.333,
+          "avg_capability_precision": 1.0,
+          "avg_errors_total": 2
+        },
+        "data": {
+          "avg_repo_precision": 0.0,
+          "avg_repo_coverage": 0.0,
+          "avg_capability_precision": 0.0,
+          "avg_errors_total": 3
+        },
+        "filters": {
+          "avg_repo_precision": 0.5,
+          "avg_repo_coverage": 0.5,
+          "avg_capability_precision": 0.25,
+          "avg_errors_total": 2
+        },
+        "negative": {
+          "avg_repo_precision": 0.0,
+          "avg_repo_coverage": 0.0,
+          "avg_capability_precision": 1.0,
+          "avg_errors_total": 5
+        }
+      },
+      "hybrid": {
+        "document": {
+          "avg_repo_precision": 1.0,
+          "avg_repo_coverage": 1.0,
+          "avg_capability_precision": 1.0,
+          "avg_errors_total": 0
+        },
+        "api": {
+          "avg_repo_precision": 0.5,
+          "avg_repo_coverage": 0.25,
+          "avg_capability_precision": 1.0,
+          "avg_errors_total": 1.5
+        },
+        "cli": {
+          "avg_repo_precision": 0.667,
+          "avg_repo_coverage": 0.667,
+          "avg_capability_precision": 1.0,
+          "avg_errors_total": 2
+        },
+        "async": {
+          "avg_repo_precision": 1.0,
+          "avg_repo_coverage": 0.333,
+          "avg_capability_precision": 1.0,
+          "avg_errors_total": 2
+        },
+        "data": {
+          "avg_repo_precision": 0.0,
+          "avg_repo_coverage": 0.0,
+          "avg_capability_precision": 0.0,
+          "avg_errors_total": 3
+        },
+        "filters": {
+          "avg_repo_precision": 0.5,
+          "avg_repo_coverage": 0.5,
+          "avg_capability_precision": 0.25,
+          "avg_errors_total": 2
+        },
+        "negative": {
+          "avg_repo_precision": 0.0,
+          "avg_repo_coverage": 0.0,
+          "avg_capability_precision": 1.0,
+          "avg_errors_total": 5
+        }
+      }
+    }
+  }
+}

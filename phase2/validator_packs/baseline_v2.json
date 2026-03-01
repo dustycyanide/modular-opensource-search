@@ -1,0 +1,131 @@
+{
+  "name": "baseline_v2",
+  "description": "Baseline structural validator pack derived from capability_index defaults",
+  "capabilities": {
+    "document_ingestion_pipeline": {
+      "required_groups": [
+        [
+          "\\bpdf(plumber|miner|ium)?\\b",
+          "\\bpypdf\\b",
+          "\\bpikepdf\\b",
+          "\\bfitz\\b",
+          "\\btesseract\\b"
+        ],
+        [
+          "\\bupload\\b",
+          "\\bingest\\b",
+          "\\bmultipart\\b",
+          "\\bdocument\\b"
+        ]
+      ],
+      "support_patterns": [
+        "\\bparse\\b",
+        "\\bextract\\b",
+        "\\bnormalize\\b"
+      ],
+      "min_support": 1
+    },
+    "ocr_processing": {
+      "required_groups": [
+        [
+          "\\bocr\\b",
+          "\\btesseract\\b",
+          "\\bhocr\\b",
+          "\\bimage_to_string\\b"
+        ]
+      ],
+      "support_patterns": [
+        "\\bimage\\b",
+        "\\bpdf\\b",
+        "\\btext\\b"
+      ],
+      "min_support": 1
+    },
+    "async_processing_engine": {
+      "required_groups": [
+        [
+          "\\bcelery\\b",
+          "\\bshared_task\\b",
+          "\\brq\\b",
+          "\\basyncio\\b",
+          "\\bThreadPoolExecutor\\b",
+          "\\bProcessPoolExecutor\\b"
+        ],
+        [
+          "\\bworker\\b",
+          "\\bqueue\\b",
+          "\\btask\\b",
+          "\\bjob\\b"
+        ]
+      ],
+      "support_patterns": [
+        "\\bpipeline\\b",
+        "\\benqueue\\b"
+      ],
+      "min_support": 1
+    },
+    "api_service": {
+      "required_groups": [
+        [
+          "@app\\.route\\(",
+          "\\bFastAPI\\(",
+          "\\bAPIRouter\\(",
+          "\\bBlueprint\\(",
+          "router\\.(get|post|put|delete|patch)\\(",
+          "@bp\\.route\\("
+        ],
+        [
+          "\\brequest\\b",
+          "\\bresponse\\b",
+          "\\bjsonify\\b",
+          "\\bHTTP\\b"
+        ]
+      ],
+      "support_patterns": [
+        "\\bendpoint\\b",
+        "\\bstatus_code\\b"
+      ],
+      "min_support": 0
+    },
+    "database_persistence": {
+      "required_groups": [
+        [
+          "\\bsqlalchemy\\b",
+          "\\bsqlite3\\.connect\\b",
+          "\\bcreate_engine\\b",
+          "\\bsessionmaker\\b",
+          "\\bpsycopg\\b",
+          "\\bdjango\\.db\\b"
+        ],
+        [
+          "\\bSELECT\\b",
+          "\\bINSERT\\b",
+          "\\bUPDATE\\b",
+          "\\bDELETE\\b",
+          "\\bmigration\\b"
+        ]
+      ],
+      "support_patterns": [
+        "\\bmodel\\b",
+        "\\bschema\\b"
+      ],
+      "min_support": 0
+    },
+    "cli_tooling": {
+      "required_groups": [
+        [
+          "\\bargparse\\.ArgumentParser\\b",
+          "@click\\.(command|group|option)\\(",
+          "\\bTyper\\(",
+          "\\bclick\\.command\\("
+        ]
+      ],
+      "support_patterns": [
+        "__main__",
+        "\\bsys\\.argv\\b",
+        "\\bmain\\("
+      ],
+      "min_support": 0
+    }
+  }
+}
