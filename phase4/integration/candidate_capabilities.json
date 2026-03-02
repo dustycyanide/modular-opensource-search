@@ -1,0 +1,75 @@
+{
+  "generated_at": "2026-03-01T23:50:58.678013+00:00",
+  "source_discovery_report": "/Users/dustycyanide/Documents/projects/modular_opensource/phase3/reports/discovery_report_16.json",
+  "capabilities": [
+    {
+      "name": "repo_indexing_pipeline",
+      "title": "Repository indexing pipeline",
+      "description": "Repository intake, traversal, metadata extraction, and index write flow.",
+      "keywords": [
+        "repository",
+        "indexing",
+        "pipeline",
+        "clone",
+        "ingest",
+        "metadata",
+        "codebase",
+        "scan"
+      ],
+      "strong_keywords": [
+        "repository",
+        "indexing",
+        "pipeline",
+        "clone"
+      ],
+      "default_pipeline": "clone -> scan -> extract metadata -> index persist",
+      "decision": "adopt"
+    },
+    {
+      "name": "semantic_retrieval_stack",
+      "title": "Semantic retrieval stack",
+      "description": "Embedding generation, vector similarity search, and retrieval ranking logic.",
+      "keywords": [
+        "semantic",
+        "retrieval",
+        "embeddings",
+        "vector",
+        "search",
+        "hybrid",
+        "rank",
+        "cosine"
+      ],
+      "strong_keywords": [
+        "semantic",
+        "retrieval",
+        "embeddings",
+        "vector"
+      ],
+      "default_pipeline": "embed -> index vectors -> retrieve -> rank",
+      "decision": "adopt"
+    },
+    {
+      "name": "evaluation_harness",
+      "title": "Evaluation harness",
+      "description": "Benchmark datasets, quality metrics, and report comparison workflows.",
+      "keywords": [
+        "benchmark",
+        "evaluation",
+        "harness",
+        "precision",
+        "recall",
+        "report",
+        "regression",
+        "metrics"
+      ],
+      "strong_keywords": [
+        "benchmark",
+        "evaluation",
+        "harness",
+        "precision"
+      ],
+      "default_pipeline": "run benchmark -> score metrics -> compare deltas",
+      "decision": "adapt"
+    }
+  ]
+}

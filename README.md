@@ -34,6 +34,8 @@ This experiment now includes a deeper v2-style pass:
 - `iterative_modes_test.py` - iterative lexical vs semantic vs hybrid comparison.
 - `V2_NOTES.md` - noise-reduction findings and trade-offs.
 - `phase2/` - process-lab assets for benchmark, mining, and challenge loops.
+- `phase3/` - candidate capability discovery workflow and reports.
+- `phase4/` - integration-planning artifact generation from discovery output.
 - `data/*.db` - local SQLite DB files.
 - `data/*report*.json` - run reports.
 

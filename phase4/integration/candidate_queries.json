@@ -1,0 +1,47 @@
+{
+  "generated_at": "2026-03-01T23:50:58.678017+00:00",
+  "source_discovery_report": "/Users/dustycyanide/Documents/projects/modular_opensource/phase3/reports/discovery_report_16.json",
+  "queries": [
+    {
+      "id": "Q-REPO-INDEXING-PIPELINE-001",
+      "family": "repo",
+      "query": "repository indexing pipeline clone ingest metadata",
+      "top_k": 5,
+      "expected_repos": [
+        "celery",
+        "sqlalchemy",
+        "chroma"
+      ],
+      "expected_capabilities": [
+        "repo_indexing_pipeline"
+      ]
+    },
+    {
+      "id": "Q-SEMANTIC-RETRIEVAL-STACK-001",
+      "family": "semantic",
+      "query": "semantic retrieval embeddings vector search hybrid rank",
+      "top_k": 5,
+      "expected_repos": [
+        "sqlalchemy",
+        "chroma"
+      ],
+      "expected_capabilities": [
+        "semantic_retrieval_stack"
+      ]
+    },
+    {
+      "id": "Q-EVALUATION-HARNESS-001",
+      "family": "evaluation",
+      "query": "benchmark evaluation harness precision recall report",
+      "top_k": 5,
+      "expected_repos": [
+        "chroma",
+        "pydantic",
+        "zoekt"
+      ],
+      "expected_capabilities": [
+        "evaluation_harness"
+      ]
+    }
+  ]
+}

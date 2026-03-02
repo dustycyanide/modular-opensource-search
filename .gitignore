@@ -1,0 +1,15 @@
+# Python cache and environments
+__pycache__/
+*.py[cod]
+.venv/
+
+# Local workspace directories
+thoughts/
+repos/
+
+# Local generated artifacts
+data/*.db
+data/*report*.json
+
+# macOS
+.DS_Store

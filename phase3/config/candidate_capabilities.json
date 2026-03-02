@@ -1,0 +1,169 @@
+{
+  "capabilities": [
+    {
+      "name": "repo_indexing_pipeline",
+      "title": "Repository indexing pipeline",
+      "description": "Repository intake, traversal, metadata extraction, and index write flow.",
+      "query_hints": [
+        "repository indexing pipeline clone ingest metadata",
+        "codebase scan chunk index update"
+      ],
+      "repo_types_sought": [
+        "Code search engines and source indexers",
+        "Developer tools that crawl repositories",
+        "Data systems with explicit ingest and index-write paths"
+      ],
+      "why_useful_here": "This project must ingest many repositories reliably, with evidence and metadata quality controls. Better indexing design directly improves retrieval trust.",
+      "required_groups": [
+        [
+          "\\bgit\\s+clone\\b",
+          "\\bclone_if_missing\\b",
+          "\\bos\\.walk\\b",
+          "\\brglob\\("
+        ],
+        [
+          "\\bfts5\\b",
+          "\\bsqlite3\\.connect\\b",
+          "\\bupsert\\b",
+          "\\bindex\\s+writer\\b",
+          "\\bvector\\s+index\\b"
+        ]
+      ],
+      "support_patterns": [
+        "\\bmetadata(_json)?\\b",
+        "\\bchunk\\b",
+        "\\bembedding(s)?\\b",
+        "\\bevidence\\b",
+        "\\brepo_path\\b",
+        "\\bfile_count\\b"
+      ],
+      "min_support": 2
+    },
+    {
+      "name": "semantic_retrieval_stack",
+      "title": "Semantic retrieval stack",
+      "description": "Embedding generation, vector similarity search, and retrieval ranking logic.",
+      "query_hints": [
+        "semantic retrieval embeddings vector search hybrid rank",
+        "cosine similarity ann nearest neighbors ranking"
+      ],
+      "repo_types_sought": [
+        "Vector databases and semantic search systems",
+        "Hybrid ranker and retrieval framework repos",
+        "Embedding-first developer tools"
+      ],
+      "why_useful_here": "Capability search quality depends on semantic retrieval and ranking. This capability strengthens query understanding beyond lexical keyword overlap.",
+      "required_groups": [
+        [
+          "\\bembedding(s)?\\b",
+          "\\bfastembed\\b",
+          "\\ball-MiniLM-L6-v2\\b",
+          "\\bvector\\s+db\\b",
+          "\\bqdrant\\b",
+          "\\bmilvus\\b",
+          "\\bchroma\\b"
+        ],
+        [
+          "\\bcosine(_similarity)?\\b",
+          "\\bsimilarity\\s+search\\b",
+          "\\bnearest\\s+neighbors?\\b",
+          "\\btop_k\\b",
+          "\\bhybrid\\s+rank\\b",
+          "\\brerank\\b"
+        ]
+      ],
+      "support_patterns": [
+        "\\bretriev(al|e)\\b",
+        "\\bsemantic\\b",
+        "\\brelevance\\b",
+        "\\bdistance\\b",
+        "\\bquery\\s+expansion\\b",
+        "\\bvector\\b"
+      ],
+      "min_support": 2
+    },
+    {
+      "name": "evaluation_harness",
+      "title": "Evaluation harness",
+      "description": "Benchmark datasets, quality metrics, and report comparison workflows.",
+      "query_hints": [
+        "benchmark evaluation harness precision recall report",
+        "regression metrics compare baseline candidate"
+      ],
+      "repo_types_sought": [
+        "Mature repos with benchmark and regression workflows",
+        "Projects with quality dashboards and metrics reports",
+        "Libraries that compare baseline and candidate performance"
+      ],
+      "why_useful_here": "Dogfooding requires proving quality changes with objective metrics, not intuition. A strong evaluation harness lets us iterate quickly without silent regressions.",
+      "required_groups": [
+        [
+          "\\bprecision_at_k\\b",
+          "\\bcoverage_at_k\\b",
+          "\\bbenchmark\\b",
+          "\\bevaluation\\b",
+          "\\bprecision\\b",
+          "\\brecall\\b",
+          "\\bexpected_repos\\b"
+        ],
+        [
+          "\\bcompare_reports\\b",
+          "\\bbaseline\\b",
+          "\\bcandidate\\b",
+          "\\bdelta\\b",
+          "\\bregression\\b"
+        ]
+      ],
+      "support_patterns": [
+        "\\berror_counts?\\b",
+        "\\bcoverage\\b",
+        "\\baggregates\\b",
+        "\\bquery_results\\b",
+        "\\bscore\\b",
+        "\\breport_path\\b"
+      ],
+      "min_support": 2
+    },
+    {
+      "name": "structured_filtering",
+      "title": "Structured filtering",
+      "description": "Filter extraction/parsing and metadata-aware result constraints.",
+      "query_hints": [
+        "structured query filters language license metadata",
+        "filter parsing facets constraints"
+      ],
+      "repo_types_sought": [
+        "Search platforms with faceted filtering",
+        "Metadata-heavy repositories with structured query parsing",
+        "Systems with explicit language/license constraints"
+      ],
+      "why_useful_here": "Users need dependable filters (language, license, framework) so results can be constrained to practical integration choices.",
+      "required_groups": [
+        [
+          "\\bextract_query_filters\\b",
+          "\\bparsed_filters\\b",
+          "\\bfilter_error\\b",
+          "\\bstructured\\s+filter\\b"
+        ],
+        [
+          "\\bspdx\\b",
+          "\\blicense=apache\\b",
+          "\\blanguage=python\\b",
+          "\\blicense\\b",
+          "\\bprimary_language\\b",
+          "\\bframework_patterns\\b"
+        ]
+      ],
+      "support_patterns": [
+        "\\bquery_filters\\b",
+        "\\bnormalize\\b",
+        "\\btoken\\b",
+        "\\bmetadata\\b",
+        "\\bconstraint\\b",
+        "\\bmatch\\b",
+        "\\bfacet\\b"
+      ],
+      "min_support": 2
+    }
+  ]
+}

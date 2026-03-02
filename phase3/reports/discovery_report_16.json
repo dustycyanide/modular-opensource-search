@@ -1,0 +1,2878 @@
+{
+  "generated_at": "2026-03-01T23:50:54.838668+00:00",
+  "config": {
+    "repos_file": "/Users/dustycyanide/Documents/projects/modular_opensource/phase2/benchmark/repos.json",
+    "capabilities_file": "/Users/dustycyanide/Documents/projects/modular_opensource/phase3/config/candidate_capabilities.json",
+    "repos_root": "/Users/dustycyanide/Documents/projects/modular_opensource/repos",
+    "max_repos": 16,
+    "max_files_per_repo": 700,
+    "max_file_size_bytes": 200000,
+    "max_chars_per_file": 12000,
+    "max_evidence_per_repo": 8,
+    "clone_missing": false
+  },
+  "repos_indexed": [
+    "OCRmyPDF",
+    "requests",
+    "flask",
+    "click",
+    "pytesseract",
+    "fastapi",
+    "typer",
+    "celery",
+    "rq",
+    "sqlalchemy",
+    "django",
+    "pydantic",
+    "tree-sitter",
+    "ast-grep",
+    "zoekt",
+    "chroma"
+  ],
+  "repos_skipped": [],
+  "capability_reports": [
+    {
+      "name": "repo_indexing_pipeline",
+      "title": "Repository indexing pipeline",
+      "description": "Repository intake, traversal, metadata extraction, and index write flow.",
+      "query_hints": [
+        "repository indexing pipeline clone ingest metadata",
+        "codebase scan chunk index update"
+      ],
+      "repo_types_sought": [
+        "Code search engines and source indexers",
+        "Developer tools that crawl repositories",
+        "Data systems with explicit ingest and index-write paths"
+      ],
+      "why_useful_here": "This project must ingest many repositories reliably, with evidence and metadata quality controls. Better indexing design directly improves retrieval trust.",
+      "signals": {
+        "required_groups": [
+          [
+            "\\bgit\\s+clone\\b",
+            "\\bclone_if_missing\\b",
+            "\\bos\\.walk\\b",
+            "\\brglob\\("
+          ],
+          [
+            "\\bfts5\\b",
+            "\\bsqlite3\\.connect\\b",
+            "\\bupsert\\b",
+            "\\bindex\\s+writer\\b",
+            "\\bvector\\s+index\\b"
+          ]
+        ],
+        "support_patterns": [
+          "\\bmetadata(_json)?\\b",
+          "\\bchunk\\b",
+          "\\bembedding(s)?\\b",
+          "\\bevidence\\b",
+          "\\brepo_path\\b",
+          "\\bfile_count\\b"
+        ],
+        "min_support": 2
+      },
+      "summary": {
+        "high_count": 4,
+        "medium_count": 0,
+        "low_count": 10,
+        "matched_repo_count": 14
+      },
+      "matches": [
+        {
+          "repo": "celery",
+          "quality": "high",
+          "quality_score": 0.85,
+          "required_groups_passed": true,
+          "required_groups_hit": 2,
+          "required_group_count": 2,
+          "support_hits": 3,
+          "support_pattern_count": 6,
+          "min_support": 2,
+          "code_evidence_hits": 8,
+          "evidence": [
+            {
+              "path": "setup.py",
+              "signal": "\\bmetadata(_json)?\\b",
+              "kind": "support"
+            },
+            {
+              "path": "setup.cfg",
+              "signal": "\\bmetadata(_json)?\\b",
+              "kind": "support"
+            },
+            {
+              "path": "Changelog.rst",
+              "signal": "\\bmetadata(_json)?\\b",
+              "kind": "support"
+            },
+            {
+              "path": "celery/bin/celery.py",
+              "signal": "\\bmetadata(_json)?\\b",
+              "kind": "support"
+            },
+            {
+              "path": "celery/backends/arangodb.py",
+              "signal": "\\bupsert\\b",
+              "kind": "required_group_2"
+            },
+            {
+              "path": "celery/utils/saferepr.py",
+              "signal": "\\bchunk\\b",
+              "kind": "support"
+            },
+            {
+              "path": "celery/utils/imports.py",
+              "signal": "\\bmetadata(_json)?\\b",
+              "kind": "support"
+            },
+            {
+              "path": "celery/concurrency/asynpool.py",
+              "signal": "\\bchunk\\b",
+              "kind": "support"
+            }
+          ]
+        },
+        {
+          "repo": "sqlalchemy",
+          "quality": "high",
+          "quality_score": 0.85,
+          "required_groups_passed": true,
+          "required_groups_hit": 2,
+          "required_group_count": 2,
+          "support_hits": 3,
+          "support_pattern_count": 6,
+          "min_support": 2,
+          "code_evidence_hits": 175,
+          "evidence": [
+            {
+              "path": "README.rst",
+              "signal": "\\bmetadata(_json)?\\b",
+              "kind": "support"
+            },
+            {
+              "path": "noxfile.py",
+              "signal": "\\brglob\\(",
+              "kind": "required_group_1"
+            },
+            {
+              "path": "tools/generate_proxy_methods.py",
+              "signal": "\\bmetadata(_json)?\\b",
+              "kind": "support"
+            },
+            {
+              "path": "doc/build/glossary.rst",
+              "signal": "\\bmetadata(_json)?\\b",
+              "kind": "support"
+            },
+            {
+              "path": "doc/build/tutorial/index.rst",
+              "signal": "\\bmetadata(_json)?\\b",
+              "kind": "support"
+            },
+            {
+              "path": "doc/build/tutorial/metadata.rst",
+              "signal": "\\bmetadata(_json)?\\b",
+              "kind": "support"
+            },
+            {
+              "path": "doc/build/tutorial/dbapi_transactions.rst",
+              "signal": "\\bmetadata(_json)?\\b",
+              "kind": "support"
+            },
+            {
+              "path": "doc/build/tutorial/data.rst",
+              "signal": "\\bmetadata(_json)?\\b",
+              "kind": "support"
+            }
+          ]
+        },
+        {
+          "repo": "chroma",
+          "quality": "high",
+          "quality_score": 0.85,
+          "required_groups_passed": true,
+          "required_groups_hit": 2,
+          "required_group_count": 2,
+          "support_hits": 3,
+          "support_pattern_count": 6,
+          "min_support": 2,
+          "code_evidence_hits": 225,
+          "evidence": [
+            {
+              "path": "README.md",
+              "signal": "\\bmetadata(_json)?\\b",
+              "kind": "support"
+            },
+            {
+              "path": "README.md",
+              "signal": "\\bembedding(s)?\\b",
+              "kind": "support"
+            },
+            {
+              "path": "bin/rust_python_compat_test.py",
+              "signal": "\\bembedding(s)?\\b",
+              "kind": "support"
+            },
+            {
+              "path": "bin/get-logs.sh",
+              "signal": "\\bmetadata(_json)?\\b",
+              "kind": "support"
+            },
+            {
+              "path": "chromadb/__init__.py",
+              "signal": "\\bmetadata(_json)?\\b",
+              "kind": "support"
+            },
+            {
+              "path": "chromadb/__init__.py",
+              "signal": "\\bembedding(s)?\\b",
+              "kind": "support"
+            },
+            {
+              "path": "chromadb/types.py",
+              "signal": "\\bupsert\\b",
+              "kind": "required_group_2"
+            },
+            {
+              "path": "chromadb/types.py",
+              "signal": "\\bmetadata(_json)?\\b",
+              "kind": "support"
+            }
+          ]
+        },
+        {
+          "repo": "flask",
+          "quality": "high",
+          "quality_score": 0.8,
+          "required_groups_passed": true,
+          "required_groups_hit": 2,
+          "required_group_count": 2,
+          "support_hits": 2,
+          "support_pattern_count": 6,
+          "min_support": 2,
+          "code_evidence_hits": 7,
+          "evidence": [
+            {
+              "path": "CHANGES.rst",
+              "signal": "\\bmetadata(_json)?\\b",
+              "kind": "support"
+            },
+            {
+              "path": "tests/test_basic.py",
+              "signal": "\\bmetadata(_json)?\\b",
+              "kind": "support"
+            },
+            {
+              "path": "tests/test_helpers.py",
+              "signal": "\\bmetadata(_json)?\\b",
+              "kind": "support"
+            },
+            {
+              "path": "tests/test_cli.py",
+              "signal": "\\bmetadata(_json)?\\b",
+              "kind": "support"
+            },
+            {
+              "path": "tests/test_testing.py",
+              "signal": "\\bmetadata(_json)?\\b",
+              "kind": "support"
+            },
+            {
+              "path": "docs/extensiondev.rst",
+              "signal": "\\bmetadata(_json)?\\b",
+              "kind": "support"
+            },
+            {
+              "path": "docs/web-security.rst",
+              "signal": "\\bembedding(s)?\\b",
+              "kind": "support"
+            },
+            {
+              "path": "src/flask/cli.py",
+              "signal": "\\bmetadata(_json)?\\b",
+              "kind": "support"
+            }
+          ]
+        },
+        {
+          "repo": "OCRmyPDF",
+          "quality": "low",
+          "quality_score": 0.6,
+          "required_groups_passed": false,
+          "required_groups_hit": 1,
+          "required_group_count": 2,
+          "support_hits": 4,
+          "support_pattern_count": 6,
+          "min_support": 2,
+          "code_evidence_hits": 20,
+          "evidence": [
+            {
+              "path": "README.md",
+              "signal": "\\bmetadata(_json)?\\b",
+              "kind": "support"
+            },
+            {
+              "path": "misc/synology.py",
+              "signal": "\\bos\\.walk\\b",
+              "kind": "required_group_1"
+            },
+            {
+              "path": "misc/pdf_compare.py",
+              "signal": "\\bmetadata(_json)?\\b",
+              "kind": "support"
+            },
+            {
+              "path": "misc/_webservice.py",
+              "signal": "\\bmetadata(_json)?\\b",
+              "kind": "support"
+            },
+            {
+              "path": "misc/ocrmypdf_compare.py",
+              "signal": "\\bmetadata(_json)?\\b",
+              "kind": "support"
+            },
+            {
+              "path": "tests/test_metadata.py",
+              "signal": "\\bmetadata(_json)?\\b",
+              "kind": "support"
+            },
+            {
+              "path": "tests/test_verapdf.py",
+              "signal": "\\bmetadata(_json)?\\b",
+              "kind": "support"
+            },
+            {
+              "path": "docs/conf.py",
+              "signal": "\\bmetadata(_json)?\\b",
+              "kind": "support"
+            }
+          ]
+        },
+        {
+          "repo": "django",
+          "quality": "low",
+          "quality_score": 0.55,
+          "required_groups_passed": false,
+          "required_groups_hit": 1,
+          "required_group_count": 2,
+          "support_hits": 3,
+          "support_pattern_count": 6,
+          "min_support": 2,
+          "code_evidence_hits": 19,
+          "evidence": [
+            {
+              "path": "docs/glossary.txt",
+              "signal": "\\bchunk\\b",
+              "kind": "support"
+            },
+            {
+              "path": "docs/lint.py",
+              "signal": "\\bembedding(s)?\\b",
+              "kind": "support"
+            },
+            {
+              "path": "django/test/client.py",
+              "signal": "\\bchunk\\b",
+              "kind": "support"
+            },
+            {
+              "path": "django/utils/timesince.py",
+              "signal": "\\bchunk\\b",
+              "kind": "support"
+            },
+            {
+              "path": "django/utils/autoreload.py",
+              "signal": "\\bchunk\\b",
+              "kind": "support"
+            },
+            {
+              "path": "django/http/multipartparser.py",
+              "signal": "\\bchunk\\b",
+              "kind": "support"
+            },
+            {
+              "path": "django/http/cookie.py",
+              "signal": "\\bchunk\\b",
+              "kind": "support"
+            },
+            {
+              "path": "django/db/models/query.py",
+              "signal": "\\bchunk\\b",
+              "kind": "support"
+            }
+          ]
+        },
+        {
+          "repo": "tree-sitter",
+          "quality": "low",
+          "quality_score": 0.55,
+          "required_groups_passed": false,
+          "required_groups_hit": 1,
+          "required_group_count": 2,
+          "support_hits": 3,
+          "support_pattern_count": 6,
+          "min_support": 2,
+          "code_evidence_hits": 25,
+          "evidence": [
+            {
+              "path": "lib/Cargo.toml",
+              "signal": "\\bmetadata(_json)?\\b",
+              "kind": "support"
+            },
+            {
+              "path": "lib/binding_web/CONTRIBUTING.md",
+              "signal": "\\bgit\\s+clone\\b",
+              "kind": "required_group_1"
+            },
+            {
+              "path": "lib/binding_rust/lib.rs",
+              "signal": "\\bmetadata(_json)?\\b",
+              "kind": "support"
+            },
+            {
+              "path": "lib/binding_rust/bindings.rs",
+              "signal": "\\bmetadata(_json)?\\b",
+              "kind": "support"
+            },
+            {
+              "path": "lib/binding_rust/bindings.rs",
+              "signal": "\\bchunk\\b",
+              "kind": "support"
+            },
+            {
+              "path": "lib/binding_web/src/language.ts",
+              "signal": "\\bmetadata(_json)?\\b",
+              "kind": "support"
+            },
+            {
+              "path": ".github/workflows/build.yml",
+              "signal": "\\bmetadata(_json)?\\b",
+              "kind": "support"
+            },
+            {
+              "path": "docs/src/cli/init.md",
+              "signal": "\\bmetadata(_json)?\\b",
+              "kind": "support"
+            }
+          ]
+        },
+        {
+          "repo": "zoekt",
+          "quality": "low",
+          "quality_score": 0.55,
+          "required_groups_passed": false,
+          "required_groups_hit": 1,
+          "required_group_count": 2,
+          "support_hits": 3,
+          "support_pattern_count": 6,
+          "min_support": 2,
+          "code_evidence_hits": 42,
+          "evidence": [
+            {
+              "path": "api.go",
+              "signal": "\\bchunk\\b",
+              "kind": "support"
+            },
+            {
+              "path": "web/api.go",
+              "signal": "\\bmetadata(_json)?\\b",
+              "kind": "support"
+            },
+            {
+              "path": "search/shards.go",
+              "signal": "\\bchunk\\b",
+              "kind": "support"
+            },
+            {
+              "path": "search/shards_test.go",
+              "signal": "\\bmetadata(_json)?\\b",
+              "kind": "support"
+            },
+            {
+              "path": "gitindex/clone_test.go",
+              "signal": "\\bgit\\s+clone\\b",
+              "kind": "required_group_1"
+            },
+            {
+              "path": "index/write.go",
+              "signal": "\\bmetadata(_json)?\\b",
+              "kind": "support"
+            },
+            {
+              "path": "index/read_test.go",
+              "signal": "\\bmetadata(_json)?\\b",
+              "kind": "support"
+            },
+            {
+              "path": "index/merge.go",
+              "signal": "\\bmetadata(_json)?\\b",
+              "kind": "support"
+            }
+          ]
+        },
+        {
+          "repo": "requests",
+          "quality": "low",
+          "quality_score": 0.5,
+          "required_groups_passed": false,
+          "required_groups_hit": 1,
+          "required_group_count": 2,
+          "support_hits": 2,
+          "support_pattern_count": 6,
+          "min_support": 2,
+          "code_evidence_hits": 3,
+          "evidence": [
+            {
+              "path": "README.md",
+              "signal": "\\bgit\\s+clone\\b",
+              "kind": "required_group_1"
+            },
+            {
+              "path": "docs/api.rst",
+              "signal": "\\bchunk\\b",
+              "kind": "support"
+            },
+            {
+              "path": "src/requests/sessions.py",
+              "signal": "\\bevidence\\b",
+              "kind": "support"
+            },
+            {
+              "path": "src/requests/utils.py",
+              "signal": "\\bchunk\\b",
+              "kind": "support"
+            },
+            {
+              "path": "src/requests/exceptions.py",
+              "signal": "\\bchunk\\b",
+              "kind": "support"
+            },
+            {
+              "path": "docs/user/quickstart.rst",
+              "signal": "\\bchunk\\b",
+              "kind": "support"
+            }
+          ]
+        },
+        {
+          "repo": "click",
+          "quality": "low",
+          "quality_score": 0.5,
+          "required_groups_passed": false,
+          "required_groups_hit": 1,
+          "required_group_count": 2,
+          "support_hits": 2,
+          "support_pattern_count": 6,
+          "min_support": 2,
+          "code_evidence_hits": 6,
+          "evidence": [
+            {
+              "path": "CHANGES.rst",
+              "signal": "\\bmetadata(_json)?\\b",
+              "kind": "support"
+            },
+            {
+              "path": "tests/test_arguments.py",
+              "signal": "\\bchunk\\b",
+              "kind": "support"
+            },
+            {
+              "path": "tests/test_testing.py",
+              "signal": "\\bchunk\\b",
+              "kind": "support"
+            },
+            {
+              "path": "docs/complex.md",
+              "signal": "\\bgit\\s+clone\\b",
+              "kind": "required_group_1"
+            },
+            {
+              "path": "docs/shell-completion.md",
+              "signal": "\\bmetadata(_json)?\\b",
+              "kind": "support"
+            },
+            {
+              "path": "docs/handling-files.md",
+              "signal": "\\bchunk\\b",
+              "kind": "support"
+            },
+            {
+              "path": "docs/support-multiple-versions.md",
+              "signal": "\\bmetadata(_json)?\\b",
+              "kind": "support"
+            },
+            {
+              "path": "src/click/__init__.py",
+              "signal": "\\bmetadata(_json)?\\b",
+              "kind": "support"
+            }
+          ]
+        },
+        {
+          "repo": "fastapi",
+          "quality": "low",
+          "quality_score": 0.5,
+          "required_groups_passed": false,
+          "required_groups_hit": 1,
+          "required_group_count": 2,
+          "support_hits": 2,
+          "support_pattern_count": 6,
+          "min_support": 2,
+          "code_evidence_hits": 10,
+          "evidence": [
+            {
+              "path": "fastapi/applications.py",
+              "signal": "\\bmetadata(_json)?\\b",
+              "kind": "support"
+            },
+            {
+              "path": "fastapi/param_functions.py",
+              "signal": "\\bmetadata(_json)?\\b",
+              "kind": "support"
+            },
+            {
+              "path": "scripts/translate.py",
+              "signal": "\\brglob\\(",
+              "kind": "required_group_1"
+            },
+            {
+              "path": "scripts/mkdocs_hooks.py",
+              "signal": "\\bmetadata(_json)?\\b",
+              "kind": "support"
+            },
+            {
+              "path": "docs_src/python_types/tutorial013_py310.py",
+              "signal": "\\bmetadata(_json)?\\b",
+              "kind": "support"
+            },
+            {
+              "path": "docs_src/sql_databases/tutorial002_an_py310.py",
+              "signal": "\\bmetadata(_json)?\\b",
+              "kind": "support"
+            },
+            {
+              "path": "docs_src/sql_databases/tutorial001_py310.py",
+              "signal": "\\bmetadata(_json)?\\b",
+              "kind": "support"
+            },
+            {
+              "path": "docs_src/sql_databases/tutorial001_an_py310.py",
+              "signal": "\\bmetadata(_json)?\\b",
+              "kind": "support"
+            }
+          ]
+        },
+        {
+          "repo": "pydantic",
+          "quality": "low",
+          "quality_score": 0.5,
+          "required_groups_passed": false,
+          "required_groups_hit": 1,
+          "required_group_count": 2,
+          "support_hits": 2,
+          "support_pattern_count": 6,
+          "min_support": 2,
+          "code_evidence_hits": 34,
+          "evidence": [
+            {
+              "path": "pyproject.toml",
+              "signal": "\\bmetadata(_json)?\\b",
+              "kind": "support"
+            },
+            {
+              "path": "update_v1.sh",
+              "signal": "\\bgit\\s+clone\\b",
+              "kind": "required_group_1"
+            },
+            {
+              "path": "tests/test_plugin_loader.py",
+              "signal": "\\bmetadata(_json)?\\b",
+              "kind": "support"
+            },
+            {
+              "path": "tests/test_annotated.py",
+              "signal": "\\bmetadata(_json)?\\b",
+              "kind": "support"
+            },
+            {
+              "path": "tests/test_internal.py",
+              "signal": "\\bmetadata(_json)?\\b",
+              "kind": "support"
+            },
+            {
+              "path": "tests/test_fields.py",
+              "signal": "\\bmetadata(_json)?\\b",
+              "kind": "support"
+            },
+            {
+              "path": "tests/test_pipeline.py",
+              "signal": "\\bmetadata(_json)?\\b",
+              "kind": "support"
+            },
+            {
+              "path": "pydantic/functional_validators.py",
+              "signal": "\\bmetadata(_json)?\\b",
+              "kind": "support"
+            }
+          ]
+        },
+        {
+          "repo": "typer",
+          "quality": "low",
+          "quality_score": 0.383,
+          "required_groups_passed": false,
+          "required_groups_hit": 1,
+          "required_group_count": 2,
+          "support_hits": 1,
+          "support_pattern_count": 6,
+          "min_support": 2,
+          "code_evidence_hits": 1,
+          "evidence": [
+            {
+              "path": "README.md",
+              "signal": "\\bmetadata(_json)?\\b",
+              "kind": "support"
+            },
+            {
+              "path": "docs/index.md",
+              "signal": "\\bmetadata(_json)?\\b",
+              "kind": "support"
+            },
+            {
+              "path": "scripts/docs.py",
+              "signal": "\\brglob\\(",
+              "kind": "required_group_1"
+            },
+            {
+              "path": "docs/tutorial/arguments/optional.md",
+              "signal": "\\bmetadata(_json)?\\b",
+              "kind": "support"
+            }
+          ]
+        },
+        {
+          "repo": "pytesseract",
+          "quality": "low",
+          "quality_score": 0.35,
+          "required_groups_passed": false,
+          "required_groups_hit": 1,
+          "required_group_count": 2,
+          "support_hits": 1,
+          "support_pattern_count": 6,
+          "min_support": 2,
+          "code_evidence_hits": 0,
+          "evidence": [
+            {
+              "path": "setup.cfg",
+              "signal": "\\bmetadata(_json)?\\b",
+              "kind": "support"
+            },
+            {
+              "path": "README.rst",
+              "signal": "\\bgit\\s+clone\\b",
+              "kind": "required_group_1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "semantic_retrieval_stack",
+      "title": "Semantic retrieval stack",
+      "description": "Embedding generation, vector similarity search, and retrieval ranking logic.",
+      "query_hints": [
+        "semantic retrieval embeddings vector search hybrid rank",
+        "cosine similarity ann nearest neighbors ranking"
+      ],
+      "repo_types_sought": [
+        "Vector databases and semantic search systems",
+        "Hybrid ranker and retrieval framework repos",
+        "Embedding-first developer tools"
+      ],
+      "why_useful_here": "Capability search quality depends on semantic retrieval and ranking. This capability strengthens query understanding beyond lexical keyword overlap.",
+      "signals": {
+        "required_groups": [
+          [
+            "\\bembedding(s)?\\b",
+            "\\bfastembed\\b",
+            "\\ball-MiniLM-L6-v2\\b",
+            "\\bvector\\s+db\\b",
+            "\\bqdrant\\b",
+            "\\bmilvus\\b",
+            "\\bchroma\\b"
+          ],
+          [
+            "\\bcosine(_similarity)?\\b",
+            "\\bsimilarity\\s+search\\b",
+            "\\bnearest\\s+neighbors?\\b",
+            "\\btop_k\\b",
+            "\\bhybrid\\s+rank\\b",
+            "\\brerank\\b"
+          ]
+        ],
+        "support_patterns": [
+          "\\bretriev(al|e)\\b",
+          "\\bsemantic\\b",
+          "\\brelevance\\b",
+          "\\bdistance\\b",
+          "\\bquery\\s+expansion\\b",
+          "\\bvector\\b"
+        ],
+        "min_support": 2
+      },
+      "summary": {
+        "high_count": 2,
+        "medium_count": 0,
+        "low_count": 6,
+        "matched_repo_count": 8
+      },
+      "matches": [
+        {
+          "repo": "sqlalchemy",
+          "quality": "high",
+          "quality_score": 0.95,
+          "required_groups_passed": true,
+          "required_groups_hit": 2,
+          "required_group_count": 2,
+          "support_hits": 5,
+          "support_pattern_count": 6,
+          "min_support": 2,
+          "code_evidence_hits": 15,
+          "evidence": [
+            {
+              "path": "doc/build/errors.rst",
+              "signal": "\\bretriev(al|e)\\b",
+              "kind": "support"
+            },
+            {
+              "path": "doc/build/tutorial/data_insert.rst",
+              "signal": "\\bretriev(al|e)\\b",
+              "kind": "support"
+            },
+            {
+              "path": "doc/build/tutorial/orm_data_manipulation.rst",
+              "signal": "\\bretriev(al|e)\\b",
+              "kind": "support"
+            },
+            {
+              "path": "doc/build/tutorial/orm_related_objects.rst",
+              "signal": "\\bretriev(al|e)\\b",
+              "kind": "support"
+            },
+            {
+              "path": "doc/build/core/reflection.rst",
+              "signal": "\\bsemantic\\b",
+              "kind": "support"
+            },
+            {
+              "path": "doc/build/changelog/migration_13.rst",
+              "signal": "\\bretriev(al|e)\\b",
+              "kind": "support"
+            },
+            {
+              "path": "doc/build/changelog/changelog_13.rst",
+              "signal": "\\bretriev(al|e)\\b",
+              "kind": "support"
+            },
+            {
+              "path": "doc/build/faq/sqlexpressions.rst",
+              "signal": "\\bretriev(al|e)\\b",
+              "kind": "support"
+            }
+          ]
+        },
+        {
+          "repo": "chroma",
+          "quality": "high",
+          "quality_score": 0.9,
+          "required_groups_passed": true,
+          "required_groups_hit": 2,
+          "required_group_count": 2,
+          "support_hits": 4,
+          "support_pattern_count": 6,
+          "min_support": 2,
+          "code_evidence_hits": 95,
+          "evidence": [
+            {
+              "path": "docker-compose.test-auth.yml",
+              "signal": "\\bchroma\\b",
+              "kind": "required_group_1"
+            },
+            {
+              "path": "Cargo.toml",
+              "signal": "\\bdistance\\b",
+              "kind": "support"
+            },
+            {
+              "path": "README.md",
+              "signal": "\\bnearest\\s+neighbors?\\b",
+              "kind": "required_group_2"
+            },
+            {
+              "path": "README.md",
+              "signal": "\\bvector\\b",
+              "kind": "support"
+            },
+            {
+              "path": "chromadb/__init__.py",
+              "signal": "\\bvector\\b",
+              "kind": "support"
+            },
+            {
+              "path": "chromadb/types.py",
+              "signal": "\\bdistance\\b",
+              "kind": "support"
+            },
+            {
+              "path": "chromadb/types.py",
+              "signal": "\\bvector\\b",
+              "kind": "support"
+            },
+            {
+              "path": "chromadb/base_types.py",
+              "signal": "\\bvector\\b",
+              "kind": "support"
+            }
+          ]
+        },
+        {
+          "repo": "django",
+          "quality": "low",
+          "quality_score": 0.6,
+          "required_groups_passed": false,
+          "required_groups_hit": 1,
+          "required_group_count": 2,
+          "support_hits": 4,
+          "support_pattern_count": 6,
+          "min_support": 2,
+          "code_evidence_hits": 38,
+          "evidence": [
+            {
+              "path": "docs/lint.py",
+              "signal": "\\bembedding(s)?\\b",
+              "kind": "required_group_1"
+            },
+            {
+              "path": "django/tasks/base.py",
+              "signal": "\\bretriev(al|e)\\b",
+              "kind": "support"
+            },
+            {
+              "path": "django/forms/forms.py",
+              "signal": "\\bretriev(al|e)\\b",
+              "kind": "support"
+            },
+            {
+              "path": "django/core/signing.py",
+              "signal": "\\bretriev(al|e)\\b",
+              "kind": "support"
+            },
+            {
+              "path": "django/test/html.py",
+              "signal": "\\bsemantic\\b",
+              "kind": "support"
+            },
+            {
+              "path": "django/utils/http.py",
+              "signal": "\\bvector\\b",
+              "kind": "support"
+            },
+            {
+              "path": "django/utils/datastructures.py",
+              "signal": "\\bretriev(al|e)\\b",
+              "kind": "support"
+            },
+            {
+              "path": "django/conf/__init__.py",
+              "signal": "\\bretriev(al|e)\\b",
+              "kind": "support"
+            }
+          ]
+        },
+        {
+          "repo": "zoekt",
+          "quality": "low",
+          "quality_score": 0.6,
+          "required_groups_passed": false,
+          "required_groups_hit": 1,
+          "required_group_count": 2,
+          "support_hits": 4,
+          "support_pattern_count": 6,
+          "min_support": 2,
+          "code_evidence_hits": 4,
+          "evidence": [
+            {
+              "path": "api.go",
+              "signal": "\\brelevance\\b",
+              "kind": "support"
+            },
+            {
+              "path": "index/btree.go",
+              "signal": "\\bretriev(al|e)\\b",
+              "kind": "support"
+            },
+            {
+              "path": "index/hititer.go",
+              "signal": "\\bdistance\\b",
+              "kind": "support"
+            },
+            {
+              "path": "index/indexdata.go",
+              "signal": "\\bdistance\\b",
+              "kind": "support"
+            },
+            {
+              "path": "doc/faq.md",
+              "signal": "\\bretriev(al|e)\\b",
+              "kind": "support"
+            },
+            {
+              "path": "doc/faq.md",
+              "signal": "\\bdistance\\b",
+              "kind": "support"
+            },
+            {
+              "path": "doc/design.md",
+              "signal": "\\bdistance\\b",
+              "kind": "support"
+            },
+            {
+              "path": "internal/e2e/testdata/r_cody_sourcegraph_url.txt",
+              "signal": "\\bvector\\b",
+              "kind": "support"
+            }
+          ]
+        },
+        {
+          "repo": "OCRmyPDF",
+          "quality": "low",
+          "quality_score": 0.55,
+          "required_groups_passed": false,
+          "required_groups_hit": 1,
+          "required_group_count": 2,
+          "support_hits": 3,
+          "support_pattern_count": 6,
+          "min_support": 2,
+          "code_evidence_hits": 12,
+          "evidence": [
+            {
+              "path": "REUSE.toml",
+              "signal": "\\bvector\\b",
+              "kind": "support"
+            },
+            {
+              "path": "tests/test_pdfinfo.py",
+              "signal": "\\bvector\\b",
+              "kind": "support"
+            },
+            {
+              "path": "tests/test_pipeline.py",
+              "signal": "\\bvector\\b",
+              "kind": "support"
+            },
+            {
+              "path": "docs/optimizer.md",
+              "signal": "\\bvector\\b",
+              "kind": "support"
+            },
+            {
+              "path": "docs/errors.md",
+              "signal": "\\bvector\\b",
+              "kind": "support"
+            },
+            {
+              "path": "docs/introduction.md",
+              "signal": "\\bvector\\b",
+              "kind": "support"
+            },
+            {
+              "path": "docs/cookbook.md",
+              "signal": "\\bvector\\b",
+              "kind": "support"
+            },
+            {
+              "path": "scripts/generate_glyphless_font.py",
+              "signal": "\\bembedding(s)?\\b",
+              "kind": "required_group_1"
+            }
+          ]
+        },
+        {
+          "repo": "pydantic",
+          "quality": "low",
+          "quality_score": 0.55,
+          "required_groups_passed": false,
+          "required_groups_hit": 1,
+          "required_group_count": 2,
+          "support_hits": 3,
+          "support_pattern_count": 6,
+          "min_support": 2,
+          "code_evidence_hits": 8,
+          "evidence": [
+            {
+              "path": "mkdocs.yml",
+              "signal": "\\bsemantic\\b",
+              "kind": "support"
+            },
+            {
+              "path": "pydantic/mypy.py",
+              "signal": "\\bsemantic\\b",
+              "kind": "support"
+            },
+            {
+              "path": "pydantic/v1/mypy.py",
+              "signal": "\\bretriev(al|e)\\b",
+              "kind": "support"
+            },
+            {
+              "path": "pydantic/v1/typing.py",
+              "signal": "\\bretriev(al|e)\\b",
+              "kind": "support"
+            },
+            {
+              "path": "pydantic-core/src/definitions.rs",
+              "signal": "\\bvector\\b",
+              "kind": "support"
+            },
+            {
+              "path": "pydantic-core/src/recursion_guard.rs",
+              "signal": "\\bretriev(al|e)\\b",
+              "kind": "support"
+            },
+            {
+              "path": "pydantic-core/src/common/prebuilt.rs",
+              "signal": "\\bretriev(al|e)\\b",
+              "kind": "support"
+            },
+            {
+              "path": "pydantic-core/src/validators/url.rs",
+              "signal": "\\bsemantic\\b",
+              "kind": "support"
+            }
+          ]
+        },
+        {
+          "repo": "flask",
+          "quality": "low",
+          "quality_score": 0.433,
+          "required_groups_passed": false,
+          "required_groups_hit": 1,
+          "required_group_count": 2,
+          "support_hits": 2,
+          "support_pattern_count": 6,
+          "min_support": 2,
+          "code_evidence_hits": 1,
+          "evidence": [
+            {
+              "path": "tests/test_helpers.py",
+              "signal": "\\bretriev(al|e)\\b",
+              "kind": "support"
+            },
+            {
+              "path": "docs/web-security.rst",
+              "signal": "\\bembedding(s)?\\b",
+              "kind": "required_group_1"
+            },
+            {
+              "path": "docs/web-security.rst",
+              "signal": "\\bvector\\b",
+              "kind": "support"
+            },
+            {
+              "path": "docs/tutorial/database.rst",
+              "signal": "\\bretriev(al|e)\\b",
+              "kind": "support"
+            },
+            {
+              "path": "docs/patterns/viewdecorators.rst",
+              "signal": "\\bretriev(al|e)\\b",
+              "kind": "support"
+            }
+          ]
+        },
+        {
+          "repo": "ast-grep",
+          "quality": "low",
+          "quality_score": 0.417,
+          "required_groups_passed": false,
+          "required_groups_hit": 1,
+          "required_group_count": 2,
+          "support_hits": 1,
+          "support_pattern_count": 6,
+          "min_support": 2,
+          "code_evidence_hits": 2,
+          "evidence": [
+            {
+              "path": "crates/config/src/combined.rs",
+              "signal": "\\bvector\\b",
+              "kind": "support"
+            },
+            {
+              "path": "crates/config/src/rule/mod.rs",
+              "signal": "\\bembedding(s)?\\b",
+              "kind": "required_group_1"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "evaluation_harness",
+      "title": "Evaluation harness",
+      "description": "Benchmark datasets, quality metrics, and report comparison workflows.",
+      "query_hints": [
+        "benchmark evaluation harness precision recall report",
+        "regression metrics compare baseline candidate"
+      ],
+      "repo_types_sought": [
+        "Mature repos with benchmark and regression workflows",
+        "Projects with quality dashboards and metrics reports",
+        "Libraries that compare baseline and candidate performance"
+      ],
+      "why_useful_here": "Dogfooding requires proving quality changes with objective metrics, not intuition. A strong evaluation harness lets us iterate quickly without silent regressions.",
+      "signals": {
+        "required_groups": [
+          [
+            "\\bprecision_at_k\\b",
+            "\\bcoverage_at_k\\b",
+            "\\bbenchmark\\b",
+            "\\bevaluation\\b",
+            "\\bprecision\\b",
+            "\\brecall\\b",
+            "\\bexpected_repos\\b"
+          ],
+          [
+            "\\bcompare_reports\\b",
+            "\\bbaseline\\b",
+            "\\bcandidate\\b",
+            "\\bdelta\\b",
+            "\\bregression\\b"
+          ]
+        ],
+        "support_patterns": [
+          "\\berror_counts?\\b",
+          "\\bcoverage\\b",
+          "\\baggregates\\b",
+          "\\bquery_results\\b",
+          "\\bscore\\b",
+          "\\breport_path\\b"
+        ],
+        "min_support": 2
+      },
+      "summary": {
+        "high_count": 9,
+        "medium_count": 0,
+        "low_count": 5,
+        "matched_repo_count": 14
+      },
+      "matches": [
+        {
+          "repo": "chroma",
+          "quality": "high",
+          "quality_score": 0.9,
+          "required_groups_passed": true,
+          "required_groups_hit": 2,
+          "required_group_count": 2,
+          "support_hits": 4,
+          "support_pattern_count": 6,
+          "min_support": 2,
+          "code_evidence_hits": 23,
+          "evidence": [
+            {
+              "path": "Cargo.toml",
+              "signal": "\\bbenchmark\\b",
+              "kind": "required_group_1"
+            },
+            {
+              "path": "sample_apps/movies/src/components/search.tsx",
+              "signal": "\\bscore\\b",
+              "kind": "support"
+            },
+            {
+              "path": "sample_apps/movies/src/lib/chroma.ts",
+              "signal": "\\bscore\\b",
+              "kind": "support"
+            },
+            {
+              "path": "sample_apps/generative_benchmarking/functions/visualize.py",
+              "signal": "\\bscore\\b",
+              "kind": "support"
+            },
+            {
+              "path": "sample_apps/generative_benchmarking/functions/evaluate.py",
+              "signal": "\\bquery_results\\b",
+              "kind": "support"
+            },
+            {
+              "path": "sample_apps/generative_benchmarking/functions/evaluate.py",
+              "signal": "\\bscore\\b",
+              "kind": "support"
+            },
+            {
+              "path": "rust/chroma/README.md",
+              "signal": "\\bscore\\b",
+              "kind": "support"
+            },
+            {
+              "path": "rust/worker/src/execution/operators/sparse_index_knn.rs",
+              "signal": "\\bscore\\b",
+              "kind": "support"
+            }
+          ]
+        },
+        {
+          "repo": "pydantic",
+          "quality": "high",
+          "quality_score": 0.85,
+          "required_groups_passed": true,
+          "required_groups_hit": 2,
+          "required_group_count": 2,
+          "support_hits": 3,
+          "support_pattern_count": 6,
+          "min_support": 2,
+          "code_evidence_hits": 13,
+          "evidence": [
+            {
+              "path": "pyproject.toml",
+              "signal": "\\bbenchmark\\b",
+              "kind": "required_group_1"
+            },
+            {
+              "path": "pyproject.toml",
+              "signal": "\\bcoverage\\b",
+              "kind": "support"
+            },
+            {
+              "path": "README.md",
+              "signal": "\\bcoverage\\b",
+              "kind": "support"
+            },
+            {
+              "path": "tests/test_types_typeddict.py",
+              "signal": "\\berror_counts?\\b",
+              "kind": "support"
+            },
+            {
+              "path": "tests/test_networks_ipaddress.py",
+              "signal": "\\berror_counts?\\b",
+              "kind": "support"
+            },
+            {
+              "path": "docs/index.md",
+              "signal": "\\bcoverage\\b",
+              "kind": "support"
+            },
+            {
+              "path": "docs/contributing.md",
+              "signal": "\\bcoverage\\b",
+              "kind": "support"
+            },
+            {
+              "path": "pydantic-core/.codecov.yml",
+              "signal": "\\bcoverage\\b",
+              "kind": "support"
+            }
+          ]
+        },
+        {
+          "repo": "zoekt",
+          "quality": "high",
+          "quality_score": 0.85,
+          "required_groups_passed": true,
+          "required_groups_hit": 2,
+          "required_group_count": 2,
+          "support_hits": 3,
+          "support_pattern_count": 6,
+          "min_support": 2,
+          "code_evidence_hits": 13,
+          "evidence": [
+            {
+              "path": "AGENT.md",
+              "signal": "\\bbenchmark\\b",
+              "kind": "required_group_1"
+            },
+            {
+              "path": "api_proto.go",
+              "signal": "\\bscore\\b",
+              "kind": "support"
+            },
+            {
+              "path": "api.go",
+              "signal": "\\bcandidate\\b",
+              "kind": "required_group_2"
+            },
+            {
+              "path": "api.go",
+              "signal": "\\bscore\\b",
+              "kind": "support"
+            },
+            {
+              "path": "api_test.go",
+              "signal": "\\bscore\\b",
+              "kind": "support"
+            },
+            {
+              "path": "web/snippets.go",
+              "signal": "\\bscore\\b",
+              "kind": "support"
+            },
+            {
+              "path": "web/api.go",
+              "signal": "\\bscore\\b",
+              "kind": "support"
+            },
+            {
+              "path": "search/aggregate.go",
+              "signal": "\\baggregates\\b",
+              "kind": "support"
+            }
+          ]
+        },
+        {
+          "repo": "OCRmyPDF",
+          "quality": "high",
+          "quality_score": 0.8,
+          "required_groups_passed": true,
+          "required_groups_hit": 2,
+          "required_group_count": 2,
+          "support_hits": 2,
+          "support_pattern_count": 6,
+          "min_support": 2,
+          "code_evidence_hits": 11,
+          "evidence": [
+            {
+              "path": "pyproject.toml",
+              "signal": "\\bcoverage\\b",
+              "kind": "support"
+            },
+            {
+              "path": "tests/test_multi_font_manager.py",
+              "signal": "\\bcoverage\\b",
+              "kind": "support"
+            },
+            {
+              "path": "tests/conftest.py",
+              "signal": "\\bcoverage\\b",
+              "kind": "support"
+            },
+            {
+              "path": "tests/test_hocr_parser.py",
+              "signal": "\\bbaseline\\b",
+              "kind": "required_group_2"
+            },
+            {
+              "path": "tests/test_stdio.py",
+              "signal": "\\bcoverage\\b",
+              "kind": "support"
+            },
+            {
+              "path": "tests/test_metadata.py",
+              "signal": "\\bcoverage\\b",
+              "kind": "support"
+            },
+            {
+              "path": "tests/test_rotation.py",
+              "signal": "\\bscore\\b",
+              "kind": "support"
+            },
+            {
+              "path": "scripts/generate_glyphless_font.py",
+              "signal": "\\bcoverage\\b",
+              "kind": "support"
+            }
+          ]
+        },
+        {
+          "repo": "celery",
+          "quality": "high",
+          "quality_score": 0.8,
+          "required_groups_passed": true,
+          "required_groups_hit": 2,
+          "required_group_count": 2,
+          "support_hits": 2,
+          "support_pattern_count": 6,
+          "min_support": 2,
+          "code_evidence_hits": 6,
+          "evidence": [
+            {
+              "path": "pyproject.toml",
+              "signal": "\\bcoverage\\b",
+              "kind": "support"
+            },
+            {
+              "path": "tox.ini",
+              "signal": "\\bcoverage\\b",
+              "kind": "support"
+            },
+            {
+              "path": "README.rst",
+              "signal": "\\bcoverage\\b",
+              "kind": "support"
+            },
+            {
+              "path": "Changelog.rst",
+              "signal": "\\bcandidate\\b",
+              "kind": "required_group_2"
+            },
+            {
+              "path": "Changelog.rst",
+              "signal": "\\bcoverage\\b",
+              "kind": "support"
+            },
+            {
+              "path": "celery/schedules.py",
+              "signal": "\\bprecision\\b",
+              "kind": "required_group_1"
+            },
+            {
+              "path": "celery/events/cursesmon.py",
+              "signal": "\\bcoverage\\b",
+              "kind": "support"
+            },
+            {
+              "path": "t/unit/conftest.py",
+              "signal": "\\bcoverage\\b",
+              "kind": "support"
+            }
+          ]
+        },
+        {
+          "repo": "rq",
+          "quality": "high",
+          "quality_score": 0.8,
+          "required_groups_passed": true,
+          "required_groups_hit": 2,
+          "required_group_count": 2,
+          "support_hits": 2,
+          "support_pattern_count": 6,
+          "min_support": 2,
+          "code_evidence_hits": 8,
+          "evidence": [
+            {
+              "path": "pyproject.toml",
+              "signal": "\\bcoverage\\b",
+              "kind": "support"
+            },
+            {
+              "path": "README.md",
+              "signal": "\\bbenchmark\\b",
+              "kind": "required_group_1"
+            },
+            {
+              "path": "README.md",
+              "signal": "\\bcoverage\\b",
+              "kind": "support"
+            },
+            {
+              "path": "CHANGES.md",
+              "signal": "\\bregression\\b",
+              "kind": "required_group_2"
+            },
+            {
+              "path": "tests/test_registry.py",
+              "signal": "\\bscore\\b",
+              "kind": "support"
+            },
+            {
+              "path": "tests/test_utils.py",
+              "signal": "\\bcoverage\\b",
+              "kind": "support"
+            },
+            {
+              "path": "tests/test_callbacks.py",
+              "signal": "\\bcoverage\\b",
+              "kind": "support"
+            },
+            {
+              "path": "tests/test_dependencies.py",
+              "signal": "\\bscore\\b",
+              "kind": "support"
+            }
+          ]
+        },
+        {
+          "repo": "sqlalchemy",
+          "quality": "high",
+          "quality_score": 0.8,
+          "required_groups_passed": true,
+          "required_groups_hit": 2,
+          "required_group_count": 2,
+          "support_hits": 2,
+          "support_pattern_count": 6,
+          "min_support": 2,
+          "code_evidence_hits": 7,
+          "evidence": [
+            {
+              "path": "pyproject.toml",
+              "signal": "\\bcoverage\\b",
+              "kind": "support"
+            },
+            {
+              "path": "tox.ini",
+              "signal": "\\bcoverage\\b",
+              "kind": "support"
+            },
+            {
+              "path": "noxfile.py",
+              "signal": "\\bcoverage\\b",
+              "kind": "support"
+            },
+            {
+              "path": "tools/toxnox.py",
+              "signal": "\\bcoverage\\b",
+              "kind": "support"
+            },
+            {
+              "path": "test/conftest.py",
+              "signal": "\\bcoverage\\b",
+              "kind": "support"
+            },
+            {
+              "path": ".github/stale.yml",
+              "signal": "\\bregression\\b",
+              "kind": "required_group_2"
+            },
+            {
+              "path": "doc/build/tutorial/data_update.rst",
+              "signal": "\\bevaluation\\b",
+              "kind": "required_group_1"
+            },
+            {
+              "path": "doc/build/changelog/changelog_10.rst",
+              "signal": "\\bcoverage\\b",
+              "kind": "support"
+            }
+          ]
+        },
+        {
+          "repo": "django",
+          "quality": "high",
+          "quality_score": 0.8,
+          "required_groups_passed": true,
+          "required_groups_hit": 2,
+          "required_group_count": 2,
+          "support_hits": 2,
+          "support_pattern_count": 6,
+          "min_support": 2,
+          "code_evidence_hits": 12,
+          "evidence": [
+            {
+              "path": "Gruntfile.js",
+              "signal": "\\bcoverage\\b",
+              "kind": "support"
+            },
+            {
+              "path": "eslint-recommended.js",
+              "signal": "\\bprecision\\b",
+              "kind": "required_group_1"
+            },
+            {
+              "path": "tests/sitecustomize.py",
+              "signal": "\\bcoverage\\b",
+              "kind": "support"
+            },
+            {
+              "path": "tests/runtests.py",
+              "signal": "\\bcoverage\\b",
+              "kind": "support"
+            },
+            {
+              "path": "django/utils/timesince.py",
+              "signal": "\\bdelta\\b",
+              "kind": "required_group_2"
+            },
+            {
+              "path": "django/db/models/__init__.py",
+              "signal": "\\baggregates\\b",
+              "kind": "support"
+            },
+            {
+              "path": "django/db/models/aggregates.py",
+              "signal": "\\baggregates\\b",
+              "kind": "support"
+            },
+            {
+              "path": "django/db/models/sql/query.py",
+              "signal": "\\baggregates\\b",
+              "kind": "support"
+            }
+          ]
+        },
+        {
+          "repo": "tree-sitter",
+          "quality": "high",
+          "quality_score": 0.8,
+          "required_groups_passed": true,
+          "required_groups_hit": 2,
+          "required_group_count": 2,
+          "support_hits": 2,
+          "support_pattern_count": 6,
+          "min_support": 2,
+          "code_evidence_hits": 4,
+          "evidence": [
+            {
+              "path": "lib/binding_web/package-lock.json",
+              "signal": "\\bcoverage\\b",
+              "kind": "support"
+            },
+            {
+              "path": "lib/binding_web/package.json",
+              "signal": "\\bcoverage\\b",
+              "kind": "support"
+            },
+            {
+              "path": "lib/binding_web/CONTRIBUTING.md",
+              "signal": "\\bcoverage\\b",
+              "kind": "support"
+            },
+            {
+              "path": "lib/binding_web/vitest.config.ts",
+              "signal": "\\bcoverage\\b",
+              "kind": "support"
+            },
+            {
+              "path": "docs/src/creating-parsers/5-writing-tests.md",
+              "signal": "\\bcoverage\\b",
+              "kind": "support"
+            },
+            {
+              "path": "docs/src/assets/schemas/test-summary.schema.json",
+              "signal": "\\bquery_results\\b",
+              "kind": "support"
+            },
+            {
+              "path": "crates/cli/Cargo.toml",
+              "signal": "\\bbenchmark\\b",
+              "kind": "required_group_1"
+            },
+            {
+              "path": "crates/generate/src/quickjs.rs",
+              "signal": "\\bcandidate\\b",
+              "kind": "required_group_2"
+            }
+          ]
+        },
+        {
+          "repo": "click",
+          "quality": "low",
+          "quality_score": 0.65,
+          "required_groups_passed": true,
+          "required_groups_hit": 2,
+          "required_group_count": 2,
+          "support_hits": 1,
+          "support_pattern_count": 6,
+          "min_support": 2,
+          "code_evidence_hits": 0,
+          "evidence": [
+            {
+              "path": "pyproject.toml",
+              "signal": "\\bcoverage\\b",
+              "kind": "support"
+            },
+            {
+              "path": "CHANGES.rst",
+              "signal": "\\bevaluation\\b",
+              "kind": "required_group_1"
+            },
+            {
+              "path": "CHANGES.rst",
+              "signal": "\\bregression\\b",
+              "kind": "required_group_2"
+            }
+          ]
+        },
+        {
+          "repo": "typer",
+          "quality": "low",
+          "quality_score": 0.5,
+          "required_groups_passed": false,
+          "required_groups_hit": 1,
+          "required_group_count": 2,
+          "support_hits": 2,
+          "support_pattern_count": 6,
+          "min_support": 2,
+          "code_evidence_hits": 173,
+          "evidence": [
+            {
+              "path": "pyproject.toml",
+              "signal": "\\bcoverage\\b",
+              "kind": "support"
+            },
+            {
+              "path": "README.md",
+              "signal": "\\bcoverage\\b",
+              "kind": "support"
+            },
+            {
+              "path": "typer-cli/README.md",
+              "signal": "\\bcoverage\\b",
+              "kind": "support"
+            },
+            {
+              "path": "typer-slim/README.md",
+              "signal": "\\bcoverage\\b",
+              "kind": "support"
+            },
+            {
+              "path": "tests/test_others.py",
+              "signal": "\\bcoverage\\b",
+              "kind": "support"
+            },
+            {
+              "path": "tests/test_prog_name.py",
+              "signal": "\\bcoverage\\b",
+              "kind": "support"
+            },
+            {
+              "path": "tests/test_rich_import.py",
+              "signal": "\\bcoverage\\b",
+              "kind": "support"
+            },
+            {
+              "path": "tests/test_tracebacks.py",
+              "signal": "\\bcoverage\\b",
+              "kind": "support"
+            }
+          ]
+        },
+        {
+          "repo": "ast-grep",
+          "quality": "low",
+          "quality_score": 0.467,
+          "required_groups_passed": false,
+          "required_groups_hit": 1,
+          "required_group_count": 2,
+          "support_hits": 2,
+          "support_pattern_count": 6,
+          "min_support": 2,
+          "code_evidence_hits": 2,
+          "evidence": [
+            {
+              "path": "README.md",
+              "signal": "\\bcoverage\\b",
+              "kind": "support"
+            },
+            {
+              "path": ".github/workflows/coverage.yaml",
+              "signal": "\\bcoverage\\b",
+              "kind": "support"
+            },
+            {
+              "path": "crates/cli/src/scan.rs",
+              "signal": "\\berror_counts?\\b",
+              "kind": "support"
+            },
+            {
+              "path": "crates/cli/src/verify/reporter.rs",
+              "signal": "\\bbaseline\\b",
+              "kind": "required_group_2"
+            }
+          ]
+        },
+        {
+          "repo": "fastapi",
+          "quality": "low",
+          "quality_score": 0.45,
+          "required_groups_passed": false,
+          "required_groups_hit": 1,
+          "required_group_count": 2,
+          "support_hits": 1,
+          "support_pattern_count": 6,
+          "min_support": 2,
+          "code_evidence_hits": 11,
+          "evidence": [
+            {
+              "path": "pyproject.toml",
+              "signal": "\\bcoverage\\b",
+              "kind": "support"
+            },
+            {
+              "path": "README.md",
+              "signal": "\\bcoverage\\b",
+              "kind": "support"
+            },
+            {
+              "path": "tests/test_datastructures.py",
+              "signal": "\\bcoverage\\b",
+              "kind": "support"
+            },
+            {
+              "path": "tests/test_depends_hashable.py",
+              "signal": "\\bcoverage\\b",
+              "kind": "support"
+            },
+            {
+              "path": "tests/test_wrapped_method_forward_reference.py",
+              "signal": "\\bregression\\b",
+              "kind": "required_group_2"
+            },
+            {
+              "path": "tests/test_webhooks_security.py",
+              "signal": "\\bcoverage\\b",
+              "kind": "support"
+            },
+            {
+              "path": "tests/test_dependencies_utils.py",
+              "signal": "\\bcoverage\\b",
+              "kind": "support"
+            },
+            {
+              "path": "tests/test_fastapi_cli.py",
+              "signal": "\\bcoverage\\b",
+              "kind": "support"
+            }
+          ]
+        },
+        {
+          "repo": "flask",
+          "quality": "low",
+          "quality_score": 0.4,
+          "required_groups_passed": false,
+          "required_groups_hit": 1,
+          "required_group_count": 2,
+          "support_hits": 2,
+          "support_pattern_count": 6,
+          "min_support": 2,
+          "code_evidence_hits": 0,
+          "evidence": [
+            {
+              "path": "pyproject.toml",
+              "signal": "\\bcoverage\\b",
+              "kind": "support"
+            },
+            {
+              "path": "CHANGES.rst",
+              "signal": "\\bevaluation\\b",
+              "kind": "required_group_1"
+            },
+            {
+              "path": "docs/testing.rst",
+              "signal": "\\bcoverage\\b",
+              "kind": "support"
+            },
+            {
+              "path": "docs/errorhandling.rst",
+              "signal": "\\baggregates\\b",
+              "kind": "support"
+            },
+            {
+              "path": "examples/tutorial/pyproject.toml",
+              "signal": "\\bcoverage\\b",
+              "kind": "support"
+            },
+            {
+              "path": "examples/tutorial/README.rst",
+              "signal": "\\bcoverage\\b",
+              "kind": "support"
+            },
+            {
+              "path": "examples/javascript/pyproject.toml",
+              "signal": "\\bcoverage\\b",
+              "kind": "support"
+            },
+            {
+              "path": "examples/javascript/README.rst",
+              "signal": "\\bcoverage\\b",
+              "kind": "support"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "structured_filtering",
+      "title": "Structured filtering",
+      "description": "Filter extraction/parsing and metadata-aware result constraints.",
+      "query_hints": [
+        "structured query filters language license metadata",
+        "filter parsing facets constraints"
+      ],
+      "repo_types_sought": [
+        "Search platforms with faceted filtering",
+        "Metadata-heavy repositories with structured query parsing",
+        "Systems with explicit language/license constraints"
+      ],
+      "why_useful_here": "Users need dependable filters (language, license, framework) so results can be constrained to practical integration choices.",
+      "signals": {
+        "required_groups": [
+          [
+            "\\bextract_query_filters\\b",
+            "\\bparsed_filters\\b",
+            "\\bfilter_error\\b",
+            "\\bstructured\\s+filter\\b"
+          ],
+          [
+            "\\bspdx\\b",
+            "\\blicense=apache\\b",
+            "\\blanguage=python\\b",
+            "\\blicense\\b",
+            "\\bprimary_language\\b",
+            "\\bframework_patterns\\b"
+          ]
+        ],
+        "support_patterns": [
+          "\\bquery_filters\\b",
+          "\\bnormalize\\b",
+          "\\btoken\\b",
+          "\\bmetadata\\b",
+          "\\bconstraint\\b",
+          "\\bmatch\\b",
+          "\\bfacet\\b"
+        ],
+        "min_support": 2
+      },
+      "summary": {
+        "high_count": 0,
+        "medium_count": 0,
+        "low_count": 16,
+        "matched_repo_count": 16
+      },
+      "matches": [
+        {
+          "repo": "click",
+          "quality": "low",
+          "quality_score": 0.614,
+          "required_groups_passed": false,
+          "required_groups_hit": 1,
+          "required_group_count": 2,
+          "support_hits": 5,
+          "support_pattern_count": 7,
+          "min_support": 2,
+          "code_evidence_hits": 14,
+          "evidence": [
+            {
+              "path": "pyproject.toml",
+              "signal": "\\blicense\\b",
+              "kind": "required_group_2"
+            },
+            {
+              "path": "CHANGES.rst",
+              "signal": "\\bmetadata\\b",
+              "kind": "support"
+            },
+            {
+              "path": "tests/test_termui.py",
+              "signal": "\\bmatch\\b",
+              "kind": "support"
+            },
+            {
+              "path": "tests/test_options.py",
+              "signal": "\\bmatch\\b",
+              "kind": "support"
+            },
+            {
+              "path": "tests/test_commands.py",
+              "signal": "\\btoken\\b",
+              "kind": "support"
+            },
+            {
+              "path": "tests/test_defaults.py",
+              "signal": "\\btoken\\b",
+              "kind": "support"
+            },
+            {
+              "path": "tests/test_types.py",
+              "signal": "\\bmatch\\b",
+              "kind": "support"
+            },
+            {
+              "path": "tests/test_arguments.py",
+              "signal": "\\bmatch\\b",
+              "kind": "support"
+            }
+          ]
+        },
+        {
+          "repo": "sqlalchemy",
+          "quality": "low",
+          "quality_score": 0.614,
+          "required_groups_passed": false,
+          "required_groups_hit": 1,
+          "required_group_count": 2,
+          "support_hits": 5,
+          "support_pattern_count": 7,
+          "min_support": 2,
+          "code_evidence_hits": 272,
+          "evidence": [
+            {
+              "path": "pyproject.toml",
+              "signal": "\\blicense\\b",
+              "kind": "required_group_2"
+            },
+            {
+              "path": "README.rst",
+              "signal": "\\bmetadata\\b",
+              "kind": "support"
+            },
+            {
+              "path": "README.unittests.rst",
+              "signal": "\\bmatch\\b",
+              "kind": "support"
+            },
+            {
+              "path": "noxfile.py",
+              "signal": "\\bmatch\\b",
+              "kind": "support"
+            },
+            {
+              "path": "tools/format_docs_code.py",
+              "signal": "\\bmatch\\b",
+              "kind": "support"
+            },
+            {
+              "path": "tools/generate_proxy_methods.py",
+              "signal": "\\bmetadata\\b",
+              "kind": "support"
+            },
+            {
+              "path": "tools/generate_proxy_methods.py",
+              "signal": "\\bmatch\\b",
+              "kind": "support"
+            },
+            {
+              "path": "tools/generate_tuple_map_overloads.py",
+              "signal": "\\bmatch\\b",
+              "kind": "support"
+            }
+          ]
+        },
+        {
+          "repo": "django",
+          "quality": "low",
+          "quality_score": 0.614,
+          "required_groups_passed": false,
+          "required_groups_hit": 1,
+          "required_group_count": 2,
+          "support_hits": 5,
+          "support_pattern_count": 7,
+          "min_support": 2,
+          "code_evidence_hits": 122,
+          "evidence": [
+            {
+              "path": "globals.js",
+              "signal": "\\blicense\\b",
+              "kind": "required_group_2"
+            },
+            {
+              "path": "tests/runtests.py",
+              "signal": "\\bmatch\\b",
+              "kind": "support"
+            },
+            {
+              "path": "docs/conf.py",
+              "signal": "\\bmatch\\b",
+              "kind": "support"
+            },
+            {
+              "path": "docs/lint.py",
+              "signal": "\\bmatch\\b",
+              "kind": "support"
+            },
+            {
+              "path": "scripts/manage_translations.py",
+              "signal": "\\btoken\\b",
+              "kind": "support"
+            },
+            {
+              "path": "scripts/do_django_release.py",
+              "signal": "\\bmatch\\b",
+              "kind": "support"
+            },
+            {
+              "path": "django/templatetags/l10n.py",
+              "signal": "\\btoken\\b",
+              "kind": "support"
+            },
+            {
+              "path": "django/templatetags/tz.py",
+              "signal": "\\btoken\\b",
+              "kind": "support"
+            }
+          ]
+        },
+        {
+          "repo": "pydantic",
+          "quality": "low",
+          "quality_score": 0.614,
+          "required_groups_passed": false,
+          "required_groups_hit": 1,
+          "required_group_count": 2,
+          "support_hits": 5,
+          "support_pattern_count": 7,
+          "min_support": 2,
+          "code_evidence_hits": 285,
+          "evidence": [
+            {
+              "path": "pyproject.toml",
+              "signal": "\\blicense\\b",
+              "kind": "required_group_2"
+            },
+            {
+              "path": "pyproject.toml",
+              "signal": "\\bmetadata\\b",
+              "kind": "support"
+            },
+            {
+              "path": "tests/test_computed_fields.py",
+              "signal": "\\bmatch\\b",
+              "kind": "support"
+            },
+            {
+              "path": "tests/test_utils.py",
+              "signal": "\\bmatch\\b",
+              "kind": "support"
+            },
+            {
+              "path": "tests/test_types_typeddict.py",
+              "signal": "\\bmatch\\b",
+              "kind": "support"
+            },
+            {
+              "path": "tests/test_plugin_loader.py",
+              "signal": "\\bmetadata\\b",
+              "kind": "support"
+            },
+            {
+              "path": "tests/test_types_payment_card_number.py",
+              "signal": "\\bmatch\\b",
+              "kind": "support"
+            },
+            {
+              "path": "tests/test_private_attributes.py",
+              "signal": "\\bmatch\\b",
+              "kind": "support"
+            }
+          ]
+        },
+        {
+          "repo": "tree-sitter",
+          "quality": "low",
+          "quality_score": 0.614,
+          "required_groups_passed": false,
+          "required_groups_hit": 1,
+          "required_group_count": 2,
+          "support_hits": 5,
+          "support_pattern_count": 7,
+          "min_support": 2,
+          "code_evidence_hits": 106,
+          "evidence": [
+            {
+              "path": "Cargo.toml",
+              "signal": "\\blicense\\b",
+              "kind": "required_group_2"
+            },
+            {
+              "path": "lib/Cargo.toml",
+              "signal": "\\bmetadata\\b",
+              "kind": "support"
+            },
+            {
+              "path": "lib/binding_rust/lib.rs",
+              "signal": "\\bmetadata\\b",
+              "kind": "support"
+            },
+            {
+              "path": "lib/binding_rust/lib.rs",
+              "signal": "\\bmatch\\b",
+              "kind": "support"
+            },
+            {
+              "path": "lib/binding_rust/wasm_language.rs",
+              "signal": "\\bmatch\\b",
+              "kind": "support"
+            },
+            {
+              "path": "lib/binding_rust/bindings.rs",
+              "signal": "\\bmetadata\\b",
+              "kind": "support"
+            },
+            {
+              "path": "lib/binding_rust/bindings.rs",
+              "signal": "\\bmatch\\b",
+              "kind": "support"
+            },
+            {
+              "path": "lib/binding_web/test/query.test.ts",
+              "signal": "\\bmatch\\b",
+              "kind": "support"
+            }
+          ]
+        },
+        {
+          "repo": "ast-grep",
+          "quality": "low",
+          "quality_score": 0.614,
+          "required_groups_passed": false,
+          "required_groups_hit": 1,
+          "required_group_count": 2,
+          "support_hits": 5,
+          "support_pattern_count": 7,
+          "min_support": 2,
+          "code_evidence_hits": 91,
+          "evidence": [
+            {
+              "path": "Cargo.toml",
+              "signal": "\\blicense\\b",
+              "kind": "required_group_2"
+            },
+            {
+              "path": "CHANGELOG.md",
+              "signal": "\\bmatch\\b",
+              "kind": "support"
+            },
+            {
+              "path": "README.md",
+              "signal": "\\btoken\\b",
+              "kind": "support"
+            },
+            {
+              "path": "README.md",
+              "signal": "\\bmatch\\b",
+              "kind": "support"
+            },
+            {
+              "path": "schemas/typescript_rule.json",
+              "signal": "\\bmetadata\\b",
+              "kind": "support"
+            },
+            {
+              "path": "schemas/typescript_rule.json",
+              "signal": "\\bconstraint\\b",
+              "kind": "support"
+            },
+            {
+              "path": "schemas/typescript_rule.json",
+              "signal": "\\bmatch\\b",
+              "kind": "support"
+            },
+            {
+              "path": "schemas/java_rule.json",
+              "signal": "\\bmetadata\\b",
+              "kind": "support"
+            }
+          ]
+        },
+        {
+          "repo": "chroma",
+          "quality": "low",
+          "quality_score": 0.614,
+          "required_groups_passed": false,
+          "required_groups_hit": 1,
+          "required_group_count": 2,
+          "support_hits": 5,
+          "support_pattern_count": 7,
+          "min_support": 2,
+          "code_evidence_hits": 402,
+          "evidence": [
+            {
+              "path": "pyproject.toml",
+              "signal": "\\blicense\\b",
+              "kind": "required_group_2"
+            },
+            {
+              "path": "pyproject.toml",
+              "signal": "\\bmatch\\b",
+              "kind": "support"
+            },
+            {
+              "path": "README.md",
+              "signal": "\\bmetadata\\b",
+              "kind": "support"
+            },
+            {
+              "path": "docker-compose.yml",
+              "signal": "\\bmatch\\b",
+              "kind": "support"
+            },
+            {
+              "path": "requirements_dev.txt",
+              "signal": "\\bmatch\\b",
+              "kind": "support"
+            },
+            {
+              "path": "bin/rust_python_compat_test.py",
+              "signal": "\\bmatch\\b",
+              "kind": "support"
+            },
+            {
+              "path": "bin/generate_cloudformation.py",
+              "signal": "\\bmatch\\b",
+              "kind": "support"
+            },
+            {
+              "path": "bin/get-logs.sh",
+              "signal": "\\bmetadata\\b",
+              "kind": "support"
+            }
+          ]
+        },
+        {
+          "repo": "OCRmyPDF",
+          "quality": "low",
+          "quality_score": 0.571,
+          "required_groups_passed": false,
+          "required_groups_hit": 1,
+          "required_group_count": 2,
+          "support_hits": 4,
+          "support_pattern_count": 7,
+          "min_support": 2,
+          "code_evidence_hits": 49,
+          "evidence": [
+            {
+              "path": "REUSE.toml",
+              "signal": "\\bspdx\\b",
+              "kind": "required_group_2"
+            },
+            {
+              "path": "README.md",
+              "signal": "\\bmetadata\\b",
+              "kind": "support"
+            },
+            {
+              "path": "misc/pdf_compare.py",
+              "signal": "\\bmetadata\\b",
+              "kind": "support"
+            },
+            {
+              "path": "misc/_webservice.py",
+              "signal": "\\bmetadata\\b",
+              "kind": "support"
+            },
+            {
+              "path": "misc/ocrmypdf_compare.py",
+              "signal": "\\bmetadata\\b",
+              "kind": "support"
+            },
+            {
+              "path": "bin/bump_version.py",
+              "signal": "\\btoken\\b",
+              "kind": "support"
+            },
+            {
+              "path": "bin/bump_version.py",
+              "signal": "\\bmatch\\b",
+              "kind": "support"
+            },
+            {
+              "path": "tests/test_system_font_provider.py",
+              "signal": "\\bmatch\\b",
+              "kind": "support"
+            }
+          ]
+        },
+        {
+          "repo": "flask",
+          "quality": "low",
+          "quality_score": 0.571,
+          "required_groups_passed": false,
+          "required_groups_hit": 1,
+          "required_group_count": 2,
+          "support_hits": 4,
+          "support_pattern_count": 7,
+          "min_support": 2,
+          "code_evidence_hits": 15,
+          "evidence": [
+            {
+              "path": "pyproject.toml",
+              "signal": "\\blicense\\b",
+              "kind": "required_group_2"
+            },
+            {
+              "path": "CHANGES.rst",
+              "signal": "\\bmetadata\\b",
+              "kind": "support"
+            },
+            {
+              "path": "CHANGES.rst",
+              "signal": "\\bmatch\\b",
+              "kind": "support"
+            },
+            {
+              "path": "tests/test_basic.py",
+              "signal": "\\bmetadata\\b",
+              "kind": "support"
+            },
+            {
+              "path": "tests/test_instance_config.py",
+              "signal": "\\bmatch\\b",
+              "kind": "support"
+            },
+            {
+              "path": "tests/test_helpers.py",
+              "signal": "\\bmetadata\\b",
+              "kind": "support"
+            },
+            {
+              "path": "tests/test_cli.py",
+              "signal": "\\bmetadata\\b",
+              "kind": "support"
+            },
+            {
+              "path": "tests/test_appctx.py",
+              "signal": "\\bmatch\\b",
+              "kind": "support"
+            }
+          ]
+        },
+        {
+          "repo": "celery",
+          "quality": "low",
+          "quality_score": 0.571,
+          "required_groups_passed": false,
+          "required_groups_hit": 1,
+          "required_group_count": 2,
+          "support_hits": 4,
+          "support_pattern_count": 7,
+          "min_support": 2,
+          "code_evidence_hits": 36,
+          "evidence": [
+            {
+              "path": "setup.py",
+              "signal": "\\blicense\\b",
+              "kind": "required_group_2"
+            },
+            {
+              "path": "setup.py",
+              "signal": "\\bmetadata\\b",
+              "kind": "support"
+            },
+            {
+              "path": "setup.py",
+              "signal": "\\bmatch\\b",
+              "kind": "support"
+            },
+            {
+              "path": "tox.ini",
+              "signal": "\\bconstraint\\b",
+              "kind": "support"
+            },
+            {
+              "path": "setup.cfg",
+              "signal": "\\bmetadata\\b",
+              "kind": "support"
+            },
+            {
+              "path": "Changelog.rst",
+              "signal": "\\bmetadata\\b",
+              "kind": "support"
+            },
+            {
+              "path": "Changelog.rst",
+              "signal": "\\bmatch\\b",
+              "kind": "support"
+            },
+            {
+              "path": "docs/changelog_formatter.py",
+              "signal": "\\bmatch\\b",
+              "kind": "support"
+            }
+          ]
+        },
+        {
+          "repo": "rq",
+          "quality": "low",
+          "quality_score": 0.571,
+          "required_groups_passed": false,
+          "required_groups_hit": 1,
+          "required_group_count": 2,
+          "support_hits": 4,
+          "support_pattern_count": 7,
+          "min_support": 2,
+          "code_evidence_hits": 6,
+          "evidence": [
+            {
+              "path": "pyproject.toml",
+              "signal": "\\blicense\\b",
+              "kind": "required_group_2"
+            },
+            {
+              "path": "tests/test_job.py",
+              "signal": "\\bmetadata\\b",
+              "kind": "support"
+            },
+            {
+              "path": "tests/test_cron_job.py",
+              "signal": "\\bmatch\\b",
+              "kind": "support"
+            },
+            {
+              "path": "rq/cron.py",
+              "signal": "\\bmetadata\\b",
+              "kind": "support"
+            },
+            {
+              "path": "rq/job.py",
+              "signal": "\\bmetadata\\b",
+              "kind": "support"
+            },
+            {
+              "path": "rq/utils.py",
+              "signal": "\\bnormalize\\b",
+              "kind": "support"
+            },
+            {
+              "path": "rq/decorators.py",
+              "signal": "\\bmetadata\\b",
+              "kind": "support"
+            },
+            {
+              "path": ".github/workflows/valkey.yml",
+              "signal": "\\btoken\\b",
+              "kind": "support"
+            }
+          ]
+        },
+        {
+          "repo": "zoekt",
+          "quality": "low",
+          "quality_score": 0.571,
+          "required_groups_passed": false,
+          "required_groups_hit": 1,
+          "required_group_count": 2,
+          "support_hits": 4,
+          "support_pattern_count": 7,
+          "min_support": 2,
+          "code_evidence_hits": 88,
+          "evidence": [
+            {
+              "path": "README.md",
+              "signal": "\\btoken\\b",
+              "kind": "support"
+            },
+            {
+              "path": "README.md",
+              "signal": "\\bmatch\\b",
+              "kind": "support"
+            },
+            {
+              "path": "api_proto.go",
+              "signal": "\\blicense\\b",
+              "kind": "required_group_2"
+            },
+            {
+              "path": "api.go",
+              "signal": "\\bmatch\\b",
+              "kind": "support"
+            },
+            {
+              "path": "api_test.go",
+              "signal": "\\bmatch\\b",
+              "kind": "support"
+            },
+            {
+              "path": "ignore/ignore_test.go",
+              "signal": "\\bmatch\\b",
+              "kind": "support"
+            },
+            {
+              "path": "ignore/ignore.go",
+              "signal": "\\bmatch\\b",
+              "kind": "support"
+            },
+            {
+              "path": "web/e2e_test.go",
+              "signal": "\\bmatch\\b",
+              "kind": "support"
+            }
+          ]
+        },
+        {
+          "repo": "requests",
+          "quality": "low",
+          "quality_score": 0.529,
+          "required_groups_passed": false,
+          "required_groups_hit": 1,
+          "required_group_count": 2,
+          "support_hits": 3,
+          "support_pattern_count": 7,
+          "min_support": 2,
+          "code_evidence_hits": 7,
+          "evidence": [
+            {
+              "path": "HISTORY.md",
+              "signal": "\\blicense\\b",
+              "kind": "required_group_2"
+            },
+            {
+              "path": "docs/conf.py",
+              "signal": "\\bmatch\\b",
+              "kind": "support"
+            },
+            {
+              "path": "src/requests/sessions.py",
+              "signal": "\\bnormalize\\b",
+              "kind": "support"
+            },
+            {
+              "path": "src/requests/sessions.py",
+              "signal": "\\bmatch\\b",
+              "kind": "support"
+            },
+            {
+              "path": "src/requests/__init__.py",
+              "signal": "\\bmatch\\b",
+              "kind": "support"
+            },
+            {
+              "path": "src/requests/utils.py",
+              "signal": "\\bmatch\\b",
+              "kind": "support"
+            },
+            {
+              "path": "src/requests/exceptions.py",
+              "signal": "\\bmatch\\b",
+              "kind": "support"
+            },
+            {
+              "path": ".github/workflows/publish.yml",
+              "signal": "\\btoken\\b",
+              "kind": "support"
+            }
+          ]
+        },
+        {
+          "repo": "fastapi",
+          "quality": "low",
+          "quality_score": 0.529,
+          "required_groups_passed": false,
+          "required_groups_hit": 1,
+          "required_group_count": 2,
+          "support_hits": 3,
+          "support_pattern_count": 7,
+          "min_support": 2,
+          "code_evidence_hits": 77,
+          "evidence": [
+            {
+              "path": "pyproject.toml",
+              "signal": "\\blicense\\b",
+              "kind": "required_group_2"
+            },
+            {
+              "path": "tests/test_security_oauth2.py",
+              "signal": "\\btoken\\b",
+              "kind": "support"
+            },
+            {
+              "path": "tests/test_security_oauth2.py",
+              "signal": "\\bmatch\\b",
+              "kind": "support"
+            },
+            {
+              "path": "tests/test_openapi_schema_type.py",
+              "signal": "\\bmatch\\b",
+              "kind": "support"
+            },
+            {
+              "path": "tests/test_dependency_yield_scope.py",
+              "signal": "\\bmatch\\b",
+              "kind": "support"
+            },
+            {
+              "path": "tests/test_invalid_sequence_param.py",
+              "signal": "\\bmatch\\b",
+              "kind": "support"
+            },
+            {
+              "path": "tests/test_dependency_paramless.py",
+              "signal": "\\btoken\\b",
+              "kind": "support"
+            },
+            {
+              "path": "tests/test_multipart_installation.py",
+              "signal": "\\bmatch\\b",
+              "kind": "support"
+            }
+          ]
+        },
+        {
+          "repo": "typer",
+          "quality": "low",
+          "quality_score": 0.529,
+          "required_groups_passed": false,
+          "required_groups_hit": 1,
+          "required_group_count": 2,
+          "support_hits": 3,
+          "support_pattern_count": 7,
+          "min_support": 2,
+          "code_evidence_hits": 6,
+          "evidence": [
+            {
+              "path": "pyproject.toml",
+              "signal": "\\blicense\\b",
+              "kind": "required_group_2"
+            },
+            {
+              "path": "README.md",
+              "signal": "\\bmetadata\\b",
+              "kind": "support"
+            },
+            {
+              "path": "tests/test_deprecation.py",
+              "signal": "\\bmatch\\b",
+              "kind": "support"
+            },
+            {
+              "path": "tests/test_callback_warning.py",
+              "signal": "\\bmatch\\b",
+              "kind": "support"
+            },
+            {
+              "path": "tests/test_others.py",
+              "signal": "\\bmatch\\b",
+              "kind": "support"
+            },
+            {
+              "path": "docs/index.md",
+              "signal": "\\bmetadata\\b",
+              "kind": "support"
+            },
+            {
+              "path": "scripts/deploy_docs_status.py",
+              "signal": "\\btoken\\b",
+              "kind": "support"
+            },
+            {
+              "path": "scripts/deploy_docs_status.py",
+              "signal": "\\bmatch\\b",
+              "kind": "support"
+            }
+          ]
+        },
+        {
+          "repo": "pytesseract",
+          "quality": "low",
+          "quality_score": 0.419,
+          "required_groups_passed": false,
+          "required_groups_hit": 1,
+          "required_group_count": 2,
+          "support_hits": 2,
+          "support_pattern_count": 7,
+          "min_support": 2,
+          "code_evidence_hits": 1,
+          "evidence": [
+            {
+              "path": "setup.cfg",
+              "signal": "\\blicense\\b",
+              "kind": "required_group_2"
+            },
+            {
+              "path": "setup.cfg",
+              "signal": "\\bmetadata\\b",
+              "kind": "support"
+            },
+            {
+              "path": "README.rst",
+              "signal": "\\bmatch\\b",
+              "kind": "support"
+            },
+            {
+              "path": "pytesseract/pytesseract.py",
+              "signal": "\\bmatch\\b",
+              "kind": "support"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

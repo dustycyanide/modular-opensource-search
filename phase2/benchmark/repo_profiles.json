@@ -1,0 +1,124 @@
+{
+  "repos": [
+    {
+      "name": "OCRmyPDF",
+      "repo_type": "OCR application",
+      "primary_capabilities": ["ocr_processing", "document_ingestion_pipeline", "cli_tooling"],
+      "why_included": "High-signal OCR + pipeline reference and realistic app-level CLI behavior."
+    },
+    {
+      "name": "requests",
+      "repo_type": "HTTP client library",
+      "primary_capabilities": ["negative_control", "http_client"],
+      "why_included": "Contrast repo to catch false positives in API/service-like queries."
+    },
+    {
+      "name": "flask",
+      "repo_type": "Web framework",
+      "primary_capabilities": ["api_service"],
+      "why_included": "Clear route and request/response signatures for API detection."
+    },
+    {
+      "name": "click",
+      "repo_type": "CLI framework",
+      "primary_capabilities": ["cli_tooling"],
+      "why_included": "Canonical CLI framework for command signature patterns."
+    },
+    {
+      "name": "pytesseract",
+      "repo_type": "OCR library",
+      "primary_capabilities": ["ocr_processing"],
+      "why_included": "Library-level OCR reference to complement app-level OCR signals."
+    },
+    {
+      "name": "fastapi",
+      "repo_type": "API framework",
+      "primary_capabilities": ["api_service"],
+      "why_included": "Strong router/endpoint signatures for API capability grounding."
+    },
+    {
+      "name": "typer",
+      "repo_type": "CLI framework",
+      "primary_capabilities": ["cli_tooling"],
+      "why_included": "Typed CLI framework to improve CLI recall beyond click-only patterns."
+    },
+    {
+      "name": "celery",
+      "repo_type": "Task queue framework",
+      "primary_capabilities": ["async_processing_engine"],
+      "why_included": "Reference repo for worker/job/task and queue orchestration signals."
+    },
+    {
+      "name": "rq",
+      "repo_type": "Queue worker framework",
+      "primary_capabilities": ["async_processing_engine"],
+      "why_included": "Alternative async queue model to prevent overfitting to Celery patterns."
+    },
+    {
+      "name": "sqlalchemy",
+      "repo_type": "ORM and SQL toolkit",
+      "primary_capabilities": ["database_persistence"],
+      "why_included": "Strong persistence and migration signatures for database capability checks."
+    },
+    {
+      "name": "django",
+      "repo_type": "Full-stack framework",
+      "primary_capabilities": ["api_service", "database_persistence"],
+      "why_included": "Broad framework signals useful for precision stress and contrast."
+    },
+    {
+      "name": "pydantic",
+      "repo_type": "Data validation library",
+      "primary_capabilities": ["schema_validation"],
+      "why_included": "Useful contrast for data modeling and validation-heavy codebases."
+    },
+    {
+      "name": "tree-sitter",
+      "repo_type": "Parser infrastructure",
+      "primary_capabilities": ["code_parsing"],
+      "why_included": "Potential source of robust syntax and structure extraction patterns."
+    },
+    {
+      "name": "ast-grep",
+      "repo_type": "AST search tooling",
+      "primary_capabilities": ["code_search", "pattern_matching"],
+      "why_included": "Candidate source for structured code matching and rule-driven search."
+    },
+    {
+      "name": "zoekt",
+      "repo_type": "Code search engine",
+      "primary_capabilities": ["repo_indexing_pipeline", "search_ranking"],
+      "why_included": "High-value reference for large-scale indexing and query retrieval behavior."
+    },
+    {
+      "name": "chroma",
+      "repo_type": "Vector database",
+      "primary_capabilities": ["semantic_retrieval_stack", "repo_indexing_pipeline"],
+      "why_included": "Strong source for embedding retrieval and vector ranking patterns."
+    },
+    {
+      "name": "qdrant",
+      "repo_type": "Vector database",
+      "primary_capabilities": ["semantic_retrieval_stack"],
+      "why_included": "Secondary vector-system reference for ANN and retrieval architecture patterns."
+    },
+    {
+      "name": "prefect",
+      "repo_type": "Workflow orchestration platform",
+      "primary_capabilities": ["pipeline_orchestration", "evaluation_harness"],
+      "why_included": "Candidate source for pipeline observability and execution workflows."
+    },
+    {
+      "name": "evidently",
+      "repo_type": "ML evaluation toolkit",
+      "primary_capabilities": ["evaluation_harness"],
+      "why_included": "Targeted source for measurement, quality reporting, and drift-style evaluation."
+    },
+    {
+      "name": "openevals",
+      "repo_type": "Evaluation framework",
+      "primary_capabilities": ["evaluation_harness"],
+      "why_included": "Focused source for benchmark-style evaluation scaffolding and metrics." 
+    }
+  ]
+}

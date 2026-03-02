@@ -1,0 +1,652 @@
+{
+  "generated_at": "2026-03-01T23:50:58.679089+00:00",
+  "source_discovery_report": "/Users/dustycyanide/Documents/projects/modular_opensource/phase3/reports/discovery_report_16.json",
+  "evaluated_repos": [
+    {
+      "name": "OCRmyPDF",
+      "repo_type": "OCR application",
+      "primary_capabilities": [
+        "ocr_processing",
+        "document_ingestion_pipeline",
+        "cli_tooling"
+      ],
+      "why_included": "High-signal OCR + pipeline reference and realistic app-level CLI behavior."
+    },
+    {
+      "name": "requests",
+      "repo_type": "HTTP client library",
+      "primary_capabilities": [
+        "negative_control",
+        "http_client"
+      ],
+      "why_included": "Contrast repo to catch false positives in API/service-like queries."
+    },
+    {
+      "name": "flask",
+      "repo_type": "Web framework",
+      "primary_capabilities": [
+        "api_service"
+      ],
+      "why_included": "Clear route and request/response signatures for API detection."
+    },
+    {
+      "name": "click",
+      "repo_type": "CLI framework",
+      "primary_capabilities": [
+        "cli_tooling"
+      ],
+      "why_included": "Canonical CLI framework for command signature patterns."
+    },
+    {
+      "name": "pytesseract",
+      "repo_type": "OCR library",
+      "primary_capabilities": [
+        "ocr_processing"
+      ],
+      "why_included": "Library-level OCR reference to complement app-level OCR signals."
+    },
+    {
+      "name": "fastapi",
+      "repo_type": "API framework",
+      "primary_capabilities": [
+        "api_service"
+      ],
+      "why_included": "Strong router/endpoint signatures for API capability grounding."
+    },
+    {
+      "name": "typer",
+      "repo_type": "CLI framework",
+      "primary_capabilities": [
+        "cli_tooling"
+      ],
+      "why_included": "Typed CLI framework to improve CLI recall beyond click-only patterns."
+    },
+    {
+      "name": "celery",
+      "repo_type": "Task queue framework",
+      "primary_capabilities": [
+        "async_processing_engine"
+      ],
+      "why_included": "Reference repo for worker/job/task and queue orchestration signals."
+    },
+    {
+      "name": "rq",
+      "repo_type": "Queue worker framework",
+      "primary_capabilities": [
+        "async_processing_engine"
+      ],
+      "why_included": "Alternative async queue model to prevent overfitting to Celery patterns."
+    },
+    {
+      "name": "sqlalchemy",
+      "repo_type": "ORM and SQL toolkit",
+      "primary_capabilities": [
+        "database_persistence"
+      ],
+      "why_included": "Strong persistence and migration signatures for database capability checks."
+    },
+    {
+      "name": "django",
+      "repo_type": "Full-stack framework",
+      "primary_capabilities": [
+        "api_service",
+        "database_persistence"
+      ],
+      "why_included": "Broad framework signals useful for precision stress and contrast."
+    },
+    {
+      "name": "pydantic",
+      "repo_type": "Data validation library",
+      "primary_capabilities": [
+        "schema_validation"
+      ],
+      "why_included": "Useful contrast for data modeling and validation-heavy codebases."
+    },
+    {
+      "name": "tree-sitter",
+      "repo_type": "Parser infrastructure",
+      "primary_capabilities": [
+        "code_parsing"
+      ],
+      "why_included": "Potential source of robust syntax and structure extraction patterns."
+    },
+    {
+      "name": "ast-grep",
+      "repo_type": "AST search tooling",
+      "primary_capabilities": [
+        "code_search",
+        "pattern_matching"
+      ],
+      "why_included": "Candidate source for structured code matching and rule-driven search."
+    },
+    {
+      "name": "zoekt",
+      "repo_type": "Code search engine",
+      "primary_capabilities": [
+        "repo_indexing_pipeline",
+        "search_ranking"
+      ],
+      "why_included": "High-value reference for large-scale indexing and query retrieval behavior."
+    },
+    {
+      "name": "chroma",
+      "repo_type": "Vector database",
+      "primary_capabilities": [
+        "semantic_retrieval_stack",
+        "repo_indexing_pipeline"
+      ],
+      "why_included": "Strong source for embedding retrieval and vector ranking patterns."
+    }
+  ],
+  "capability_evaluations": [
+    {
+      "capability": "repo_indexing_pipeline",
+      "title": "Repository indexing pipeline",
+      "description": "Repository intake, traversal, metadata extraction, and index write flow.",
+      "why_useful_here": "This project must ingest many repositories reliably, with evidence and metadata quality controls. Better indexing design directly improves retrieval trust.",
+      "repo_types_sought": [
+        "Code search engines and source indexers",
+        "Developer tools that crawl repositories",
+        "Data systems with explicit ingest and index-write paths"
+      ],
+      "query_hints": [
+        "repository indexing pipeline clone ingest metadata",
+        "codebase scan chunk index update"
+      ],
+      "summary": {
+        "high_count": 4,
+        "medium_count": 0,
+        "low_count": 10,
+        "matched_repo_count": 14
+      },
+      "decision": "adopt",
+      "decision_reason": "high-signal",
+      "recommendation_rationale": "Recommend adopt because we have enough high-confidence matches (high=4, medium=0) and the signal is not too broad (high_ratio=0.25).",
+      "options_considered": [
+        {
+          "option": "adopt",
+          "label": "Adopt now",
+          "pros": [
+            "Fastest path to shipping measurable value",
+            "Keeps momentum when evidence is already strong"
+          ],
+          "cons": [
+            "Risk of overfitting if signal breadth is low",
+            "May pull in patterns that are not specific to our domain"
+          ],
+          "best_when": "The capability has specific, high-quality matches and clear fit for `repo_indexing_pipeline`"
+        },
+        {
+          "option": "adapt",
+          "label": "Adapt first",
+          "pros": [
+            "Balances speed and safety by tailoring to project constraints",
+            "Reduces false positives before capability promotion"
+          ],
+          "cons": [
+            "Adds design and implementation time",
+            "Needs another evaluation loop before final acceptance"
+          ],
+          "best_when": "Signal is promising but too broad, noisy, or only partially specific"
+        },
+        {
+          "option": "reject",
+          "label": "Reject for now",
+          "pros": [
+            "Avoids introducing low-confidence behavior",
+            "Protects trust while discovery criteria are refined"
+          ],
+          "cons": [
+            "Delays potential capability gains",
+            "Requires a new repo cohort or sharper detection patterns"
+          ],
+          "best_when": "Required signals do not pass consistently or evidence is mostly generic"
+        }
+      ],
+      "found_high_medium": [
+        {
+          "repo": "celery",
+          "quality": "high",
+          "quality_score": 0.85,
+          "repo_type": "Task queue framework",
+          "repo_capabilities": [
+            "async_processing_engine"
+          ],
+          "why_included": "Reference repo for worker/job/task and queue orchestration signals."
+        },
+        {
+          "repo": "sqlalchemy",
+          "quality": "high",
+          "quality_score": 0.85,
+          "repo_type": "ORM and SQL toolkit",
+          "repo_capabilities": [
+            "database_persistence"
+          ],
+          "why_included": "Strong persistence and migration signatures for database capability checks."
+        },
+        {
+          "repo": "chroma",
+          "quality": "high",
+          "quality_score": 0.85,
+          "repo_type": "Vector database",
+          "repo_capabilities": [
+            "semantic_retrieval_stack",
+            "repo_indexing_pipeline"
+          ],
+          "why_included": "Strong source for embedding retrieval and vector ranking patterns."
+        },
+        {
+          "repo": "flask",
+          "quality": "high",
+          "quality_score": 0.8,
+          "repo_type": "Web framework",
+          "repo_capabilities": [
+            "api_service"
+          ],
+          "why_included": "Clear route and request/response signatures for API detection."
+        }
+      ],
+      "found_low": [
+        {
+          "repo": "OCRmyPDF",
+          "quality": "low",
+          "quality_score": 0.6,
+          "repo_type": "OCR application"
+        },
+        {
+          "repo": "django",
+          "quality": "low",
+          "quality_score": 0.55,
+          "repo_type": "Full-stack framework"
+        },
+        {
+          "repo": "tree-sitter",
+          "quality": "low",
+          "quality_score": 0.55,
+          "repo_type": "Parser infrastructure"
+        },
+        {
+          "repo": "zoekt",
+          "quality": "low",
+          "quality_score": 0.55,
+          "repo_type": "Code search engine"
+        }
+      ]
+    },
+    {
+      "capability": "semantic_retrieval_stack",
+      "title": "Semantic retrieval stack",
+      "description": "Embedding generation, vector similarity search, and retrieval ranking logic.",
+      "why_useful_here": "Capability search quality depends on semantic retrieval and ranking. This capability strengthens query understanding beyond lexical keyword overlap.",
+      "repo_types_sought": [
+        "Vector databases and semantic search systems",
+        "Hybrid ranker and retrieval framework repos",
+        "Embedding-first developer tools"
+      ],
+      "query_hints": [
+        "semantic retrieval embeddings vector search hybrid rank",
+        "cosine similarity ann nearest neighbors ranking"
+      ],
+      "summary": {
+        "high_count": 2,
+        "medium_count": 0,
+        "low_count": 6,
+        "matched_repo_count": 8
+      },
+      "decision": "adopt",
+      "decision_reason": "high-signal",
+      "recommendation_rationale": "Recommend adopt because we have enough high-confidence matches (high=2, medium=0) and the signal is not too broad (high_ratio=0.125).",
+      "options_considered": [
+        {
+          "option": "adopt",
+          "label": "Adopt now",
+          "pros": [
+            "Fastest path to shipping measurable value",
+            "Keeps momentum when evidence is already strong"
+          ],
+          "cons": [
+            "Risk of overfitting if signal breadth is low",
+            "May pull in patterns that are not specific to our domain"
+          ],
+          "best_when": "The capability has specific, high-quality matches and clear fit for `semantic_retrieval_stack`"
+        },
+        {
+          "option": "adapt",
+          "label": "Adapt first",
+          "pros": [
+            "Balances speed and safety by tailoring to project constraints",
+            "Reduces false positives before capability promotion"
+          ],
+          "cons": [
+            "Adds design and implementation time",
+            "Needs another evaluation loop before final acceptance"
+          ],
+          "best_when": "Signal is promising but too broad, noisy, or only partially specific"
+        },
+        {
+          "option": "reject",
+          "label": "Reject for now",
+          "pros": [
+            "Avoids introducing low-confidence behavior",
+            "Protects trust while discovery criteria are refined"
+          ],
+          "cons": [
+            "Delays potential capability gains",
+            "Requires a new repo cohort or sharper detection patterns"
+          ],
+          "best_when": "Required signals do not pass consistently or evidence is mostly generic"
+        }
+      ],
+      "found_high_medium": [
+        {
+          "repo": "sqlalchemy",
+          "quality": "high",
+          "quality_score": 0.95,
+          "repo_type": "ORM and SQL toolkit",
+          "repo_capabilities": [
+            "database_persistence"
+          ],
+          "why_included": "Strong persistence and migration signatures for database capability checks."
+        },
+        {
+          "repo": "chroma",
+          "quality": "high",
+          "quality_score": 0.9,
+          "repo_type": "Vector database",
+          "repo_capabilities": [
+            "semantic_retrieval_stack",
+            "repo_indexing_pipeline"
+          ],
+          "why_included": "Strong source for embedding retrieval and vector ranking patterns."
+        }
+      ],
+      "found_low": [
+        {
+          "repo": "django",
+          "quality": "low",
+          "quality_score": 0.6,
+          "repo_type": "Full-stack framework"
+        },
+        {
+          "repo": "zoekt",
+          "quality": "low",
+          "quality_score": 0.6,
+          "repo_type": "Code search engine"
+        },
+        {
+          "repo": "OCRmyPDF",
+          "quality": "low",
+          "quality_score": 0.55,
+          "repo_type": "OCR application"
+        },
+        {
+          "repo": "pydantic",
+          "quality": "low",
+          "quality_score": 0.55,
+          "repo_type": "Data validation library"
+        }
+      ]
+    },
+    {
+      "capability": "evaluation_harness",
+      "title": "Evaluation harness",
+      "description": "Benchmark datasets, quality metrics, and report comparison workflows.",
+      "why_useful_here": "Dogfooding requires proving quality changes with objective metrics, not intuition. A strong evaluation harness lets us iterate quickly without silent regressions.",
+      "repo_types_sought": [
+        "Mature repos with benchmark and regression workflows",
+        "Projects with quality dashboards and metrics reports",
+        "Libraries that compare baseline and candidate performance"
+      ],
+      "query_hints": [
+        "benchmark evaluation harness precision recall report",
+        "regression metrics compare baseline candidate"
+      ],
+      "summary": {
+        "high_count": 9,
+        "medium_count": 0,
+        "low_count": 5,
+        "matched_repo_count": 14
+      },
+      "decision": "adapt",
+      "decision_reason": "broad-signal",
+      "recommendation_rationale": "Recommend adapt because the capability is useful but needs tailoring before rollout (reason=broad-signal, high=9, medium=0, high_ratio=0.562).",
+      "options_considered": [
+        {
+          "option": "adopt",
+          "label": "Adopt now",
+          "pros": [
+            "Fastest path to shipping measurable value",
+            "Keeps momentum when evidence is already strong"
+          ],
+          "cons": [
+            "Risk of overfitting if signal breadth is medium",
+            "May pull in patterns that are not specific to our domain"
+          ],
+          "best_when": "The capability has specific, high-quality matches and clear fit for `evaluation_harness`"
+        },
+        {
+          "option": "adapt",
+          "label": "Adapt first",
+          "pros": [
+            "Balances speed and safety by tailoring to project constraints",
+            "Reduces false positives before capability promotion"
+          ],
+          "cons": [
+            "Adds design and implementation time",
+            "Needs another evaluation loop before final acceptance"
+          ],
+          "best_when": "Signal is promising but too broad, noisy, or only partially specific"
+        },
+        {
+          "option": "reject",
+          "label": "Reject for now",
+          "pros": [
+            "Avoids introducing low-confidence behavior",
+            "Protects trust while discovery criteria are refined"
+          ],
+          "cons": [
+            "Delays potential capability gains",
+            "Requires a new repo cohort or sharper detection patterns"
+          ],
+          "best_when": "Required signals do not pass consistently or evidence is mostly generic"
+        }
+      ],
+      "found_high_medium": [
+        {
+          "repo": "chroma",
+          "quality": "high",
+          "quality_score": 0.9,
+          "repo_type": "Vector database",
+          "repo_capabilities": [
+            "semantic_retrieval_stack",
+            "repo_indexing_pipeline"
+          ],
+          "why_included": "Strong source for embedding retrieval and vector ranking patterns."
+        },
+        {
+          "repo": "pydantic",
+          "quality": "high",
+          "quality_score": 0.85,
+          "repo_type": "Data validation library",
+          "repo_capabilities": [
+            "schema_validation"
+          ],
+          "why_included": "Useful contrast for data modeling and validation-heavy codebases."
+        },
+        {
+          "repo": "zoekt",
+          "quality": "high",
+          "quality_score": 0.85,
+          "repo_type": "Code search engine",
+          "repo_capabilities": [
+            "repo_indexing_pipeline",
+            "search_ranking"
+          ],
+          "why_included": "High-value reference for large-scale indexing and query retrieval behavior."
+        },
+        {
+          "repo": "OCRmyPDF",
+          "quality": "high",
+          "quality_score": 0.8,
+          "repo_type": "OCR application",
+          "repo_capabilities": [
+            "ocr_processing",
+            "document_ingestion_pipeline",
+            "cli_tooling"
+          ],
+          "why_included": "High-signal OCR + pipeline reference and realistic app-level CLI behavior."
+        },
+        {
+          "repo": "celery",
+          "quality": "high",
+          "quality_score": 0.8,
+          "repo_type": "Task queue framework",
+          "repo_capabilities": [
+            "async_processing_engine"
+          ],
+          "why_included": "Reference repo for worker/job/task and queue orchestration signals."
+        },
+        {
+          "repo": "rq",
+          "quality": "high",
+          "quality_score": 0.8,
+          "repo_type": "Queue worker framework",
+          "repo_capabilities": [
+            "async_processing_engine"
+          ],
+          "why_included": "Alternative async queue model to prevent overfitting to Celery patterns."
+        }
+      ],
+      "found_low": [
+        {
+          "repo": "click",
+          "quality": "low",
+          "quality_score": 0.65,
+          "repo_type": "CLI framework"
+        },
+        {
+          "repo": "typer",
+          "quality": "low",
+          "quality_score": 0.5,
+          "repo_type": "CLI framework"
+        },
+        {
+          "repo": "ast-grep",
+          "quality": "low",
+          "quality_score": 0.467,
+          "repo_type": "AST search tooling"
+        },
+        {
+          "repo": "fastapi",
+          "quality": "low",
+          "quality_score": 0.45,
+          "repo_type": "API framework"
+        }
+      ]
+    },
+    {
+      "capability": "structured_filtering",
+      "title": "Structured filtering",
+      "description": "Filter extraction/parsing and metadata-aware result constraints.",
+      "why_useful_here": "Users need dependable filters (language, license, framework) so results can be constrained to practical integration choices.",
+      "repo_types_sought": [
+        "Search platforms with faceted filtering",
+        "Metadata-heavy repositories with structured query parsing",
+        "Systems with explicit language/license constraints"
+      ],
+      "query_hints": [
+        "structured query filters language license metadata",
+        "filter parsing facets constraints"
+      ],
+      "summary": {
+        "high_count": 0,
+        "medium_count": 0,
+        "low_count": 16,
+        "matched_repo_count": 16
+      },
+      "decision": "reject",
+      "decision_reason": "weak-signal",
+      "recommendation_rationale": "Recommend reject for now because confidence is weak or too generic (reason=weak-signal, high=0, medium=0, high_ratio=0.0).",
+      "options_considered": [
+        {
+          "option": "adopt",
+          "label": "Adopt now",
+          "pros": [
+            "Fastest path to shipping measurable value",
+            "Keeps momentum when evidence is already strong"
+          ],
+          "cons": [
+            "Risk of overfitting if signal breadth is low",
+            "May pull in patterns that are not specific to our domain"
+          ],
+          "best_when": "The capability has specific, high-quality matches and clear fit for `structured_filtering`"
+        },
+        {
+          "option": "adapt",
+          "label": "Adapt first",
+          "pros": [
+            "Balances speed and safety by tailoring to project constraints",
+            "Reduces false positives before capability promotion"
+          ],
+          "cons": [
+            "Adds design and implementation time",
+            "Needs another evaluation loop before final acceptance"
+          ],
+          "best_when": "Signal is promising but too broad, noisy, or only partially specific"
+        },
+        {
+          "option": "reject",
+          "label": "Reject for now",
+          "pros": [
+            "Avoids introducing low-confidence behavior",
+            "Protects trust while discovery criteria are refined"
+          ],
+          "cons": [
+            "Delays potential capability gains",
+            "Requires a new repo cohort or sharper detection patterns"
+          ],
+          "best_when": "Required signals do not pass consistently or evidence is mostly generic"
+        }
+      ],
+      "found_high_medium": [],
+      "found_low": [
+        {
+          "repo": "click",
+          "quality": "low",
+          "quality_score": 0.614,
+          "repo_type": "CLI framework"
+        },
+        {
+          "repo": "sqlalchemy",
+          "quality": "low",
+          "quality_score": 0.614,
+          "repo_type": "ORM and SQL toolkit"
+        },
+        {
+          "repo": "django",
+          "quality": "low",
+          "quality_score": 0.614,
+          "repo_type": "Full-stack framework"
+        },
+        {
+          "repo": "pydantic",
+          "quality": "low",
+          "quality_score": 0.614,
+          "repo_type": "Data validation library"
+        }
+      ]
+    }
+  ],
+  "final_recommendations": {
+    "adopt": [
+      "repo_indexing_pipeline",
+      "semantic_retrieval_stack"
+    ],
+    "adapt": [
+      "evaluation_harness"
+    ],
+    "reject": [
+      "structured_filtering"
+    ]
+  }
+}

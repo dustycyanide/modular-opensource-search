@@ -15,9 +15,11 @@ Improve retrieval quality through a repeatable loop:
 ## Main assets
 
 - `benchmark/repos.json` - candidate OSS repositories.
+- `benchmark/repo_profiles.json` - repo type/capability context for review memos.
 - `benchmark/queries.json` - query benchmark set with expected outcomes.
 - `validator_packs/` - pluggable structural validator packs.
 - `challenges/challenge_cards.md` - human-readable failure backlog.
+- `dogfood/` - capability backlog, seed cohorts, and session feedback logs.
 - `scripts/run_phase2_benchmark.py` - ingestion + benchmark runner.
 - `scripts/mine_patterns.py` - pattern mining from benchmark errors.
 - `scripts/compare_reports.py` - report delta summary.

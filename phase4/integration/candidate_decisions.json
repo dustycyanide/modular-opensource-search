@@ -1,0 +1,61 @@
+{
+  "generated_at": "2026-03-01T23:50:58.677809+00:00",
+  "source_discovery_report": "/Users/dustycyanide/Documents/projects/modular_opensource/phase3/reports/discovery_report_16.json",
+  "repo_profiles": "/Users/dustycyanide/Documents/projects/modular_opensource/phase2/benchmark/repo_profiles.json",
+  "thresholds": {
+    "min_quality_score": 0.55,
+    "min_high_matches": 2,
+    "min_total_matches": 3,
+    "max_high_ratio_for_adopt": 0.45,
+    "max_expected_repos": 3
+  },
+  "decisions": [
+    {
+      "capability": "repo_indexing_pipeline",
+      "decision": "adopt",
+      "decision_reason": "high-signal",
+      "high_count": 4,
+      "medium_count": 0,
+      "high_ratio": 0.25,
+      "top_expected_repos": [
+        "celery",
+        "sqlalchemy",
+        "chroma"
+      ]
+    },
+    {
+      "capability": "semantic_retrieval_stack",
+      "decision": "adopt",
+      "decision_reason": "high-signal",
+      "high_count": 2,
+      "medium_count": 0,
+      "high_ratio": 0.125,
+      "top_expected_repos": [
+        "sqlalchemy",
+        "chroma"
+      ]
+    },
+    {
+      "capability": "evaluation_harness",
+      "decision": "adapt",
+      "decision_reason": "broad-signal",
+      "high_count": 9,
+      "medium_count": 0,
+      "high_ratio": 0.562,
+      "top_expected_repos": [
+        "chroma",
+        "pydantic",
+        "zoekt"
+      ]
+    },
+    {
+      "capability": "structured_filtering",
+      "decision": "reject",
+      "decision_reason": "weak-signal",
+      "high_count": 0,
+      "medium_count": 0,
+      "high_ratio": 0.0,
+      "top_expected_repos": []
+    }
+  ]
+}

@@ -1,0 +1,91 @@
+{
+  "generated_at": "2026-03-01T23:50:58.678015+00:00",
+  "source_discovery_report": "/Users/dustycyanide/Documents/projects/modular_opensource/phase3/reports/discovery_report_16.json",
+  "validator_overrides": {
+    "repo_indexing_pipeline": {
+      "required_groups": [
+        [
+          "\\bgit\\s+clone\\b",
+          "\\bclone_if_missing\\b",
+          "\\bos\\.walk\\b",
+          "\\brglob\\("
+        ],
+        [
+          "\\bfts5\\b",
+          "\\bsqlite3\\.connect\\b",
+          "\\bupsert\\b",
+          "\\bindex\\s+writer\\b",
+          "\\bvector\\s+index\\b"
+        ]
+      ],
+      "support_patterns": [
+        "\\bmetadata(_json)?\\b",
+        "\\bchunk\\b",
+        "\\bembedding(s)?\\b",
+        "\\bevidence\\b",
+        "\\brepo_path\\b",
+        "\\bfile_count\\b"
+      ],
+      "min_support": 2
+    },
+    "semantic_retrieval_stack": {
+      "required_groups": [
+        [
+          "\\bembedding(s)?\\b",
+          "\\bfastembed\\b",
+          "\\ball-MiniLM-L6-v2\\b",
+          "\\bvector\\s+db\\b",
+          "\\bqdrant\\b",
+          "\\bmilvus\\b",
+          "\\bchroma\\b"
+        ],
+        [
+          "\\bcosine(_similarity)?\\b",
+          "\\bsimilarity\\s+search\\b",
+          "\\bnearest\\s+neighbors?\\b",
+          "\\btop_k\\b",
+          "\\bhybrid\\s+rank\\b",
+          "\\brerank\\b"
+        ]
+      ],
+      "support_patterns": [
+        "\\bretriev(al|e)\\b",
+        "\\bsemantic\\b",
+        "\\brelevance\\b",
+        "\\bdistance\\b",
+        "\\bquery\\s+expansion\\b",
+        "\\bvector\\b"
+      ],
+      "min_support": 2
+    },
+    "evaluation_harness": {
+      "required_groups": [
+        [
+          "\\bprecision_at_k\\b",
+          "\\bcoverage_at_k\\b",
+          "\\bbenchmark\\b",
+          "\\bevaluation\\b",
+          "\\bprecision\\b",
+          "\\brecall\\b",
+          "\\bexpected_repos\\b"
+        ],
+        [
+          "\\bcompare_reports\\b",
+          "\\bbaseline\\b",
+          "\\bcandidate\\b",
+          "\\bdelta\\b",
+          "\\bregression\\b"
+        ]
+      ],
+      "support_patterns": [
+        "\\berror_counts?\\b",
+        "\\bcoverage\\b",
+        "\\baggregates\\b",
+        "\\bquery_results\\b",
+        "\\bscore\\b",
+        "\\breport_path\\b"
+      ],
+      "min_support": 2
+    }
+  }
+}

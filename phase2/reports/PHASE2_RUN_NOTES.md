@@ -80,3 +80,45 @@ Generated artifacts:
 - `phase2/reports/baseline_report_12.json`
 - `phase2/reports/pattern_candidates_12.json`
 - `phase2/challenges/challenge_cards_generated_12.md`
+
+## Dogfood Wave 2 expansion (16 repos)
+
+Commands:
+
+```bash
+.venv/bin/python phase2/scripts/run_phase2_benchmark.py \
+  --repos-file phase2/benchmark/repos.json \
+  --queries-file phase2/benchmark/queries.json \
+  --validator-pack phase2/validator_packs/baseline_v2.json \
+  --report phase2/reports/dogfood_wave2_baseline_12.json \
+  --max-repos 12
+
+.venv/bin/python phase2/scripts/run_phase2_benchmark.py \
+  --repos-file phase2/benchmark/repos.json \
+  --queries-file phase2/benchmark/queries.json \
+  --validator-pack phase2/validator_packs/baseline_v2.json \
+  --report phase2/reports/dogfood_wave2_candidate_16.json \
+  --max-repos 16
+
+.venv/bin/python phase2/scripts/compare_reports.py \
+  --baseline phase2/reports/dogfood_wave2_baseline_12.json \
+  --candidate phase2/reports/dogfood_wave2_candidate_16.json
+```
+
+Added repos (newly cloned):
+
+- `tree-sitter`
+- `ast-grep`
+- `zoekt`
+- `chroma`
+
+Delta vs 12-repo baseline:
+
+- lexical: repo_precision +0.020, errors -0.200
+- semantic: unchanged on aggregate metrics
+- hybrid: unchanged on aggregate metrics
+
+Decision:
+
+- Keep this Wave 2 subset in benchmark source.
+- Expand next to 20 repos only after adding retrieval/indexing-targeted query families.
