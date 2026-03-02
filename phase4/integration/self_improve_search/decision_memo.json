@@ -1,0 +1,1559 @@
+{
+  "generated_at": "2026-03-02T00:50:58.025754+00:00",
+  "source_discovery_report": "/Users/dustycyanide/Documents/projects/modular_opensource/phase3/reports/self_improve_search/discovery_report.json",
+  "repo_types_sought": [
+    {
+      "capability": "repo_indexing_pipeline",
+      "repo_types_sought": [
+        "Search/index infrastructure repositories"
+      ],
+      "contrast_repo_types": []
+    },
+    {
+      "capability": "semantic_retrieval_stack",
+      "repo_types_sought": [
+        "Vector and retrieval repositories"
+      ],
+      "contrast_repo_types": []
+    },
+    {
+      "capability": "structured_filtering",
+      "repo_types_sought": [
+        "Search and AST parsing repositories"
+      ],
+      "contrast_repo_types": []
+    },
+    {
+      "capability": "cli_tooling_surface",
+      "repo_types_sought": [
+        "Search infrastructure with operator-facing CLIs"
+      ],
+      "contrast_repo_types": []
+    },
+    {
+      "capability": "agentic_workflows",
+      "repo_types_sought": [
+        "Agentic retrieval frameworks"
+      ],
+      "contrast_repo_types": []
+    }
+  ],
+  "repos_evaluated": [
+    {
+      "name": "ast-grep",
+      "repo_type": "AST search tooling",
+      "primary_capabilities": [
+        "code_search",
+        "pattern_matching"
+      ],
+      "why_included": "Candidate source for structured code matching and rule-driven search."
+    },
+    {
+      "name": "chroma",
+      "repo_type": "Vector database",
+      "primary_capabilities": [
+        "semantic_retrieval_stack",
+        "repo_indexing_pipeline"
+      ],
+      "why_included": "Strong source for embedding retrieval and vector ranking patterns."
+    },
+    {
+      "name": "click",
+      "repo_type": "CLI framework",
+      "primary_capabilities": [
+        "cli_tooling"
+      ],
+      "why_included": "Canonical CLI framework for command signature patterns."
+    },
+    {
+      "name": "haystack",
+      "repo_type": "Unknown",
+      "primary_capabilities": [],
+      "why_included": "No profile summary available."
+    },
+    {
+      "name": "lancedb",
+      "repo_type": "Unknown",
+      "primary_capabilities": [],
+      "why_included": "No profile summary available."
+    },
+    {
+      "name": "meilisearch",
+      "repo_type": "Unknown",
+      "primary_capabilities": [],
+      "why_included": "No profile summary available."
+    },
+    {
+      "name": "pydantic",
+      "repo_type": "Data validation library",
+      "primary_capabilities": [
+        "schema_validation"
+      ],
+      "why_included": "Useful contrast for data modeling and validation-heavy codebases."
+    },
+    {
+      "name": "qdrant",
+      "repo_type": "Vector database",
+      "primary_capabilities": [
+        "semantic_retrieval_stack"
+      ],
+      "why_included": "Secondary vector-system reference for ANN and retrieval architecture patterns."
+    },
+    {
+      "name": "quickwit",
+      "repo_type": "Unknown",
+      "primary_capabilities": [],
+      "why_included": "No profile summary available."
+    },
+    {
+      "name": "requests",
+      "repo_type": "HTTP client library",
+      "primary_capabilities": [
+        "negative_control",
+        "http_client"
+      ],
+      "why_included": "Contrast repo to catch false positives in API/service-like queries."
+    },
+    {
+      "name": "tantivy",
+      "repo_type": "Unknown",
+      "primary_capabilities": [],
+      "why_included": "No profile summary available."
+    },
+    {
+      "name": "tree-sitter",
+      "repo_type": "Parser infrastructure",
+      "primary_capabilities": [
+        "code_parsing"
+      ],
+      "why_included": "Potential source of robust syntax and structure extraction patterns."
+    },
+    {
+      "name": "zoekt",
+      "repo_type": "Code search engine",
+      "primary_capabilities": [
+        "repo_indexing_pipeline",
+        "search_ranking"
+      ],
+      "why_included": "High-value reference for large-scale indexing and query retrieval behavior."
+    }
+  ],
+  "capabilities_observed": [
+    {
+      "repo": "ast-grep",
+      "observed": [
+        {
+          "capability": "structured_filtering",
+          "quality": "high",
+          "quality_score": 1.0
+        },
+        {
+          "capability": "agentic_workflows",
+          "quality": "high",
+          "quality_score": 1.0
+        },
+        {
+          "capability": "cli_tooling_surface",
+          "quality": "high",
+          "quality_score": 0.95
+        },
+        {
+          "capability": "repo_indexing_pipeline",
+          "quality": "low",
+          "quality_score": 0.6
+        },
+        {
+          "capability": "semantic_retrieval_stack",
+          "quality": "low",
+          "quality_score": 0.45
+        }
+      ]
+    },
+    {
+      "repo": "chroma",
+      "observed": [
+        {
+          "capability": "repo_indexing_pipeline",
+          "quality": "high",
+          "quality_score": 1.0
+        },
+        {
+          "capability": "structured_filtering",
+          "quality": "high",
+          "quality_score": 1.0
+        },
+        {
+          "capability": "agentic_workflows",
+          "quality": "high",
+          "quality_score": 1.0
+        },
+        {
+          "capability": "semantic_retrieval_stack",
+          "quality": "high",
+          "quality_score": 0.95
+        },
+        {
+          "capability": "cli_tooling_surface",
+          "quality": "high",
+          "quality_score": 0.95
+        }
+      ]
+    },
+    {
+      "repo": "click",
+      "observed": [
+        {
+          "capability": "structured_filtering",
+          "quality": "high",
+          "quality_score": 0.95
+        },
+        {
+          "capability": "cli_tooling_surface",
+          "quality": "high",
+          "quality_score": 0.9
+        },
+        {
+          "capability": "agentic_workflows",
+          "quality": "low",
+          "quality_score": 0.65
+        }
+      ]
+    },
+    {
+      "repo": "haystack",
+      "observed": [
+        {
+          "capability": "structured_filtering",
+          "quality": "high",
+          "quality_score": 1.0
+        },
+        {
+          "capability": "agentic_workflows",
+          "quality": "high",
+          "quality_score": 1.0
+        },
+        {
+          "capability": "cli_tooling_surface",
+          "quality": "high",
+          "quality_score": 0.95
+        },
+        {
+          "capability": "semantic_retrieval_stack",
+          "quality": "medium",
+          "quality_score": 0.85
+        },
+        {
+          "capability": "repo_indexing_pipeline",
+          "quality": "low",
+          "quality_score": 0.65
+        }
+      ]
+    },
+    {
+      "repo": "lancedb",
+      "observed": [
+        {
+          "capability": "semantic_retrieval_stack",
+          "quality": "high",
+          "quality_score": 1.0
+        },
+        {
+          "capability": "structured_filtering",
+          "quality": "high",
+          "quality_score": 1.0
+        },
+        {
+          "capability": "agentic_workflows",
+          "quality": "high",
+          "quality_score": 1.0
+        },
+        {
+          "capability": "repo_indexing_pipeline",
+          "quality": "high",
+          "quality_score": 0.95
+        },
+        {
+          "capability": "cli_tooling_surface",
+          "quality": "high",
+          "quality_score": 0.95
+        }
+      ]
+    },
+    {
+      "repo": "meilisearch",
+      "observed": [
+        {
+          "capability": "repo_indexing_pipeline",
+          "quality": "high",
+          "quality_score": 1.0
+        },
+        {
+          "capability": "semantic_retrieval_stack",
+          "quality": "high",
+          "quality_score": 1.0
+        },
+        {
+          "capability": "agentic_workflows",
+          "quality": "high",
+          "quality_score": 1.0
+        },
+        {
+          "capability": "structured_filtering",
+          "quality": "high",
+          "quality_score": 0.95
+        },
+        {
+          "capability": "cli_tooling_surface",
+          "quality": "high",
+          "quality_score": 0.95
+        }
+      ]
+    },
+    {
+      "repo": "pydantic",
+      "observed": [
+        {
+          "capability": "structured_filtering",
+          "quality": "high",
+          "quality_score": 1.0
+        },
+        {
+          "capability": "cli_tooling_surface",
+          "quality": "high",
+          "quality_score": 0.95
+        },
+        {
+          "capability": "agentic_workflows",
+          "quality": "high",
+          "quality_score": 0.95
+        },
+        {
+          "capability": "repo_indexing_pipeline",
+          "quality": "low",
+          "quality_score": 0.65
+        },
+        {
+          "capability": "semantic_retrieval_stack",
+          "quality": "low",
+          "quality_score": 0.55
+        }
+      ]
+    },
+    {
+      "repo": "qdrant",
+      "observed": [
+        {
+          "capability": "repo_indexing_pipeline",
+          "quality": "high",
+          "quality_score": 1.0
+        },
+        {
+          "capability": "semantic_retrieval_stack",
+          "quality": "high",
+          "quality_score": 1.0
+        },
+        {
+          "capability": "structured_filtering",
+          "quality": "high",
+          "quality_score": 1.0
+        },
+        {
+          "capability": "agentic_workflows",
+          "quality": "high",
+          "quality_score": 1.0
+        },
+        {
+          "capability": "cli_tooling_surface",
+          "quality": "high",
+          "quality_score": 0.9
+        }
+      ]
+    },
+    {
+      "repo": "quickwit",
+      "observed": [
+        {
+          "capability": "repo_indexing_pipeline",
+          "quality": "high",
+          "quality_score": 1.0
+        },
+        {
+          "capability": "structured_filtering",
+          "quality": "high",
+          "quality_score": 1.0
+        },
+        {
+          "capability": "agentic_workflows",
+          "quality": "high",
+          "quality_score": 1.0
+        },
+        {
+          "capability": "cli_tooling_surface",
+          "quality": "high",
+          "quality_score": 0.95
+        },
+        {
+          "capability": "semantic_retrieval_stack",
+          "quality": "high",
+          "quality_score": 0.9
+        }
+      ]
+    },
+    {
+      "repo": "requests",
+      "observed": [
+        {
+          "capability": "agentic_workflows",
+          "quality": "high",
+          "quality_score": 0.95
+        },
+        {
+          "capability": "structured_filtering",
+          "quality": "high",
+          "quality_score": 0.85
+        },
+        {
+          "capability": "cli_tooling_surface",
+          "quality": "low",
+          "quality_score": 0.6
+        },
+        {
+          "capability": "repo_indexing_pipeline",
+          "quality": "low",
+          "quality_score": 0.517
+        }
+      ]
+    },
+    {
+      "repo": "tantivy",
+      "observed": [
+        {
+          "capability": "repo_indexing_pipeline",
+          "quality": "high",
+          "quality_score": 1.0
+        },
+        {
+          "capability": "structured_filtering",
+          "quality": "high",
+          "quality_score": 1.0
+        },
+        {
+          "capability": "agentic_workflows",
+          "quality": "high",
+          "quality_score": 0.95
+        },
+        {
+          "capability": "semantic_retrieval_stack",
+          "quality": "high",
+          "quality_score": 0.9
+        },
+        {
+          "capability": "cli_tooling_surface",
+          "quality": "low",
+          "quality_score": 0.65
+        }
+      ]
+    },
+    {
+      "repo": "tree-sitter",
+      "observed": [
+        {
+          "capability": "structured_filtering",
+          "quality": "high",
+          "quality_score": 1.0
+        },
+        {
+          "capability": "agentic_workflows",
+          "quality": "high",
+          "quality_score": 1.0
+        },
+        {
+          "capability": "cli_tooling_surface",
+          "quality": "high",
+          "quality_score": 0.9
+        },
+        {
+          "capability": "repo_indexing_pipeline",
+          "quality": "low",
+          "quality_score": 0.6
+        },
+        {
+          "capability": "semantic_retrieval_stack",
+          "quality": "low",
+          "quality_score": 0.55
+        }
+      ]
+    },
+    {
+      "repo": "zoekt",
+      "observed": [
+        {
+          "capability": "repo_indexing_pipeline",
+          "quality": "high",
+          "quality_score": 1.0
+        },
+        {
+          "capability": "structured_filtering",
+          "quality": "high",
+          "quality_score": 0.95
+        },
+        {
+          "capability": "cli_tooling_surface",
+          "quality": "high",
+          "quality_score": 0.9
+        },
+        {
+          "capability": "agentic_workflows",
+          "quality": "high",
+          "quality_score": 0.9
+        },
+        {
+          "capability": "semantic_retrieval_stack",
+          "quality": "low",
+          "quality_score": 0.6
+        }
+      ]
+    }
+  ],
+  "options_considered": [
+    {
+      "capability": "repo_indexing_pipeline",
+      "options": [
+        {
+          "option": "adopt",
+          "label": "Adopt now",
+          "pros": [
+            "Fastest path to shipping measurable value",
+            "Keeps momentum when evidence is already strong"
+          ],
+          "cons": [
+            "Risk of overfitting if signal breadth is medium",
+            "May pull in patterns that are not specific to our domain"
+          ],
+          "best_when": "The capability has specific, high-quality matches and clear fit for `repo_indexing_pipeline`"
+        },
+        {
+          "option": "adapt",
+          "label": "Adapt first",
+          "pros": [
+            "Balances speed and safety by tailoring to project constraints",
+            "Reduces false positives before capability promotion"
+          ],
+          "cons": [
+            "Adds design and implementation time",
+            "Needs another evaluation loop before final acceptance"
+          ],
+          "best_when": "Signal is promising but too broad, noisy, or only partially specific"
+        },
+        {
+          "option": "reject",
+          "label": "Reject for now",
+          "pros": [
+            "Avoids introducing low-confidence behavior",
+            "Protects trust while discovery criteria are refined"
+          ],
+          "cons": [
+            "Delays potential capability gains",
+            "Requires a new repo cohort or sharper detection patterns"
+          ],
+          "best_when": "Required signals do not pass consistently or evidence is mostly generic"
+        }
+      ]
+    },
+    {
+      "capability": "semantic_retrieval_stack",
+      "options": [
+        {
+          "option": "adopt",
+          "label": "Adopt now",
+          "pros": [
+            "Fastest path to shipping measurable value",
+            "Keeps momentum when evidence is already strong"
+          ],
+          "cons": [
+            "Risk of overfitting if signal breadth is medium",
+            "May pull in patterns that are not specific to our domain"
+          ],
+          "best_when": "The capability has specific, high-quality matches and clear fit for `semantic_retrieval_stack`"
+        },
+        {
+          "option": "adapt",
+          "label": "Adapt first",
+          "pros": [
+            "Balances speed and safety by tailoring to project constraints",
+            "Reduces false positives before capability promotion"
+          ],
+          "cons": [
+            "Adds design and implementation time",
+            "Needs another evaluation loop before final acceptance"
+          ],
+          "best_when": "Signal is promising but too broad, noisy, or only partially specific"
+        },
+        {
+          "option": "reject",
+          "label": "Reject for now",
+          "pros": [
+            "Avoids introducing low-confidence behavior",
+            "Protects trust while discovery criteria are refined"
+          ],
+          "cons": [
+            "Delays potential capability gains",
+            "Requires a new repo cohort or sharper detection patterns"
+          ],
+          "best_when": "Required signals do not pass consistently or evidence is mostly generic"
+        }
+      ]
+    },
+    {
+      "capability": "structured_filtering",
+      "options": [
+        {
+          "option": "adopt",
+          "label": "Adopt now",
+          "pros": [
+            "Fastest path to shipping measurable value",
+            "Keeps momentum when evidence is already strong"
+          ],
+          "cons": [
+            "Risk of overfitting if signal breadth is medium",
+            "May pull in patterns that are not specific to our domain"
+          ],
+          "best_when": "The capability has specific, high-quality matches and clear fit for `structured_filtering`"
+        },
+        {
+          "option": "adapt",
+          "label": "Adapt first",
+          "pros": [
+            "Balances speed and safety by tailoring to project constraints",
+            "Reduces false positives before capability promotion"
+          ],
+          "cons": [
+            "Adds design and implementation time",
+            "Needs another evaluation loop before final acceptance"
+          ],
+          "best_when": "Signal is promising but too broad, noisy, or only partially specific"
+        },
+        {
+          "option": "reject",
+          "label": "Reject for now",
+          "pros": [
+            "Avoids introducing low-confidence behavior",
+            "Protects trust while discovery criteria are refined"
+          ],
+          "cons": [
+            "Delays potential capability gains",
+            "Requires a new repo cohort or sharper detection patterns"
+          ],
+          "best_when": "Required signals do not pass consistently or evidence is mostly generic"
+        }
+      ]
+    },
+    {
+      "capability": "cli_tooling_surface",
+      "options": [
+        {
+          "option": "adopt",
+          "label": "Adopt now",
+          "pros": [
+            "Fastest path to shipping measurable value",
+            "Keeps momentum when evidence is already strong"
+          ],
+          "cons": [
+            "Risk of overfitting if signal breadth is medium",
+            "May pull in patterns that are not specific to our domain"
+          ],
+          "best_when": "The capability has specific, high-quality matches and clear fit for `cli_tooling_surface`"
+        },
+        {
+          "option": "adapt",
+          "label": "Adapt first",
+          "pros": [
+            "Balances speed and safety by tailoring to project constraints",
+            "Reduces false positives before capability promotion"
+          ],
+          "cons": [
+            "Adds design and implementation time",
+            "Needs another evaluation loop before final acceptance"
+          ],
+          "best_when": "Signal is promising but too broad, noisy, or only partially specific"
+        },
+        {
+          "option": "reject",
+          "label": "Reject for now",
+          "pros": [
+            "Avoids introducing low-confidence behavior",
+            "Protects trust while discovery criteria are refined"
+          ],
+          "cons": [
+            "Delays potential capability gains",
+            "Requires a new repo cohort or sharper detection patterns"
+          ],
+          "best_when": "Required signals do not pass consistently or evidence is mostly generic"
+        }
+      ]
+    },
+    {
+      "capability": "agentic_workflows",
+      "options": [
+        {
+          "option": "adopt",
+          "label": "Adopt now",
+          "pros": [
+            "Fastest path to shipping measurable value",
+            "Keeps momentum when evidence is already strong"
+          ],
+          "cons": [
+            "Risk of overfitting if signal breadth is medium",
+            "May pull in patterns that are not specific to our domain"
+          ],
+          "best_when": "The capability has specific, high-quality matches and clear fit for `agentic_workflows`"
+        },
+        {
+          "option": "adapt",
+          "label": "Adapt first",
+          "pros": [
+            "Balances speed and safety by tailoring to project constraints",
+            "Reduces false positives before capability promotion"
+          ],
+          "cons": [
+            "Adds design and implementation time",
+            "Needs another evaluation loop before final acceptance"
+          ],
+          "best_when": "Signal is promising but too broad, noisy, or only partially specific"
+        },
+        {
+          "option": "reject",
+          "label": "Reject for now",
+          "pros": [
+            "Avoids introducing low-confidence behavior",
+            "Protects trust while discovery criteria are refined"
+          ],
+          "cons": [
+            "Delays potential capability gains",
+            "Requires a new repo cohort or sharper detection patterns"
+          ],
+          "best_when": "Required signals do not pass consistently or evidence is mostly generic"
+        }
+      ]
+    }
+  ],
+  "final_recommendation": {
+    "lock_recommendations": true,
+    "stability_check": {
+      "status": "stable",
+      "compared_report": "/Users/dustycyanide/Documents/projects/modular_opensource/phase3/reports/self_improve_search/discovery_report_rerun.json",
+      "agreement_ratio": 1.0,
+      "decision_drift": [],
+      "lock_recommendations": true,
+      "reason": "stable_across_reports"
+    },
+    "recommendations": {
+      "adopt": [],
+      "adapt": [
+        "repo_indexing_pipeline",
+        "semantic_retrieval_stack",
+        "structured_filtering",
+        "cli_tooling_surface",
+        "agentic_workflows"
+      ],
+      "reject": []
+    }
+  },
+  "evaluated_repos": [
+    {
+      "name": "ast-grep",
+      "repo_type": "AST search tooling",
+      "primary_capabilities": [
+        "code_search",
+        "pattern_matching"
+      ],
+      "why_included": "Candidate source for structured code matching and rule-driven search."
+    },
+    {
+      "name": "chroma",
+      "repo_type": "Vector database",
+      "primary_capabilities": [
+        "semantic_retrieval_stack",
+        "repo_indexing_pipeline"
+      ],
+      "why_included": "Strong source for embedding retrieval and vector ranking patterns."
+    },
+    {
+      "name": "click",
+      "repo_type": "CLI framework",
+      "primary_capabilities": [
+        "cli_tooling"
+      ],
+      "why_included": "Canonical CLI framework for command signature patterns."
+    },
+    {
+      "name": "haystack",
+      "repo_type": "Unknown",
+      "primary_capabilities": [],
+      "why_included": "No profile summary available."
+    },
+    {
+      "name": "lancedb",
+      "repo_type": "Unknown",
+      "primary_capabilities": [],
+      "why_included": "No profile summary available."
+    },
+    {
+      "name": "meilisearch",
+      "repo_type": "Unknown",
+      "primary_capabilities": [],
+      "why_included": "No profile summary available."
+    },
+    {
+      "name": "pydantic",
+      "repo_type": "Data validation library",
+      "primary_capabilities": [
+        "schema_validation"
+      ],
+      "why_included": "Useful contrast for data modeling and validation-heavy codebases."
+    },
+    {
+      "name": "qdrant",
+      "repo_type": "Vector database",
+      "primary_capabilities": [
+        "semantic_retrieval_stack"
+      ],
+      "why_included": "Secondary vector-system reference for ANN and retrieval architecture patterns."
+    },
+    {
+      "name": "quickwit",
+      "repo_type": "Unknown",
+      "primary_capabilities": [],
+      "why_included": "No profile summary available."
+    },
+    {
+      "name": "requests",
+      "repo_type": "HTTP client library",
+      "primary_capabilities": [
+        "negative_control",
+        "http_client"
+      ],
+      "why_included": "Contrast repo to catch false positives in API/service-like queries."
+    },
+    {
+      "name": "tantivy",
+      "repo_type": "Unknown",
+      "primary_capabilities": [],
+      "why_included": "No profile summary available."
+    },
+    {
+      "name": "tree-sitter",
+      "repo_type": "Parser infrastructure",
+      "primary_capabilities": [
+        "code_parsing"
+      ],
+      "why_included": "Potential source of robust syntax and structure extraction patterns."
+    },
+    {
+      "name": "zoekt",
+      "repo_type": "Code search engine",
+      "primary_capabilities": [
+        "repo_indexing_pipeline",
+        "search_ranking"
+      ],
+      "why_included": "High-value reference for large-scale indexing and query retrieval behavior."
+    }
+  ],
+  "capability_evaluations": [
+    {
+      "capability": "repo_indexing_pipeline",
+      "title": "Repository indexing pipeline",
+      "description": "Repo traversal, document extraction, and index-write flow for search.",
+      "why_useful_here": "High-quality indexing controls both retrieval quality and evidence trust for capability cards.",
+      "repo_types_sought": [
+        "Search/index infrastructure repositories"
+      ],
+      "query_hints": [
+        "repository scan crawl index writer segments",
+        "ingest documents build inverted index"
+      ],
+      "summary": {
+        "high_count": 7,
+        "medium_count": 0,
+        "low_count": 5,
+        "matched_repo_count": 12
+      },
+      "decision": "adapt",
+      "decision_reason": "broad-signal",
+      "stable_across_runs": true,
+      "recommendation_rationale": "Recommend adapt because the capability is useful but needs tailoring before rollout (reason=broad-signal, high=7, medium=0, high_ratio=0.538).",
+      "options_considered": [
+        {
+          "option": "adopt",
+          "label": "Adopt now",
+          "pros": [
+            "Fastest path to shipping measurable value",
+            "Keeps momentum when evidence is already strong"
+          ],
+          "cons": [
+            "Risk of overfitting if signal breadth is medium",
+            "May pull in patterns that are not specific to our domain"
+          ],
+          "best_when": "The capability has specific, high-quality matches and clear fit for `repo_indexing_pipeline`"
+        },
+        {
+          "option": "adapt",
+          "label": "Adapt first",
+          "pros": [
+            "Balances speed and safety by tailoring to project constraints",
+            "Reduces false positives before capability promotion"
+          ],
+          "cons": [
+            "Adds design and implementation time",
+            "Needs another evaluation loop before final acceptance"
+          ],
+          "best_when": "Signal is promising but too broad, noisy, or only partially specific"
+        },
+        {
+          "option": "reject",
+          "label": "Reject for now",
+          "pros": [
+            "Avoids introducing low-confidence behavior",
+            "Protects trust while discovery criteria are refined"
+          ],
+          "cons": [
+            "Delays potential capability gains",
+            "Requires a new repo cohort or sharper detection patterns"
+          ],
+          "best_when": "Required signals do not pass consistently or evidence is mostly generic"
+        }
+      ],
+      "found_high_medium": [
+        {
+          "repo": "chroma",
+          "quality": "high",
+          "quality_score": 1.0,
+          "repo_type": "Vector database",
+          "repo_capabilities": [
+            "semantic_retrieval_stack",
+            "repo_indexing_pipeline"
+          ],
+          "why_included": "Strong source for embedding retrieval and vector ranking patterns."
+        },
+        {
+          "repo": "meilisearch",
+          "quality": "high",
+          "quality_score": 1.0,
+          "repo_type": "Unknown",
+          "repo_capabilities": [],
+          "why_included": "No profile summary available."
+        },
+        {
+          "repo": "qdrant",
+          "quality": "high",
+          "quality_score": 1.0,
+          "repo_type": "Vector database",
+          "repo_capabilities": [
+            "semantic_retrieval_stack"
+          ],
+          "why_included": "Secondary vector-system reference for ANN and retrieval architecture patterns."
+        },
+        {
+          "repo": "quickwit",
+          "quality": "high",
+          "quality_score": 1.0,
+          "repo_type": "Unknown",
+          "repo_capabilities": [],
+          "why_included": "No profile summary available."
+        },
+        {
+          "repo": "tantivy",
+          "quality": "high",
+          "quality_score": 1.0,
+          "repo_type": "Unknown",
+          "repo_capabilities": [],
+          "why_included": "No profile summary available."
+        },
+        {
+          "repo": "zoekt",
+          "quality": "high",
+          "quality_score": 1.0,
+          "repo_type": "Code search engine",
+          "repo_capabilities": [
+            "repo_indexing_pipeline",
+            "search_ranking"
+          ],
+          "why_included": "High-value reference for large-scale indexing and query retrieval behavior."
+        }
+      ],
+      "found_low": [
+        {
+          "repo": "haystack",
+          "quality": "low",
+          "quality_score": 0.65,
+          "repo_type": "Unknown"
+        },
+        {
+          "repo": "pydantic",
+          "quality": "low",
+          "quality_score": 0.65,
+          "repo_type": "Data validation library"
+        },
+        {
+          "repo": "ast-grep",
+          "quality": "low",
+          "quality_score": 0.6,
+          "repo_type": "AST search tooling"
+        },
+        {
+          "repo": "tree-sitter",
+          "quality": "low",
+          "quality_score": 0.6,
+          "repo_type": "Parser infrastructure"
+        }
+      ]
+    },
+    {
+      "capability": "semantic_retrieval_stack",
+      "title": "Semantic retrieval stack",
+      "description": "Embeddings, vector similarity retrieval, and ranking logic.",
+      "why_useful_here": "Semantic retrieval is the core upgrade path for better capability matching versus lexical-only search.",
+      "repo_types_sought": [
+        "Vector and retrieval repositories"
+      ],
+      "query_hints": [
+        "embedding vector similarity search rerank",
+        "nearest neighbors cosine hnsw top k"
+      ],
+      "summary": {
+        "high_count": 6,
+        "medium_count": 1,
+        "low_count": 4,
+        "matched_repo_count": 11
+      },
+      "decision": "adapt",
+      "decision_reason": "broad-signal",
+      "stable_across_runs": true,
+      "recommendation_rationale": "Recommend adapt because the capability is useful but needs tailoring before rollout (reason=broad-signal, high=6, medium=1, high_ratio=0.462).",
+      "options_considered": [
+        {
+          "option": "adopt",
+          "label": "Adopt now",
+          "pros": [
+            "Fastest path to shipping measurable value",
+            "Keeps momentum when evidence is already strong"
+          ],
+          "cons": [
+            "Risk of overfitting if signal breadth is medium",
+            "May pull in patterns that are not specific to our domain"
+          ],
+          "best_when": "The capability has specific, high-quality matches and clear fit for `semantic_retrieval_stack`"
+        },
+        {
+          "option": "adapt",
+          "label": "Adapt first",
+          "pros": [
+            "Balances speed and safety by tailoring to project constraints",
+            "Reduces false positives before capability promotion"
+          ],
+          "cons": [
+            "Adds design and implementation time",
+            "Needs another evaluation loop before final acceptance"
+          ],
+          "best_when": "Signal is promising but too broad, noisy, or only partially specific"
+        },
+        {
+          "option": "reject",
+          "label": "Reject for now",
+          "pros": [
+            "Avoids introducing low-confidence behavior",
+            "Protects trust while discovery criteria are refined"
+          ],
+          "cons": [
+            "Delays potential capability gains",
+            "Requires a new repo cohort or sharper detection patterns"
+          ],
+          "best_when": "Required signals do not pass consistently or evidence is mostly generic"
+        }
+      ],
+      "found_high_medium": [
+        {
+          "repo": "lancedb",
+          "quality": "high",
+          "quality_score": 1.0,
+          "repo_type": "Unknown",
+          "repo_capabilities": [],
+          "why_included": "No profile summary available."
+        },
+        {
+          "repo": "meilisearch",
+          "quality": "high",
+          "quality_score": 1.0,
+          "repo_type": "Unknown",
+          "repo_capabilities": [],
+          "why_included": "No profile summary available."
+        },
+        {
+          "repo": "qdrant",
+          "quality": "high",
+          "quality_score": 1.0,
+          "repo_type": "Vector database",
+          "repo_capabilities": [
+            "semantic_retrieval_stack"
+          ],
+          "why_included": "Secondary vector-system reference for ANN and retrieval architecture patterns."
+        },
+        {
+          "repo": "chroma",
+          "quality": "high",
+          "quality_score": 0.95,
+          "repo_type": "Vector database",
+          "repo_capabilities": [
+            "semantic_retrieval_stack",
+            "repo_indexing_pipeline"
+          ],
+          "why_included": "Strong source for embedding retrieval and vector ranking patterns."
+        },
+        {
+          "repo": "quickwit",
+          "quality": "high",
+          "quality_score": 0.9,
+          "repo_type": "Unknown",
+          "repo_capabilities": [],
+          "why_included": "No profile summary available."
+        },
+        {
+          "repo": "tantivy",
+          "quality": "high",
+          "quality_score": 0.9,
+          "repo_type": "Unknown",
+          "repo_capabilities": [],
+          "why_included": "No profile summary available."
+        }
+      ],
+      "found_low": [
+        {
+          "repo": "zoekt",
+          "quality": "low",
+          "quality_score": 0.6,
+          "repo_type": "Code search engine"
+        },
+        {
+          "repo": "pydantic",
+          "quality": "low",
+          "quality_score": 0.55,
+          "repo_type": "Data validation library"
+        },
+        {
+          "repo": "tree-sitter",
+          "quality": "low",
+          "quality_score": 0.55,
+          "repo_type": "Parser infrastructure"
+        },
+        {
+          "repo": "ast-grep",
+          "quality": "low",
+          "quality_score": 0.45,
+          "repo_type": "AST search tooling"
+        }
+      ]
+    },
+    {
+      "capability": "structured_filtering",
+      "title": "Structured filtering and query parsing",
+      "description": "Query parsing plus metadata or field-level filtering for constrained results.",
+      "why_useful_here": "Capability search needs reliable constraints (language, license, framework) to keep candidate sets actionable.",
+      "repo_types_sought": [
+        "Search and AST parsing repositories"
+      ],
+      "query_hints": [
+        "query parser filters facets fields",
+        "structured search constraints metadata"
+      ],
+      "summary": {
+        "high_count": 13,
+        "medium_count": 0,
+        "low_count": 0,
+        "matched_repo_count": 13
+      },
+      "decision": "adapt",
+      "decision_reason": "broad-signal",
+      "stable_across_runs": true,
+      "recommendation_rationale": "Recommend adapt because the capability is useful but needs tailoring before rollout (reason=broad-signal, high=13, medium=0, high_ratio=1.0).",
+      "options_considered": [
+        {
+          "option": "adopt",
+          "label": "Adopt now",
+          "pros": [
+            "Fastest path to shipping measurable value",
+            "Keeps momentum when evidence is already strong"
+          ],
+          "cons": [
+            "Risk of overfitting if signal breadth is medium",
+            "May pull in patterns that are not specific to our domain"
+          ],
+          "best_when": "The capability has specific, high-quality matches and clear fit for `structured_filtering`"
+        },
+        {
+          "option": "adapt",
+          "label": "Adapt first",
+          "pros": [
+            "Balances speed and safety by tailoring to project constraints",
+            "Reduces false positives before capability promotion"
+          ],
+          "cons": [
+            "Adds design and implementation time",
+            "Needs another evaluation loop before final acceptance"
+          ],
+          "best_when": "Signal is promising but too broad, noisy, or only partially specific"
+        },
+        {
+          "option": "reject",
+          "label": "Reject for now",
+          "pros": [
+            "Avoids introducing low-confidence behavior",
+            "Protects trust while discovery criteria are refined"
+          ],
+          "cons": [
+            "Delays potential capability gains",
+            "Requires a new repo cohort or sharper detection patterns"
+          ],
+          "best_when": "Required signals do not pass consistently or evidence is mostly generic"
+        }
+      ],
+      "found_high_medium": [
+        {
+          "repo": "ast-grep",
+          "quality": "high",
+          "quality_score": 1.0,
+          "repo_type": "AST search tooling",
+          "repo_capabilities": [
+            "code_search",
+            "pattern_matching"
+          ],
+          "why_included": "Candidate source for structured code matching and rule-driven search."
+        },
+        {
+          "repo": "chroma",
+          "quality": "high",
+          "quality_score": 1.0,
+          "repo_type": "Vector database",
+          "repo_capabilities": [
+            "semantic_retrieval_stack",
+            "repo_indexing_pipeline"
+          ],
+          "why_included": "Strong source for embedding retrieval and vector ranking patterns."
+        },
+        {
+          "repo": "haystack",
+          "quality": "high",
+          "quality_score": 1.0,
+          "repo_type": "Unknown",
+          "repo_capabilities": [],
+          "why_included": "No profile summary available."
+        },
+        {
+          "repo": "lancedb",
+          "quality": "high",
+          "quality_score": 1.0,
+          "repo_type": "Unknown",
+          "repo_capabilities": [],
+          "why_included": "No profile summary available."
+        },
+        {
+          "repo": "pydantic",
+          "quality": "high",
+          "quality_score": 1.0,
+          "repo_type": "Data validation library",
+          "repo_capabilities": [
+            "schema_validation"
+          ],
+          "why_included": "Useful contrast for data modeling and validation-heavy codebases."
+        },
+        {
+          "repo": "qdrant",
+          "quality": "high",
+          "quality_score": 1.0,
+          "repo_type": "Vector database",
+          "repo_capabilities": [
+            "semantic_retrieval_stack"
+          ],
+          "why_included": "Secondary vector-system reference for ANN and retrieval architecture patterns."
+        }
+      ],
+      "found_low": []
+    },
+    {
+      "capability": "cli_tooling_surface",
+      "title": "Tool-use CLI surface",
+      "description": "Command-line interfaces that expose ingest/search/eval workflows through explicit commands.",
+      "why_useful_here": "A clear CLI surface makes this project easier to automate in agent loops and benchmark workflows.",
+      "repo_types_sought": [
+        "Search infrastructure with operator-facing CLIs"
+      ],
+      "query_hints": [
+        "cli subcommands ingest index search",
+        "tooling command parser help flags"
+      ],
+      "summary": {
+        "high_count": 11,
+        "medium_count": 0,
+        "low_count": 2,
+        "matched_repo_count": 13
+      },
+      "decision": "adapt",
+      "decision_reason": "broad-signal",
+      "stable_across_runs": true,
+      "recommendation_rationale": "Recommend adapt because the capability is useful but needs tailoring before rollout (reason=broad-signal, high=11, medium=0, high_ratio=0.846).",
+      "options_considered": [
+        {
+          "option": "adopt",
+          "label": "Adopt now",
+          "pros": [
+            "Fastest path to shipping measurable value",
+            "Keeps momentum when evidence is already strong"
+          ],
+          "cons": [
+            "Risk of overfitting if signal breadth is medium",
+            "May pull in patterns that are not specific to our domain"
+          ],
+          "best_when": "The capability has specific, high-quality matches and clear fit for `cli_tooling_surface`"
+        },
+        {
+          "option": "adapt",
+          "label": "Adapt first",
+          "pros": [
+            "Balances speed and safety by tailoring to project constraints",
+            "Reduces false positives before capability promotion"
+          ],
+          "cons": [
+            "Adds design and implementation time",
+            "Needs another evaluation loop before final acceptance"
+          ],
+          "best_when": "Signal is promising but too broad, noisy, or only partially specific"
+        },
+        {
+          "option": "reject",
+          "label": "Reject for now",
+          "pros": [
+            "Avoids introducing low-confidence behavior",
+            "Protects trust while discovery criteria are refined"
+          ],
+          "cons": [
+            "Delays potential capability gains",
+            "Requires a new repo cohort or sharper detection patterns"
+          ],
+          "best_when": "Required signals do not pass consistently or evidence is mostly generic"
+        }
+      ],
+      "found_high_medium": [
+        {
+          "repo": "ast-grep",
+          "quality": "high",
+          "quality_score": 0.95,
+          "repo_type": "AST search tooling",
+          "repo_capabilities": [
+            "code_search",
+            "pattern_matching"
+          ],
+          "why_included": "Candidate source for structured code matching and rule-driven search."
+        },
+        {
+          "repo": "chroma",
+          "quality": "high",
+          "quality_score": 0.95,
+          "repo_type": "Vector database",
+          "repo_capabilities": [
+            "semantic_retrieval_stack",
+            "repo_indexing_pipeline"
+          ],
+          "why_included": "Strong source for embedding retrieval and vector ranking patterns."
+        },
+        {
+          "repo": "haystack",
+          "quality": "high",
+          "quality_score": 0.95,
+          "repo_type": "Unknown",
+          "repo_capabilities": [],
+          "why_included": "No profile summary available."
+        },
+        {
+          "repo": "lancedb",
+          "quality": "high",
+          "quality_score": 0.95,
+          "repo_type": "Unknown",
+          "repo_capabilities": [],
+          "why_included": "No profile summary available."
+        },
+        {
+          "repo": "meilisearch",
+          "quality": "high",
+          "quality_score": 0.95,
+          "repo_type": "Unknown",
+          "repo_capabilities": [],
+          "why_included": "No profile summary available."
+        },
+        {
+          "repo": "pydantic",
+          "quality": "high",
+          "quality_score": 0.95,
+          "repo_type": "Data validation library",
+          "repo_capabilities": [
+            "schema_validation"
+          ],
+          "why_included": "Useful contrast for data modeling and validation-heavy codebases."
+        }
+      ],
+      "found_low": [
+        {
+          "repo": "tantivy",
+          "quality": "low",
+          "quality_score": 0.65,
+          "repo_type": "Unknown"
+        },
+        {
+          "repo": "requests",
+          "quality": "low",
+          "quality_score": 0.6,
+          "repo_type": "HTTP client library"
+        }
+      ]
+    },
+    {
+      "capability": "agentic_workflows",
+      "title": "Agent and workflow orchestration",
+      "description": "Patterns for planner/executor style loops and tool-orchestrated retrieval workflows.",
+      "why_useful_here": "Agentic orchestration is needed to run iterative discovery and synthesis loops over capability evidence.",
+      "repo_types_sought": [
+        "Agentic retrieval frameworks"
+      ],
+      "query_hints": [
+        "agent planner executor tool calls workflow",
+        "retrieval augmented generation agent loop"
+      ],
+      "summary": {
+        "high_count": 12,
+        "medium_count": 0,
+        "low_count": 1,
+        "matched_repo_count": 13
+      },
+      "decision": "adapt",
+      "decision_reason": "broad-signal",
+      "stable_across_runs": true,
+      "recommendation_rationale": "Recommend adapt because the capability is useful but needs tailoring before rollout (reason=broad-signal, high=12, medium=0, high_ratio=0.923).",
+      "options_considered": [
+        {
+          "option": "adopt",
+          "label": "Adopt now",
+          "pros": [
+            "Fastest path to shipping measurable value",
+            "Keeps momentum when evidence is already strong"
+          ],
+          "cons": [
+            "Risk of overfitting if signal breadth is medium",
+            "May pull in patterns that are not specific to our domain"
+          ],
+          "best_when": "The capability has specific, high-quality matches and clear fit for `agentic_workflows`"
+        },
+        {
+          "option": "adapt",
+          "label": "Adapt first",
+          "pros": [
+            "Balances speed and safety by tailoring to project constraints",
+            "Reduces false positives before capability promotion"
+          ],
+          "cons": [
+            "Adds design and implementation time",
+            "Needs another evaluation loop before final acceptance"
+          ],
+          "best_when": "Signal is promising but too broad, noisy, or only partially specific"
+        },
+        {
+          "option": "reject",
+          "label": "Reject for now",
+          "pros": [
+            "Avoids introducing low-confidence behavior",
+            "Protects trust while discovery criteria are refined"
+          ],
+          "cons": [
+            "Delays potential capability gains",
+            "Requires a new repo cohort or sharper detection patterns"
+          ],
+          "best_when": "Required signals do not pass consistently or evidence is mostly generic"
+        }
+      ],
+      "found_high_medium": [
+        {
+          "repo": "ast-grep",
+          "quality": "high",
+          "quality_score": 1.0,
+          "repo_type": "AST search tooling",
+          "repo_capabilities": [
+            "code_search",
+            "pattern_matching"
+          ],
+          "why_included": "Candidate source for structured code matching and rule-driven search."
+        },
+        {
+          "repo": "chroma",
+          "quality": "high",
+          "quality_score": 1.0,
+          "repo_type": "Vector database",
+          "repo_capabilities": [
+            "semantic_retrieval_stack",
+            "repo_indexing_pipeline"
+          ],
+          "why_included": "Strong source for embedding retrieval and vector ranking patterns."
+        },
+        {
+          "repo": "haystack",
+          "quality": "high",
+          "quality_score": 1.0,
+          "repo_type": "Unknown",
+          "repo_capabilities": [],
+          "why_included": "No profile summary available."
+        },
+        {
+          "repo": "lancedb",
+          "quality": "high",
+          "quality_score": 1.0,
+          "repo_type": "Unknown",
+          "repo_capabilities": [],
+          "why_included": "No profile summary available."
+        },
+        {
+          "repo": "meilisearch",
+          "quality": "high",
+          "quality_score": 1.0,
+          "repo_type": "Unknown",
+          "repo_capabilities": [],
+          "why_included": "No profile summary available."
+        },
+        {
+          "repo": "qdrant",
+          "quality": "high",
+          "quality_score": 1.0,
+          "repo_type": "Vector database",
+          "repo_capabilities": [
+            "semantic_retrieval_stack"
+          ],
+          "why_included": "Secondary vector-system reference for ANN and retrieval architecture patterns."
+        }
+      ],
+      "found_low": [
+        {
+          "repo": "click",
+          "quality": "low",
+          "quality_score": 0.65,
+          "repo_type": "CLI framework"
+        }
+      ]
+    }
+  ],
+  "final_recommendations": {
+    "adopt": [],
+    "adapt": [
+      "repo_indexing_pipeline",
+      "semantic_retrieval_stack",
+      "structured_filtering",
+      "cli_tooling_surface",
+      "agentic_workflows"
+    ],
+    "reject": []
+  }
+}

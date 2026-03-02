@@ -27,6 +27,41 @@ This experiment now includes a deeper v2-style pass:
   - `semantic` (embedding-focused)
   - `hybrid` (combined ranker)
 
+## Visual pipeline
+
+```mermaid
+flowchart TD
+  classDef action fill:#e8f1ff,stroke:#3b82f6,stroke-width:1px,color:#0f172a
+  classDef data fill:#ecfeff,stroke:#0891b2,stroke-width:1px,color:#0f172a
+  classDef decision fill:#fff7ed,stroke:#f97316,stroke-width:1px,color:#0f172a
+  classDef improve fill:#f0fdf4,stroke:#16a34a,stroke-width:1px,color:#0f172a
+
+  subgraph MAIN[Daily usage flow]
+    A["1) Pick repositories to evaluate"]:::action
+    B["2) Ingest repos into the tool"]:::action
+    C["3) Build capability cards with file evidence"]:::data
+    D["4) Search with a capability question"]:::action
+    E["5) Review ranked matches"]:::decision
+    F["6) Decide: adopt, adapt, or reject"]:::decision
+    A --> B --> C --> D --> E --> F
+  end
+
+  subgraph LOOP[Quality improvement loop]
+    G["Run benchmark queries"]:::improve
+    H["Inspect misses and false positives"]:::improve
+    I["Discover stronger patterns from OSS cohorts"]:::improve
+    J["Generate integration plan"]:::improve
+    K["Update rules, capabilities, and queries"]:::improve
+    L["Re-run and compare deltas"]:::improve
+    G --> H --> I --> J --> K --> L --> G
+  end
+
+  F --> G
+  L --> B
+```
+
+- Standalone version: `PIPELINE_DIAGRAM.md`
+
 ## Files
 
 - `capability_index.py` - main CLI for init/ingest/search/list.

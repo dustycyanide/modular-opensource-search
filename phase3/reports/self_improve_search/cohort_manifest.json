@@ -1,0 +1,522 @@
+{
+  "generated_at": "2026-03-02T00:50:06.262912+00:00",
+  "config": {
+    "targeting_spec": "/Users/dustycyanide/Documents/projects/modular_opensource/phase3/config/capability_targeting_search_stack.json",
+    "repo_registry": "/Users/dustycyanide/Documents/projects/modular_opensource/phase3/config/repo_registry_search_stack.json",
+    "max_per_ecosystem": 2,
+    "response_mode": "verbose"
+  },
+  "capability_cohorts": [
+    {
+      "capability": "search_stack_foundation",
+      "meaning": "Repositories whose primary purpose is indexing, searching, and retrieval over large corpora or codebases.",
+      "repo_types_sought": [
+        "Search and retrieval infrastructure"
+      ],
+      "contrast_repo_types": [
+        "HTTP client library",
+        "CLI framework",
+        "Data validation library"
+      ],
+      "requirements": {
+        "min_positive_repos": 10,
+        "min_contrast_repos": 3,
+        "min_distinct_ecosystems": 3,
+        "quality_bar": {
+          "maintained": [
+            "active",
+            "stable"
+          ],
+          "require_tests": true,
+          "require_docs": true,
+          "allowed_license_classes": [
+            "permissive",
+            "copyleft"
+          ]
+        }
+      },
+      "selected_positive": [
+        {
+          "name": "ast-grep",
+          "url": "https://github.com/ast-grep/ast-grep.git",
+          "repo_type": "Search and retrieval infrastructure",
+          "ecosystem": "rust",
+          "priority": "high",
+          "quality": {
+            "maintained": "active",
+            "has_tests": true,
+            "has_docs": true
+          },
+          "known_capabilities": [
+            "search_stack_foundation",
+            "repo_indexing_pipeline",
+            "structured_filtering",
+            "cli_tooling_surface"
+          ],
+          "score": 6.7,
+          "selection_reasons": [
+            "known_capability_match",
+            "repo_type_match",
+            "tag_overlap"
+          ]
+        },
+        {
+          "name": "zoekt",
+          "url": "https://github.com/sourcegraph/zoekt.git",
+          "repo_type": "Search and retrieval infrastructure",
+          "ecosystem": "go",
+          "priority": "high",
+          "quality": {
+            "maintained": "active",
+            "has_tests": true,
+            "has_docs": true
+          },
+          "known_capabilities": [
+            "search_stack_foundation",
+            "repo_indexing_pipeline",
+            "structured_filtering"
+          ],
+          "score": 6.7,
+          "selection_reasons": [
+            "known_capability_match",
+            "repo_type_match",
+            "tag_overlap"
+          ]
+        },
+        {
+          "name": "lancedb",
+          "url": "https://github.com/lancedb/lancedb.git",
+          "repo_type": "Search and retrieval infrastructure",
+          "ecosystem": "multi",
+          "priority": "high",
+          "quality": {
+            "maintained": "active",
+            "has_tests": true,
+            "has_docs": true
+          },
+          "known_capabilities": [
+            "search_stack_foundation",
+            "repo_indexing_pipeline",
+            "semantic_retrieval_stack"
+          ],
+          "score": 6.7,
+          "selection_reasons": [
+            "known_capability_match",
+            "repo_type_match",
+            "tag_overlap"
+          ]
+        },
+        {
+          "name": "meilisearch",
+          "url": "https://github.com/meilisearch/meilisearch.git",
+          "repo_type": "Search and retrieval infrastructure",
+          "ecosystem": "rust",
+          "priority": "high",
+          "quality": {
+            "maintained": "active",
+            "has_tests": true,
+            "has_docs": true
+          },
+          "known_capabilities": [
+            "search_stack_foundation",
+            "repo_indexing_pipeline",
+            "structured_filtering"
+          ],
+          "score": 6.7,
+          "selection_reasons": [
+            "known_capability_match",
+            "repo_type_match",
+            "tag_overlap"
+          ]
+        },
+        {
+          "name": "chroma",
+          "url": "https://github.com/chroma-core/chroma.git",
+          "repo_type": "Search and retrieval infrastructure",
+          "ecosystem": "python",
+          "priority": "high",
+          "quality": {
+            "maintained": "active",
+            "has_tests": true,
+            "has_docs": true
+          },
+          "known_capabilities": [
+            "search_stack_foundation",
+            "repo_indexing_pipeline",
+            "semantic_retrieval_stack",
+            "agentic_workflows"
+          ],
+          "score": 5.7,
+          "selection_reasons": [
+            "known_capability_match",
+            "repo_type_match"
+          ]
+        },
+        {
+          "name": "haystack",
+          "url": "https://github.com/deepset-ai/haystack.git",
+          "repo_type": "Search and retrieval infrastructure",
+          "ecosystem": "python",
+          "priority": "high",
+          "quality": {
+            "maintained": "active",
+            "has_tests": true,
+            "has_docs": true
+          },
+          "known_capabilities": [
+            "search_stack_foundation",
+            "semantic_retrieval_stack",
+            "agentic_workflows",
+            "cli_tooling_surface"
+          ],
+          "score": 5.7,
+          "selection_reasons": [
+            "known_capability_match",
+            "repo_type_match"
+          ]
+        },
+        {
+          "name": "quickwit",
+          "url": "https://github.com/quickwit-oss/quickwit.git",
+          "repo_type": "Search and retrieval infrastructure",
+          "ecosystem": "rust",
+          "priority": "high",
+          "quality": {
+            "maintained": "active",
+            "has_tests": true,
+            "has_docs": true
+          },
+          "known_capabilities": [
+            "search_stack_foundation",
+            "repo_indexing_pipeline",
+            "structured_filtering",
+            "cli_tooling_surface"
+          ],
+          "score": 6.7,
+          "selection_reasons": [
+            "known_capability_match",
+            "repo_type_match",
+            "tag_overlap"
+          ]
+        },
+        {
+          "name": "tree-sitter",
+          "url": "https://github.com/tree-sitter/tree-sitter.git",
+          "repo_type": "Search and retrieval infrastructure",
+          "ecosystem": "rust",
+          "priority": "high",
+          "quality": {
+            "maintained": "active",
+            "has_tests": true,
+            "has_docs": true
+          },
+          "known_capabilities": [
+            "search_stack_foundation",
+            "structured_filtering",
+            "repo_indexing_pipeline"
+          ],
+          "score": 5.7,
+          "selection_reasons": [
+            "known_capability_match",
+            "repo_type_match"
+          ]
+        },
+        {
+          "name": "qdrant",
+          "url": "https://github.com/qdrant/qdrant.git",
+          "repo_type": "Search and retrieval infrastructure",
+          "ecosystem": "rust",
+          "priority": "high",
+          "quality": {
+            "maintained": "active",
+            "has_tests": true,
+            "has_docs": true
+          },
+          "known_capabilities": [
+            "search_stack_foundation",
+            "repo_indexing_pipeline",
+            "semantic_retrieval_stack",
+            "structured_filtering"
+          ],
+          "score": 5.7,
+          "selection_reasons": [
+            "known_capability_match",
+            "repo_type_match"
+          ]
+        },
+        {
+          "name": "tantivy",
+          "url": "https://github.com/quickwit-oss/tantivy.git",
+          "repo_type": "Search and retrieval infrastructure",
+          "ecosystem": "rust",
+          "priority": "high",
+          "quality": {
+            "maintained": "active",
+            "has_tests": true,
+            "has_docs": true
+          },
+          "known_capabilities": [
+            "search_stack_foundation",
+            "repo_indexing_pipeline",
+            "structured_filtering"
+          ],
+          "score": 5.7,
+          "selection_reasons": [
+            "known_capability_match",
+            "repo_type_match"
+          ]
+        }
+      ],
+      "selected_contrast": [
+        {
+          "name": "requests",
+          "url": "https://github.com/psf/requests.git",
+          "repo_type": "HTTP client library",
+          "ecosystem": "python",
+          "priority": "high",
+          "quality": {
+            "maintained": "active",
+            "has_tests": true,
+            "has_docs": true
+          },
+          "known_capabilities": [
+            "negative_control"
+          ],
+          "score": 7.3,
+          "selection_reasons": [
+            "contrast_repo_type",
+            "negative_control",
+            "explicit_contrast_for_capability"
+          ]
+        },
+        {
+          "name": "pydantic",
+          "url": "https://github.com/pydantic/pydantic.git",
+          "repo_type": "Data validation library",
+          "ecosystem": "python",
+          "priority": "medium",
+          "quality": {
+            "maintained": "active",
+            "has_tests": true,
+            "has_docs": true
+          },
+          "known_capabilities": [
+            "schema_validation",
+            "negative_control"
+          ],
+          "score": 7.2,
+          "selection_reasons": [
+            "contrast_repo_type",
+            "negative_control",
+            "explicit_contrast_for_capability"
+          ]
+        },
+        {
+          "name": "click",
+          "url": "https://github.com/pallets/click.git",
+          "repo_type": "CLI framework",
+          "ecosystem": "python",
+          "priority": "high",
+          "quality": {
+            "maintained": "active",
+            "has_tests": true,
+            "has_docs": true
+          },
+          "known_capabilities": [
+            "cli_tooling"
+          ],
+          "score": 4.3,
+          "selection_reasons": [
+            "contrast_repo_type",
+            "explicit_contrast_for_capability"
+          ]
+        }
+      ],
+      "validation": {
+        "checks": {
+          "positive_quota": true,
+          "contrast_quota": true,
+          "ecosystem_diversity": true
+        },
+        "passed": true,
+        "failures": [],
+        "positive_count": 10,
+        "contrast_count": 3,
+        "distinct_positive_ecosystems": 4
+      }
+    }
+  ],
+  "selected_repos": [
+    {
+      "name": "ast-grep",
+      "url": "https://github.com/ast-grep/ast-grep.git",
+      "repo_type": "Search and retrieval infrastructure",
+      "ecosystem": "rust",
+      "priority": "high",
+      "included_for": [
+        {
+          "capability": "search_stack_foundation",
+          "role": "positive"
+        }
+      ]
+    },
+    {
+      "name": "chroma",
+      "url": "https://github.com/chroma-core/chroma.git",
+      "repo_type": "Search and retrieval infrastructure",
+      "ecosystem": "python",
+      "priority": "high",
+      "included_for": [
+        {
+          "capability": "search_stack_foundation",
+          "role": "positive"
+        }
+      ]
+    },
+    {
+      "name": "click",
+      "url": "https://github.com/pallets/click.git",
+      "repo_type": "CLI framework",
+      "ecosystem": "python",
+      "priority": "high",
+      "included_for": [
+        {
+          "capability": "search_stack_foundation",
+          "role": "contrast"
+        }
+      ]
+    },
+    {
+      "name": "haystack",
+      "url": "https://github.com/deepset-ai/haystack.git",
+      "repo_type": "Search and retrieval infrastructure",
+      "ecosystem": "python",
+      "priority": "high",
+      "included_for": [
+        {
+          "capability": "search_stack_foundation",
+          "role": "positive"
+        }
+      ]
+    },
+    {
+      "name": "lancedb",
+      "url": "https://github.com/lancedb/lancedb.git",
+      "repo_type": "Search and retrieval infrastructure",
+      "ecosystem": "multi",
+      "priority": "high",
+      "included_for": [
+        {
+          "capability": "search_stack_foundation",
+          "role": "positive"
+        }
+      ]
+    },
+    {
+      "name": "meilisearch",
+      "url": "https://github.com/meilisearch/meilisearch.git",
+      "repo_type": "Search and retrieval infrastructure",
+      "ecosystem": "rust",
+      "priority": "high",
+      "included_for": [
+        {
+          "capability": "search_stack_foundation",
+          "role": "positive"
+        }
+      ]
+    },
+    {
+      "name": "pydantic",
+      "url": "https://github.com/pydantic/pydantic.git",
+      "repo_type": "Data validation library",
+      "ecosystem": "python",
+      "priority": "medium",
+      "included_for": [
+        {
+          "capability": "search_stack_foundation",
+          "role": "contrast"
+        }
+      ]
+    },
+    {
+      "name": "qdrant",
+      "url": "https://github.com/qdrant/qdrant.git",
+      "repo_type": "Search and retrieval infrastructure",
+      "ecosystem": "rust",
+      "priority": "high",
+      "included_for": [
+        {
+          "capability": "search_stack_foundation",
+          "role": "positive"
+        }
+      ]
+    },
+    {
+      "name": "quickwit",
+      "url": "https://github.com/quickwit-oss/quickwit.git",
+      "repo_type": "Search and retrieval infrastructure",
+      "ecosystem": "rust",
+      "priority": "high",
+      "included_for": [
+        {
+          "capability": "search_stack_foundation",
+          "role": "positive"
+        }
+      ]
+    },
+    {
+      "name": "requests",
+      "url": "https://github.com/psf/requests.git",
+      "repo_type": "HTTP client library",
+      "ecosystem": "python",
+      "priority": "high",
+      "included_for": [
+        {
+          "capability": "search_stack_foundation",
+          "role": "contrast"
+        }
+      ]
+    },
+    {
+      "name": "tantivy",
+      "url": "https://github.com/quickwit-oss/tantivy.git",
+      "repo_type": "Search and retrieval infrastructure",
+      "ecosystem": "rust",
+      "priority": "high",
+      "included_for": [
+        {
+          "capability": "search_stack_foundation",
+          "role": "positive"
+        }
+      ]
+    },
+    {
+      "name": "tree-sitter",
+      "url": "https://github.com/tree-sitter/tree-sitter.git",
+      "repo_type": "Search and retrieval infrastructure",
+      "ecosystem": "rust",
+      "priority": "high",
+      "included_for": [
+        {
+          "capability": "search_stack_foundation",
+          "role": "positive"
+        }
+      ]
+    },
+    {
+      "name": "zoekt",
+      "url": "https://github.com/sourcegraph/zoekt.git",
+      "repo_type": "Search and retrieval infrastructure",
+      "ecosystem": "go",
+      "priority": "high",
+      "included_for": [
+        {
+          "capability": "search_stack_foundation",
+          "role": "positive"
+        }
+      ]
+    }
+  ],
+  "gate_passed": true,
+  "gate_failures": []
+}

@@ -1,0 +1,93 @@
+{
+  "generated_at": "2026-03-02T00:50:58.024776+00:00",
+  "source_discovery_report": "/Users/dustycyanide/Documents/projects/modular_opensource/phase3/reports/self_improve_search/discovery_report.json",
+  "repo_profiles": "/Users/dustycyanide/Documents/projects/modular_opensource/phase2/benchmark/repo_profiles.json",
+  "thresholds": {
+    "min_quality_score": 0.55,
+    "min_high_matches": 2,
+    "min_total_matches": 3,
+    "max_high_ratio_for_adopt": 0.45,
+    "max_expected_repos": 3
+  },
+  "stability_check": {
+    "status": "stable",
+    "compared_report": "/Users/dustycyanide/Documents/projects/modular_opensource/phase3/reports/self_improve_search/discovery_report_rerun.json",
+    "agreement_ratio": 1.0,
+    "decision_drift": [],
+    "lock_recommendations": true,
+    "reason": "stable_across_reports"
+  },
+  "recommendation_lock": true,
+  "decisions": [
+    {
+      "capability": "repo_indexing_pipeline",
+      "decision": "adapt",
+      "decision_reason": "broad-signal",
+      "high_count": 7,
+      "medium_count": 0,
+      "high_ratio": 0.538,
+      "top_expected_repos": [
+        "chroma",
+        "meilisearch",
+        "qdrant"
+      ],
+      "stable_across_runs": true
+    },
+    {
+      "capability": "semantic_retrieval_stack",
+      "decision": "adapt",
+      "decision_reason": "broad-signal",
+      "high_count": 6,
+      "medium_count": 1,
+      "high_ratio": 0.462,
+      "top_expected_repos": [
+        "lancedb",
+        "meilisearch",
+        "qdrant"
+      ],
+      "stable_across_runs": true
+    },
+    {
+      "capability": "structured_filtering",
+      "decision": "adapt",
+      "decision_reason": "broad-signal",
+      "high_count": 13,
+      "medium_count": 0,
+      "high_ratio": 1.0,
+      "top_expected_repos": [
+        "ast-grep",
+        "chroma",
+        "haystack"
+      ],
+      "stable_across_runs": true
+    },
+    {
+      "capability": "cli_tooling_surface",
+      "decision": "adapt",
+      "decision_reason": "broad-signal",
+      "high_count": 11,
+      "medium_count": 0,
+      "high_ratio": 0.846,
+      "top_expected_repos": [
+        "ast-grep",
+        "chroma",
+        "haystack"
+      ],
+      "stable_across_runs": true
+    },
+    {
+      "capability": "agentic_workflows",
+      "decision": "adapt",
+      "decision_reason": "broad-signal",
+      "high_count": 12,
+      "medium_count": 0,
+      "high_ratio": 0.923,
+      "top_expected_repos": [
+        "ast-grep",
+        "chroma",
+        "haystack"
+      ],
+      "stable_across_runs": true
+    }
+  ]
+}

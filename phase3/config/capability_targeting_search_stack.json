@@ -1,0 +1,26 @@
+{
+  "schema_version": "1.0",
+  "capabilities": [
+    {
+      "name": "search_stack_foundation",
+      "meaning": "Repositories whose primary purpose is indexing, searching, and retrieval over large corpora or codebases.",
+      "repo_types_sought": [
+        "Search and retrieval infrastructure"
+      ],
+      "contrast_repo_types": [
+        "HTTP client library",
+        "CLI framework",
+        "Data validation library"
+      ],
+      "min_positive_repos": 10,
+      "min_contrast_repos": 3,
+      "min_distinct_ecosystems": 3,
+      "quality_bar": {
+        "maintained": ["active", "stable"],
+        "require_tests": true,
+        "require_docs": true,
+        "allowed_license_classes": ["permissive", "copyleft"]
+      }
+    }
+  ]
+}

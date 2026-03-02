@@ -1,0 +1,200 @@
+{
+  "capabilities": [
+    {
+      "name": "repo_indexing_pipeline",
+      "title": "Repository indexing pipeline",
+      "description": "Repo traversal, document extraction, and index-write flow for search.",
+      "query_hints": [
+        "repository scan crawl index writer segments",
+        "ingest documents build inverted index"
+      ],
+      "repo_types_sought": [
+        "Search/index infrastructure repositories"
+      ],
+      "why_useful_here": "High-quality indexing controls both retrieval quality and evidence trust for capability cards.",
+      "required_groups": [
+        [
+          "\\brglob\\(",
+          "\\bwalkdir\\b",
+          "\\bscan(ning|ner)?\\b",
+          "\\bingest(ion)?\\b",
+          "\\bcrawl(er|ing)?\\b"
+        ],
+        [
+          "\\bindex_writer\\b",
+          "\\binverted\\s+index\\b",
+          "\\bsegment(s)?\\b",
+          "\\bposting(s)?\\b",
+          "\\bupsert\\b"
+        ]
+      ],
+      "support_patterns": [
+        "\\btokenizer\\b",
+        "\\bcommit\\b",
+        "\\bmetadata\\b",
+        "\\bshard(s)?\\b",
+        "\\bdocument(s)?\\b",
+        "\\bindex\\b"
+      ],
+      "min_support": 2
+    },
+    {
+      "name": "semantic_retrieval_stack",
+      "title": "Semantic retrieval stack",
+      "description": "Embeddings, vector similarity retrieval, and ranking logic.",
+      "query_hints": [
+        "embedding vector similarity search rerank",
+        "nearest neighbors cosine hnsw top k"
+      ],
+      "repo_types_sought": [
+        "Vector and retrieval repositories"
+      ],
+      "why_useful_here": "Semantic retrieval is the core upgrade path for better capability matching versus lexical-only search.",
+      "required_groups": [
+        [
+          "\\bembedding(s)?\\b",
+          "\\bvector\\b",
+          "\\bhnsw\\b",
+          "\\bann\\b",
+          "\\bfaiss\\b",
+          "\\bqdrant\\b",
+          "\\bchroma\\b",
+          "\\blancedb\\b"
+        ],
+        [
+          "\\bcosine(_similarity)?\\b",
+          "\\bnearest\\s+neighbors?\\b",
+          "\\bsimilarity\\s+search\\b",
+          "\\bdot\\s*product\\b",
+          "\\btop[_-]?k\\b",
+          "\\brerank(ing)?\\b"
+        ]
+      ],
+      "support_patterns": [
+        "\\bretriev(al|e)\\b",
+        "\\bsemantic\\b",
+        "\\bdistance\\b",
+        "\\brelevance\\b",
+        "\\bquery\\b",
+        "\\bhybrid\\b"
+      ],
+      "min_support": 2
+    },
+    {
+      "name": "structured_filtering",
+      "title": "Structured filtering and query parsing",
+      "description": "Query parsing plus metadata or field-level filtering for constrained results.",
+      "query_hints": [
+        "query parser filters facets fields",
+        "structured search constraints metadata"
+      ],
+      "repo_types_sought": [
+        "Search and AST parsing repositories"
+      ],
+      "why_useful_here": "Capability search needs reliable constraints (language, license, framework) to keep candidate sets actionable.",
+      "required_groups": [
+        [
+          "\\bquery\\s+parser\\b",
+          "\\bparse_query\\b",
+          "\\bfilter(s|ing)?\\b",
+          "\\bast\\b",
+          "\\bsyntax\\s+tree\\b"
+        ],
+        [
+          "\\bfacet(s)?\\b",
+          "\\bfield(s)?\\b",
+          "\\blanguage\\b",
+          "\\blicense\\b",
+          "\\btokenizer\\b",
+          "\\bschema\\b"
+        ]
+      ],
+      "support_patterns": [
+        "\\bconstraint(s)?\\b",
+        "\\bmetadata\\b",
+        "\\bnormalize\\b",
+        "\\bmatch\\b",
+        "\\bquery\\b",
+        "\\bparser\\b"
+      ],
+      "min_support": 2
+    },
+    {
+      "name": "cli_tooling_surface",
+      "title": "Tool-use CLI surface",
+      "description": "Command-line interfaces that expose ingest/search/eval workflows through explicit commands.",
+      "query_hints": [
+        "cli subcommands ingest index search",
+        "tooling command parser help flags"
+      ],
+      "repo_types_sought": [
+        "Search infrastructure with operator-facing CLIs"
+      ],
+      "why_useful_here": "A clear CLI surface makes this project easier to automate in agent loops and benchmark workflows.",
+      "required_groups": [
+        [
+          "\\bargparse\\b",
+          "\\bclap::[A-Za-z_]+\\b",
+          "\\bclick\\.(command|group)\\b",
+          "\\btyper\\.(Typer|Argument)\\b",
+          "\\bsubcommand(s)?\\b"
+        ],
+        [
+          "\\bingest\\b",
+          "\\bindex\\b",
+          "\\bsearch\\b",
+          "\\bbenchmark\\b",
+          "\\beval(uation)?\\b",
+          "\\bserve\\b"
+        ]
+      ],
+      "support_patterns": [
+        "\\b--help\\b",
+        "\\bconfig\\b",
+        "\\bcommand\\b",
+        "\\bworkflow\\b",
+        "\\bpipeline\\b",
+        "\\btool(s)?\\b"
+      ],
+      "min_support": 2
+    },
+    {
+      "name": "agentic_workflows",
+      "title": "Agent and workflow orchestration",
+      "description": "Patterns for planner/executor style loops and tool-orchestrated retrieval workflows.",
+      "query_hints": [
+        "agent planner executor tool calls workflow",
+        "retrieval augmented generation agent loop"
+      ],
+      "repo_types_sought": [
+        "Agentic retrieval frameworks"
+      ],
+      "why_useful_here": "Agentic orchestration is needed to run iterative discovery and synthesis loops over capability evidence.",
+      "required_groups": [
+        [
+          "\\bagent(s)?\\b",
+          "\\bplanner\\b",
+          "\\bexecutor\\b",
+          "\\bworkflow\\b",
+          "\\bgraph\\b"
+        ],
+        [
+          "\\btool(s)?\\b",
+          "\\bfunction\\s+call(s|ing)?\\b",
+          "\\bpipeline\\b",
+          "\\bretriev(al|e)\\b",
+          "\\bmemory\\b"
+        ]
+      ],
+      "support_patterns": [
+        "\\bstate\\b",
+        "\\bstep\\b",
+        "\\btask\\b",
+        "\\bprompt\\b",
+        "\\bcontext\\b",
+        "\\bloop\\b"
+      ],
+      "min_support": 2
+    }
+  ]
+}

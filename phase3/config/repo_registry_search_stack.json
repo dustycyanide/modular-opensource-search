@@ -1,0 +1,209 @@
+{
+  "schema_version": "1.0",
+  "repos": [
+    {
+      "name": "ast-grep",
+      "url": "https://github.com/ast-grep/ast-grep.git",
+      "repo_type": "Search and retrieval infrastructure",
+      "ecosystem": "rust",
+      "domain": "code_intelligence",
+      "license_class": "permissive",
+      "priority": "high",
+      "quality": {"maintained": "active", "has_tests": true, "has_docs": true},
+      "known_capabilities": [
+        "search_stack_foundation",
+        "repo_indexing_pipeline",
+        "structured_filtering",
+        "cli_tooling_surface"
+      ],
+      "tags": ["ast", "search", "rules", "filters", "cli"]
+    },
+    {
+      "name": "tree-sitter",
+      "url": "https://github.com/tree-sitter/tree-sitter.git",
+      "repo_type": "Search and retrieval infrastructure",
+      "ecosystem": "rust",
+      "domain": "code_intelligence",
+      "license_class": "permissive",
+      "priority": "high",
+      "quality": {"maintained": "active", "has_tests": true, "has_docs": true},
+      "known_capabilities": [
+        "search_stack_foundation",
+        "structured_filtering",
+        "repo_indexing_pipeline"
+      ],
+      "tags": ["parser", "ast", "syntax", "filtering"]
+    },
+    {
+      "name": "zoekt",
+      "url": "https://github.com/sourcegraph/zoekt.git",
+      "repo_type": "Search and retrieval infrastructure",
+      "ecosystem": "go",
+      "domain": "code_intelligence",
+      "license_class": "permissive",
+      "priority": "high",
+      "quality": {"maintained": "active", "has_tests": true, "has_docs": true},
+      "known_capabilities": [
+        "search_stack_foundation",
+        "repo_indexing_pipeline",
+        "structured_filtering"
+      ],
+      "tags": ["indexing", "search", "ranking", "shards"]
+    },
+    {
+      "name": "chroma",
+      "url": "https://github.com/chroma-core/chroma.git",
+      "repo_type": "Search and retrieval infrastructure",
+      "ecosystem": "python",
+      "domain": "retrieval",
+      "license_class": "permissive",
+      "priority": "high",
+      "quality": {"maintained": "active", "has_tests": true, "has_docs": true},
+      "known_capabilities": [
+        "search_stack_foundation",
+        "repo_indexing_pipeline",
+        "semantic_retrieval_stack",
+        "agentic_workflows"
+      ],
+      "tags": ["vector", "embeddings", "retrieval", "indexing"]
+    },
+    {
+      "name": "qdrant",
+      "url": "https://github.com/qdrant/qdrant.git",
+      "repo_type": "Search and retrieval infrastructure",
+      "ecosystem": "rust",
+      "domain": "retrieval",
+      "license_class": "permissive",
+      "priority": "high",
+      "quality": {"maintained": "active", "has_tests": true, "has_docs": true},
+      "known_capabilities": [
+        "search_stack_foundation",
+        "repo_indexing_pipeline",
+        "semantic_retrieval_stack",
+        "structured_filtering"
+      ],
+      "tags": ["vector", "ann", "hnsw", "retrieval"]
+    },
+    {
+      "name": "lancedb",
+      "url": "https://github.com/lancedb/lancedb.git",
+      "repo_type": "Search and retrieval infrastructure",
+      "ecosystem": "multi",
+      "domain": "retrieval",
+      "license_class": "permissive",
+      "priority": "high",
+      "quality": {"maintained": "active", "has_tests": true, "has_docs": true},
+      "known_capabilities": [
+        "search_stack_foundation",
+        "repo_indexing_pipeline",
+        "semantic_retrieval_stack"
+      ],
+      "tags": ["vector", "embeddings", "index", "search"]
+    },
+    {
+      "name": "meilisearch",
+      "url": "https://github.com/meilisearch/meilisearch.git",
+      "repo_type": "Search and retrieval infrastructure",
+      "ecosystem": "rust",
+      "domain": "search",
+      "license_class": "permissive",
+      "priority": "high",
+      "quality": {"maintained": "active", "has_tests": true, "has_docs": true},
+      "known_capabilities": [
+        "search_stack_foundation",
+        "repo_indexing_pipeline",
+        "structured_filtering"
+      ],
+      "tags": ["search", "index", "filters", "facets", "ranking"]
+    },
+    {
+      "name": "quickwit",
+      "url": "https://github.com/quickwit-oss/quickwit.git",
+      "repo_type": "Search and retrieval infrastructure",
+      "ecosystem": "rust",
+      "domain": "search",
+      "license_class": "permissive",
+      "priority": "high",
+      "quality": {"maintained": "active", "has_tests": true, "has_docs": true},
+      "known_capabilities": [
+        "search_stack_foundation",
+        "repo_indexing_pipeline",
+        "structured_filtering",
+        "cli_tooling_surface"
+      ],
+      "tags": ["search", "indexing", "segments", "query", "cli"]
+    },
+    {
+      "name": "tantivy",
+      "url": "https://github.com/quickwit-oss/tantivy.git",
+      "repo_type": "Search and retrieval infrastructure",
+      "ecosystem": "rust",
+      "domain": "search",
+      "license_class": "permissive",
+      "priority": "high",
+      "quality": {"maintained": "active", "has_tests": true, "has_docs": true},
+      "known_capabilities": [
+        "search_stack_foundation",
+        "repo_indexing_pipeline",
+        "structured_filtering"
+      ],
+      "tags": ["inverted index", "tokenizer", "query parser", "ranking"]
+    },
+    {
+      "name": "haystack",
+      "url": "https://github.com/deepset-ai/haystack.git",
+      "repo_type": "Search and retrieval infrastructure",
+      "ecosystem": "python",
+      "domain": "retrieval",
+      "license_class": "permissive",
+      "priority": "high",
+      "quality": {"maintained": "active", "has_tests": true, "has_docs": true},
+      "known_capabilities": [
+        "search_stack_foundation",
+        "semantic_retrieval_stack",
+        "agentic_workflows",
+        "cli_tooling_surface"
+      ],
+      "tags": ["retrieval", "embeddings", "agents", "pipeline", "evaluation"]
+    },
+    {
+      "name": "requests",
+      "url": "https://github.com/psf/requests.git",
+      "repo_type": "HTTP client library",
+      "ecosystem": "python",
+      "domain": "networking",
+      "license_class": "permissive",
+      "priority": "high",
+      "quality": {"maintained": "active", "has_tests": true, "has_docs": true},
+      "known_capabilities": ["negative_control"],
+      "contrast_for": ["search_stack_foundation"],
+      "tags": ["http", "client", "contrast"]
+    },
+    {
+      "name": "click",
+      "url": "https://github.com/pallets/click.git",
+      "repo_type": "CLI framework",
+      "ecosystem": "python",
+      "domain": "developer_tooling",
+      "license_class": "permissive",
+      "priority": "high",
+      "quality": {"maintained": "active", "has_tests": true, "has_docs": true},
+      "known_capabilities": ["cli_tooling"],
+      "contrast_for": ["search_stack_foundation", "semantic_retrieval_stack"],
+      "tags": ["cli", "framework", "contrast"]
+    },
+    {
+      "name": "pydantic",
+      "url": "https://github.com/pydantic/pydantic.git",
+      "repo_type": "Data validation library",
+      "ecosystem": "python",
+      "domain": "developer_tooling",
+      "license_class": "permissive",
+      "priority": "medium",
+      "quality": {"maintained": "active", "has_tests": true, "has_docs": true},
+      "known_capabilities": ["schema_validation", "negative_control"],
+      "contrast_for": ["search_stack_foundation", "repo_indexing_pipeline"],
+      "tags": ["validation", "schema", "contrast"]
+    }
+  ]
+}
