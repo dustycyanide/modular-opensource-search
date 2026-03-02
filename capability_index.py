@@ -816,7 +816,8 @@ def upsert_repo_and_cards(
     repo_path: Path,
     repo_name: str,
     validator_pack_path: Path | None = None,
-) -> int:
+    return_profile: bool = False,
+) -> int | tuple[int, dict[str, Any]]:
     if validator_pack_path:
         set_active_validator_pack(validator_pack_path)
     profile = build_repo_profile(repo_path)
@@ -893,7 +894,10 @@ def upsert_repo_and_cards(
 
     conn.commit()
     conn.close()
-    return len(cards)
+    card_count = len(cards)
+    if return_profile:
+        return card_count, profile
+    return card_count
 
 
 def tokenize(text: str) -> list[str]:
@@ -1054,13 +1058,40 @@ def get_validation_score(row: sqlite3.Row) -> float:
     return float(payload.get("validation_score", 0.0))
 
 
-def search_cards(db_path: Path, query: str, k: int, mode: str = "hybrid") -> list[sqlite3.Row]:
+def search_cards(
+    db_path: Path,
+    query: str,
+    k: int,
+    mode: str = "hybrid",
+    include_debug: bool = False,
+) -> list[sqlite3.Row] | tuple[list[sqlite3.Row], dict[str, Any]]:
     filters = extract_query_filters(query)
     tokens = filters["tokens"]
+    expanded_tokens = expand_tokens(tokens)
     where_sql, params = build_filter_sql(filters)
 
     conn = sqlite3.connect(db_path)
     conn.row_factory = sqlite3.Row
+
+    debug: dict[str, Any] = {
+        "query": query,
+        "mode_requested": mode,
+        "mode_executed": mode,
+        "embeddings_available": EMBEDDINGS_AVAILABLE,
+        "tokens": tokens,
+        "expanded_tokens": expanded_tokens,
+        "filters": {
+            "language": filters.get("language"),
+            "license": filters.get("license"),
+            "capabilities": filters.get("capabilities", []),
+        },
+        "lexical_candidates": 0,
+        "semantic_candidates": 0,
+        "ranked_candidates": 0,
+        "final_results": 0,
+        "used_confidence_fallback": False,
+        "semantic_fallback_to_lexical": False,
+    }
 
     lexical_rows: list[sqlite3.Row] = []
     semantic_rows: list[sqlite3.Row] = []
@@ -1068,14 +1099,22 @@ def search_cards(db_path: Path, query: str, k: int, mode: str = "hybrid") -> lis
 
     if mode in {"lexical", "hybrid"}:
         lexical_rows = run_lexical_search(conn, where_sql, params, tokens, k)
+        debug["lexical_candidates"] = len(lexical_rows)
     if mode in {"semantic", "hybrid"}:
         semantic_rows, semantic_scores = run_semantic_search(conn, where_sql, params, query, k)
+        debug["semantic_candidates"] = len(semantic_rows)
 
     if mode == "semantic" and not EMBEDDINGS_AVAILABLE:
         lexical_rows = run_lexical_search(conn, where_sql, params, tokens, k)
+        debug["lexical_candidates"] = len(lexical_rows)
+        debug["semantic_fallback_to_lexical"] = True
+        debug["mode_executed"] = "lexical"
 
     if mode == "semantic" and not semantic_rows and EMBEDDINGS_AVAILABLE:
         conn.close()
+        debug["final_results"] = 0
+        if include_debug:
+            return [], debug
         return []
 
     candidate_rows: dict[int, sqlite3.Row] = {}
@@ -1089,6 +1128,8 @@ def search_cards(db_path: Path, query: str, k: int, mode: str = "hybrid") -> lis
     for row in semantic_rows:
         candidate_rows[row["id"]] = row
     semantic_rank_scores.update(semantic_scores)
+
+    debug["ranked_candidates"] = len(candidate_rows)
 
     lexical_norm = normalize_score_map(lexical_rank_scores)
     semantic_norm = normalize_score_map(semantic_rank_scores)
@@ -1112,6 +1153,7 @@ def search_cards(db_path: Path, query: str, k: int, mode: str = "hybrid") -> lis
     rows = [item[0] for item in ranked[:k]]
 
     if not rows:
+        debug["used_confidence_fallback"] = True
         sql = (
             "SELECT c.*, r.primary_language, 0.0 AS rank "
             "FROM cards c "
@@ -1121,47 +1163,189 @@ def search_cards(db_path: Path, query: str, k: int, mode: str = "hybrid") -> lis
         )
         rows = conn.execute(sql, [*params, k]).fetchall()
 
+    debug["final_results"] = len(rows)
+
     conn.close()
+    if include_debug:
+        return rows, debug
     return rows
 
 
-def print_search_results(rows: list[sqlite3.Row]) -> None:
+def print_search_results(
+    rows: list[sqlite3.Row],
+    response_mode: str = "final",
+    debug: dict[str, Any] | None = None,
+) -> None:
     if not rows:
         print("No results.")
         return
 
+    if response_mode == "verbose" and debug:
+        filters = debug.get("filters", {})
+        capability_filter = filters.get("capabilities") or []
+        capability_text = ",".join(capability_filter) if capability_filter else "none"
+        print("Search steps:")
+        print(
+            "  "
+            f"query={debug.get('query')} "
+            f"mode={debug.get('mode_requested')}->{debug.get('mode_executed')} "
+            f"embeddings_available={debug.get('embeddings_available')}"
+        )
+        print(
+            "  "
+            f"filters language={filters.get('language') or 'none'} "
+            f"license={filters.get('license') or 'none'} "
+            f"capabilities={capability_text}"
+        )
+        print(
+            "  "
+            f"candidates lexical={debug.get('lexical_candidates', 0)} "
+            f"semantic={debug.get('semantic_candidates', 0)} "
+            f"ranked={debug.get('ranked_candidates', 0)} "
+            f"final={debug.get('final_results', len(rows))}"
+        )
+        if debug.get("semantic_fallback_to_lexical"):
+            print("  semantic mode fallback: lexical (embeddings unavailable)")
+        if debug.get("used_confidence_fallback"):
+            print("  rank fallback used: confidence-only ordering")
+
     for idx, row in enumerate(rows, start=1):
         evidence = json.loads(row["evidence_json"] or "[]")
         evidence_preview = ", ".join(evidence[:3]) if evidence else "none"
-        print(f"[{idx}] {row['title']}")
-        print(f"    repo={row['repo_name']} language={row['primary_language']} license={row['license']}")
-        print(f"    capability={row['capability_name']} confidence={row['confidence']:.2f}")
-        print(f"    pipeline={row['pipeline_shape']}")
-        print(f"    evidence={evidence_preview}")
+        if response_mode == "verbose":
+            print(f"[{idx}] {row['title']}")
+            print(
+                f"    repo={row['repo_name']} type={row['card_type']} "
+                f"capability={row['capability_name']}"
+            )
+            print(
+                f"    language={row['primary_language']} license={row['license']} "
+                f"confidence={row['confidence']:.2f}"
+            )
+            print(f"    pipeline={row['pipeline_shape']}")
+            print(f"    evidence={evidence_preview}")
+            print(f"    summary={row['summary']}")
+            continue
+
+        print(
+            f"[{idx}] repo={row['repo_name']} capability={row['capability_name']} "
+            f"language={row['primary_language']} license={row['license']} "
+            f"confidence={row['confidence']:.2f} evidence={evidence_preview}"
+        )
 
 
-def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Capability-card indexing experiment")
-    parser.add_argument("--db", default="./data/capabilities.db", help="Path to sqlite database")
+def print_ingest_result(
+    repo_name: str,
+    card_count: int,
+    response_mode: str = "final",
+    profile: dict[str, Any] | None = None,
+) -> None:
+    print(f"Ingested repo={repo_name} cards={card_count}")
+    if response_mode != "verbose" or not profile:
+        return
+
+    frameworks = profile.get("frameworks", [])
+    framework_text = ", ".join(frameworks) if frameworks else "none"
+    capability_hits = profile.get("capability_hits", {})
+    top_hits = sorted(capability_hits.items(), key=lambda item: item[1], reverse=True)[:4]
+    top_hits_text = ", ".join(f"{name}:{score:.2f}" for name, score in top_hits) if top_hits else "none"
+    print("Ingest steps:")
+    print(
+        "  "
+        f"language={profile.get('primary_language', 'Unknown')} "
+        f"license={profile.get('license', 'Unknown')} "
+        f"has_tests={profile.get('has_tests', False)}"
+    )
+    print(f"  frameworks={framework_text}")
+    print(f"  top_capability_hits={top_hits_text}")
+    print(f"  summary={profile.get('summary', '')}")
+
+
+def get_response_mode(args: argparse.Namespace) -> str:
+    if getattr(args, "verbose", False):
+        return "verbose"
+    return getattr(args, "response", "final")
+
+
+def build_parser() -> argparse.ArgumentParser:
+    def add_runtime_options(command_parser: argparse.ArgumentParser, allow_validator_pack: bool = False) -> None:
+        command_parser.add_argument("--db", default=argparse.SUPPRESS, help="SQLite database path")
+        if allow_validator_pack:
+            command_parser.add_argument(
+                "--validator-pack",
+                default=argparse.SUPPRESS,
+                help="Optional JSON validator pack path",
+            )
+        command_parser.add_argument(
+            "--response",
+            choices=["final", "verbose"],
+            default=argparse.SUPPRESS,
+            help="Response detail level (default: final)",
+        )
+        command_parser.add_argument(
+            "--verbose",
+            action="store_true",
+            default=argparse.SUPPRESS,
+            help="Shortcut for --response verbose",
+        )
+
+    parser = argparse.ArgumentParser(
+        description="Agent-first capability search over open-source repositories.",
+        formatter_class=argparse.RawTextHelpFormatter,
+        epilog=(
+            "Examples:\n"
+            "  .venv/bin/python capability_index.py init\n"
+            "  .venv/bin/python capability_index.py ingest --repo ./repos/zoekt\n"
+            "  .venv/bin/python capability_index.py search -q \"fast code search\" --top 5\n"
+            "  .venv/bin/python capability_index.py search -q \"semantic retrieval\" --response verbose\n"
+            "  .venv/bin/python capability_index.py help search"
+        ),
+    )
+    parser.add_argument("--db", default="./data/capabilities.db", help="SQLite database path")
     parser.add_argument(
         "--validator-pack",
         default=None,
-        help="Optional JSON validator pack path to override structural rules",
+        help="Optional JSON validator pack path",
+    )
+    parser.add_argument(
+        "--response",
+        choices=["final", "verbose"],
+        default="final",
+        help="Response detail level (default: final)",
+    )
+    parser.add_argument(
+        "--verbose",
+        action="store_true",
+        help="Shortcut for --response verbose",
     )
 
     sub = parser.add_subparsers(dest="command", required=True)
 
     init_cmd = sub.add_parser("init", help="Initialize sqlite schema")
+    add_runtime_options(init_cmd)
     init_cmd.set_defaults(func=cmd_init)
 
     ingest_cmd = sub.add_parser("ingest", help="Ingest one repository")
-    ingest_cmd.add_argument("--repo-path", required=True, help="Path to local repository")
-    ingest_cmd.add_argument("--repo-name", help="Optional logical repo name")
+    add_runtime_options(ingest_cmd, allow_validator_pack=True)
+    ingest_cmd.add_argument(
+        "--repo-path",
+        "--repo",
+        dest="repo_path",
+        required=True,
+        help="Path to local repository",
+    )
+    ingest_cmd.add_argument(
+        "--repo-name",
+        "--name",
+        dest="repo_name",
+        help="Optional logical repo name",
+    )
     ingest_cmd.set_defaults(func=cmd_ingest)
 
     search_cmd = sub.add_parser("search", help="Search capability cards")
-    search_cmd.add_argument("--query", required=True, help="Natural language query")
-    search_cmd.add_argument("--k", type=int, default=5, help="Top-K results")
+    add_runtime_options(search_cmd)
+    search_cmd.add_argument("--query", "-q", required=True, help="Natural language query")
+    search_cmd.add_argument("--k", "--top", dest="k", type=int, default=5, help="Top-K results")
     search_cmd.add_argument(
         "--mode",
         choices=["lexical", "semantic", "hybrid"],
@@ -1171,46 +1355,76 @@ def parse_args() -> argparse.Namespace:
     search_cmd.set_defaults(func=cmd_search)
 
     list_cmd = sub.add_parser("list", help="List ingested cards")
+    add_runtime_options(list_cmd)
     list_cmd.set_defaults(func=cmd_list)
 
-    return parser.parse_args()
+    help_cmd = sub.add_parser("help", help="Show help for all commands or one command")
+    help_cmd.add_argument("topic", nargs="?", help="Optional command name")
+    help_cmd.set_defaults(func=cmd_help)
+
+    return parser
 
 
-def cmd_init(args: argparse.Namespace) -> None:
+def parse_args(parser: argparse.ArgumentParser | None = None) -> argparse.Namespace:
+    active_parser = parser or build_parser()
+    return active_parser.parse_args()
+
+
+def cmd_init(args: argparse.Namespace, parser: argparse.ArgumentParser | None = None) -> None:
     db_path = Path(args.db)
     db_path.parent.mkdir(parents=True, exist_ok=True)
     init_db(db_path)
     print(f"Initialized database at {db_path}")
 
 
-def cmd_ingest(args: argparse.Namespace) -> None:
+def cmd_ingest(args: argparse.Namespace, parser: argparse.ArgumentParser | None = None) -> None:
+    response_mode = get_response_mode(args)
     db_path = Path(args.db)
     repo_path = Path(args.repo_path).resolve()
     if not repo_path.exists() or not repo_path.is_dir():
         raise SystemExit(f"Repository path does not exist: {repo_path}")
     repo_name = args.repo_name or repo_path.name
     validator_pack_path = Path(args.validator_pack) if args.validator_pack else None
-    card_count = upsert_repo_and_cards(
-        db_path=db_path,
-        repo_path=repo_path,
-        repo_name=repo_name,
-        validator_pack_path=validator_pack_path,
-    )
-    print(f"Ingested {repo_name} with {card_count} cards")
+    profile = None
+    if response_mode == "verbose":
+        card_count, profile = upsert_repo_and_cards(
+            db_path=db_path,
+            repo_path=repo_path,
+            repo_name=repo_name,
+            validator_pack_path=validator_pack_path,
+            return_profile=True,
+        )
+    else:
+        card_count = upsert_repo_and_cards(
+            db_path=db_path,
+            repo_path=repo_path,
+            repo_name=repo_name,
+            validator_pack_path=validator_pack_path,
+        )
+    print_ingest_result(repo_name, card_count, response_mode=response_mode, profile=profile)
 
 
-def cmd_search(args: argparse.Namespace) -> None:
+def cmd_search(args: argparse.Namespace, parser: argparse.ArgumentParser | None = None) -> None:
+    response_mode = get_response_mode(args)
+    if response_mode == "verbose":
+        rows, debug = search_cards(Path(args.db), args.query, args.k, mode=args.mode, include_debug=True)
+        print_search_results(rows, response_mode=response_mode, debug=debug)
+        return
+
     rows = search_cards(Path(args.db), args.query, args.k, mode=args.mode)
-    print_search_results(rows)
+    print_search_results(rows, response_mode=response_mode)
 
 
-def cmd_list(args: argparse.Namespace) -> None:
+def cmd_list(args: argparse.Namespace, parser: argparse.ArgumentParser | None = None) -> None:
+    response_mode = get_response_mode(args)
     conn = sqlite3.connect(args.db)
     conn.row_factory = sqlite3.Row
     rows = conn.execute(
         "SELECT repo_name, card_type, capability_name, title, confidence FROM cards ORDER BY repo_name, confidence DESC"
     ).fetchall()
     conn.close()
+    if response_mode == "verbose":
+        print(f"Cards listed: {len(rows)}")
     for row in rows:
         print(
             f"repo={row['repo_name']} type={row['card_type']} capability={row['capability_name']} "
@@ -1218,9 +1432,29 @@ def cmd_list(args: argparse.Namespace) -> None:
         )
 
 
+def cmd_help(args: argparse.Namespace, parser: argparse.ArgumentParser | None = None) -> None:
+    active_parser = parser or build_parser()
+    topic = (args.topic or "").strip()
+    if not topic:
+        active_parser.print_help()
+        return
+
+    subparsers_action = next(
+        (action for action in active_parser._actions if isinstance(action, argparse._SubParsersAction)),
+        None,
+    )
+    if subparsers_action and topic in subparsers_action.choices:
+        subparsers_action.choices[topic].print_help()
+        return
+
+    available = ", ".join(sorted(subparsers_action.choices.keys())) if subparsers_action else ""
+    raise SystemExit(f"Unknown help topic: {topic}. Available topics: {available}")
+
+
 def main() -> None:
-    args = parse_args()
-    args.func(args)
+    parser = build_parser()
+    args = parse_args(parser)
+    args.func(args, parser)
 
 
 if __name__ == "__main__":

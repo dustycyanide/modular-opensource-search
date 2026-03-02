@@ -55,6 +55,50 @@ python3 -m venv .venv
 .venv/bin/python capability_index.py --db ./data/capabilities.db search --query "python api service" --k 5 --mode lexical
 .venv/bin/python capability_index.py --db ./data/capabilities.db search --query "python api service" --k 5 --mode semantic
 .venv/bin/python capability_index.py --db ./data/capabilities.db search --query "python api service" --k 5 --mode hybrid
+.venv/bin/python capability_index.py --db ./data/capabilities.db search -q "fast code search" --top 8
+.venv/bin/python capability_index.py --db ./data/capabilities.db search -q "semantic retrieval" --response verbose
+.venv/bin/python capability_index.py help search
+```
+
+## Agent-first CLI behavior
+
+- Defaults to `--response final`, which prints only final ranked results.
+- Use `--response verbose` (or `--verbose`) to include search/ingest steps and diagnostics.
+- Includes command aliases to reduce friction: `--repo` for `--repo-path`, `-q` for `--query`, and `--top` for `--k`.
+
+## How to call it
+
+Use placeholders so the same command shape works across environments.
+
+```bash
+# Core capability index
+.venv/bin/python capability_index.py init --db <db-path>
+.venv/bin/python capability_index.py ingest --repo <local-repo-path> --db <db-path>
+.venv/bin/python capability_index.py search -q "<capability-query>" --top <k> --db <db-path>
+
+# Verbose diagnostics
+.venv/bin/python capability_index.py search -q "<capability-query>" --db <db-path> --response verbose
+
+# Help and command discovery
+.venv/bin/python capability_index.py help
+.venv/bin/python capability_index.py help search
+
+# Cohort-driven discovery and planning pipeline
+.venv/bin/python phase3/scripts/build_phase3_cohort.py \
+  --targeting-spec <targeting-spec-json> \
+  --repo-registry <repo-registry-json> \
+  --output <cohort-manifest-json>
+
+.venv/bin/python phase3/scripts/run_phase3_discovery.py \
+  --cohort-manifest <cohort-manifest-json> \
+  --capabilities-file <candidate-capabilities-json> \
+  --report <discovery-report-json>
+
+.venv/bin/python phase4/scripts/run_phase4_plan.py \
+  --discovery-report <discovery-report-json> \
+  --stability-report <discovery-report-rerun-json> \
+  --cohort-manifest <cohort-manifest-json> \
+  --output-dir <phase4-output-dir>
 ```
 
 ## Iterative tests

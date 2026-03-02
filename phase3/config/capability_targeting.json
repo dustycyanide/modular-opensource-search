@@ -1,0 +1,98 @@
+{
+  "schema_version": "1.0",
+  "capabilities": [
+    {
+      "name": "repo_indexing_pipeline",
+      "meaning": "Repository intake, traversal, metadata extraction, and index write flow.",
+      "repo_types_sought": [
+        "Code search engine",
+        "Vector database",
+        "Workflow orchestration platform"
+      ],
+      "contrast_repo_types": [
+        "HTTP client library",
+        "Data validation library",
+        "OCR library"
+      ],
+      "min_positive_repos": 3,
+      "min_contrast_repos": 2,
+      "min_distinct_ecosystems": 2,
+      "quality_bar": {
+        "maintained": ["active", "stable"],
+        "require_tests": true,
+        "require_docs": true,
+        "allowed_license_classes": ["permissive", "copyleft"]
+      }
+    },
+    {
+      "name": "semantic_retrieval_stack",
+      "meaning": "Embedding generation, vector similarity search, and retrieval ranking logic.",
+      "repo_types_sought": [
+        "Vector database",
+        "Code search engine",
+        "Evaluation framework"
+      ],
+      "contrast_repo_types": [
+        "HTTP client library",
+        "CLI framework",
+        "OCR application"
+      ],
+      "min_positive_repos": 3,
+      "min_contrast_repos": 2,
+      "min_distinct_ecosystems": 2,
+      "quality_bar": {
+        "maintained": ["active", "stable"],
+        "require_tests": true,
+        "require_docs": true,
+        "allowed_license_classes": ["permissive", "copyleft"]
+      }
+    },
+    {
+      "name": "evaluation_harness",
+      "meaning": "Benchmark datasets, quality metrics, and report comparison workflows.",
+      "repo_types_sought": [
+        "Evaluation framework",
+        "ML evaluation toolkit",
+        "Workflow orchestration platform"
+      ],
+      "contrast_repo_types": [
+        "HTTP client library",
+        "OCR library",
+        "CLI framework"
+      ],
+      "min_positive_repos": 3,
+      "min_contrast_repos": 2,
+      "min_distinct_ecosystems": 2,
+      "quality_bar": {
+        "maintained": ["active", "stable"],
+        "require_tests": true,
+        "require_docs": true,
+        "allowed_license_classes": ["permissive", "copyleft"]
+      }
+    },
+    {
+      "name": "structured_filtering",
+      "meaning": "Filter extraction/parsing and metadata-aware result constraints.",
+      "repo_types_sought": [
+        "Code search engine",
+        "AST search tooling",
+        "Parser infrastructure",
+        "API framework"
+      ],
+      "contrast_repo_types": [
+        "HTTP client library",
+        "OCR application",
+        "OCR library"
+      ],
+      "min_positive_repos": 3,
+      "min_contrast_repos": 2,
+      "min_distinct_ecosystems": 2,
+      "quality_bar": {
+        "maintained": ["active", "stable"],
+        "require_tests": true,
+        "require_docs": true,
+        "allowed_license_classes": ["permissive", "copyleft"]
+      }
+    }
+  ]
+}

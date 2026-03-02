@@ -64,7 +64,11 @@ CODE_EXTENSIONS = {
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Run phase3 capability discovery")
-    parser.add_argument("--repos-file", required=True, help="Path to repos JSON")
+    parser.add_argument("--repos-file", help="Path to repos JSON")
+    parser.add_argument(
+        "--cohort-manifest",
+        help="Optional cohort manifest JSON (preferred source for targeted discovery)",
+    )
     parser.add_argument("--capabilities-file", required=True, help="Path to candidate capabilities JSON")
     parser.add_argument("--repos-root", default="repos", help="Local repo directory")
     parser.add_argument("--report", default="phase3/reports/discovery_report.json", help="Output report JSON")
@@ -74,7 +78,23 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--max-chars-per-file", type=int, default=12_000, help="Maximum chars to read per file")
     parser.add_argument("--max-evidence-per-repo", type=int, default=8, help="Maximum evidence entries per repo")
     parser.add_argument("--clone-missing", action="store_true", help="Clone repositories missing under repos-root")
-    return parser.parse_args()
+    parser.add_argument(
+        "--allow-weak-cohort",
+        action="store_true",
+        help="Proceed even if cohort manifest validation gates failed",
+    )
+    parser.add_argument(
+        "--response",
+        choices=["final", "verbose"],
+        default="final",
+        help="Response detail level (default: final)",
+    )
+    parser.add_argument("--verbose", action="store_true", help="Shortcut for --response verbose")
+
+    args = parser.parse_args()
+    if not args.repos_file and not args.cohort_manifest:
+        parser.error("one of --repos-file or --cohort-manifest is required")
+    return args
 
 
 def load_json(path: Path) -> dict[str, Any]:
@@ -93,8 +113,47 @@ def clone_if_missing(repo_name: str, repo_url: str, repos_root: Path, clone_miss
     if not clone_missing:
         return None, f"missing local repo at {repo_path}"
 
+    if not repo_url:
+        return None, f"cannot clone {repo_name}: missing repo url"
+
     run(["git", "clone", "--depth", "1", repo_url, str(repo_path)])
     return repo_path, None
+
+
+def get_response_mode(args: argparse.Namespace) -> str:
+    if getattr(args, "verbose", False):
+        return "verbose"
+    return getattr(args, "response", "final")
+
+
+def normalize_selected_repos(
+    repos_payload: dict[str, Any] | None,
+    cohort_payload: dict[str, Any] | None,
+) -> tuple[list[dict[str, Any]], str]:
+    if cohort_payload:
+        rows = []
+        for entry in cohort_payload.get("selected_repos", []):
+            if isinstance(entry, str):
+                rows.append({"name": entry, "url": "", "priority": "medium"})
+                continue
+
+            if not isinstance(entry, dict):
+                continue
+            name = entry.get("name")
+            if not name:
+                continue
+            rows.append(
+                {
+                    "name": name,
+                    "url": entry.get("url", ""),
+                    "priority": entry.get("priority", "medium"),
+                }
+            )
+        return rows, "cohort_manifest"
+
+    if repos_payload:
+        return list(repos_payload.get("repos", [])), "repos_file"
+    return [], "none"
 
 
 def iter_text_files(repo_path: Path, max_files: int):
@@ -264,8 +323,10 @@ def quality_rank(label: str) -> int:
 
 def main() -> None:
     args = parse_args()
+    response_mode = get_response_mode(args)
 
-    repos_file = Path(args.repos_file).resolve()
+    repos_file = Path(args.repos_file).resolve() if args.repos_file else None
+    cohort_manifest_path = Path(args.cohort_manifest).resolve() if args.cohort_manifest else None
     capabilities_file = Path(args.capabilities_file).resolve()
     repos_root = (ROOT / args.repos_root).resolve()
     report_path = (ROOT / args.report).resolve()
@@ -273,10 +334,29 @@ def main() -> None:
     repos_root.mkdir(parents=True, exist_ok=True)
     report_path.parent.mkdir(parents=True, exist_ok=True)
 
-    repos_payload = load_json(repos_file)
+    repos_payload = load_json(repos_file) if repos_file else None
+    cohort_payload = load_json(cohort_manifest_path) if cohort_manifest_path else None
     capabilities_payload = load_json(capabilities_file)
 
-    selected_repos = repos_payload.get("repos", [])[: max(args.max_repos, 0)]
+    if cohort_payload and not bool(cohort_payload.get("gate_passed", False)) and not args.allow_weak_cohort:
+        raise SystemExit(
+            "Cohort manifest gate failed. Rebuild cohort or pass --allow-weak-cohort to proceed."
+        )
+
+    selected_repos_all, selected_repo_source = normalize_selected_repos(repos_payload, cohort_payload)
+    selected_repos = selected_repos_all[: max(args.max_repos, 0)]
+    if not selected_repos:
+        raise SystemExit("No repositories selected for discovery.")
+
+    if selected_repo_source == "cohort_manifest" and not args.clone_missing and not args.allow_weak_cohort:
+        missing_local = [repo["name"] for repo in selected_repos if not (repos_root / repo["name"]).exists()]
+        if missing_local:
+            raise SystemExit(
+                "Cohort manifest contains repos missing locally: "
+                f"{', '.join(sorted(missing_local))}. "
+                "Clone them, pass --clone-missing, or use --allow-weak-cohort."
+            )
+
     capabilities = capabilities_payload.get("capabilities", [])
 
     compiled_capabilities = {
@@ -368,7 +448,10 @@ def main() -> None:
     report = {
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "config": {
-            "repos_file": str(repos_file),
+            "repos_file": str(repos_file) if repos_file else None,
+            "cohort_manifest": str(cohort_manifest_path) if cohort_manifest_path else None,
+            "selected_repo_source": selected_repo_source,
+            "cohort_gate_passed": cohort_payload.get("gate_passed") if cohort_payload else None,
             "capabilities_file": str(capabilities_file),
             "repos_root": str(repos_root),
             "max_repos": args.max_repos,
@@ -377,6 +460,7 @@ def main() -> None:
             "max_chars_per_file": args.max_chars_per_file,
             "max_evidence_per_repo": args.max_evidence_per_repo,
             "clone_missing": bool(args.clone_missing),
+            "response_mode": response_mode,
         },
         "repos_indexed": repos_indexed,
         "repos_skipped": repos_skipped,
@@ -386,6 +470,12 @@ def main() -> None:
     report_path.write_text(json.dumps(report, indent=2), encoding="utf-8")
 
     print(f"Wrote phase3 discovery report: {report_path}")
+    if response_mode == "verbose":
+        print(f"Selected repo source: {selected_repo_source}")
+        print(f"Repos indexed={len(repos_indexed)} skipped={len(repos_skipped)}")
+        for skipped in repos_skipped:
+            print(f"  skipped repo={skipped.get('repo')} reason={skipped.get('reason')}")
+
     for capability in capability_reports:
         summary = capability["summary"]
         print(
