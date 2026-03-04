@@ -63,6 +63,12 @@ def build_parser() -> argparse.ArgumentParser:
     eval_parser.add_argument("--dataset-root", default=None, help="CodeSearchNet dataset root")
     eval_parser.add_argument("--languages", default=None, help="Comma-separated language filters")
     eval_parser.add_argument("--max-docs", type=int, default=0, help="Optional corpus size cap")
+    eval_parser.add_argument(
+        "--error-bucket-limit",
+        type=int,
+        default=10,
+        help="Max query/doc entries per error bucket",
+    )
     eval_parser.add_argument("--report-dir", default="reports/codesearchnet", help="Directory for JSON/MD reports")
     eval_parser.add_argument("--max-repos", type=int, default=8, help="Max repositories to discover per query")
     eval_parser.add_argument("--per-repo-hits", type=int, default=8, help="Max lexical hits per repository")
@@ -202,7 +208,11 @@ def main(argv: list[str] | None = None) -> int:
                 local_fallback_dir=args.local_fallback_dir,
                 local_only=args.local_only,
                 github_token=args.github_token,
+                error_bucket_limit=args.error_bucket_limit,
             )
+
+        comparison = _mode_comparison(by_mode, top_k=args.top_k, recall_k=args.recall_k)
+        tuning_queue = _build_tuning_queue(by_mode, top_k=args.top_k, recall_k=args.recall_k)
 
         payload: dict[str, object] = {
             "annotations": annotations,
@@ -210,11 +220,14 @@ def main(argv: list[str] | None = None) -> int:
             "top_k": args.top_k,
             "recall_k": args.recall_k,
             "max_queries": args.max_queries,
+            "error_bucket_limit": args.error_bucket_limit,
             "dataset_root": args.dataset_root,
             "languages": _parse_csv(args.languages),
             "max_docs": args.max_docs,
             "generated_at": datetime.now(timezone.utc).isoformat(),
             "results": by_mode,
+            "comparison": comparison,
+            "tuning_queue": tuning_queue,
         }
 
         report_paths = _write_reports(args.report_dir, payload)
@@ -243,6 +256,7 @@ def _evaluate_mode(
     local_fallback_dir: str,
     local_only: bool,
     github_token: str | None,
+    error_bucket_limit: int,
 ) -> dict[str, object]:
     pipeline = build_pipeline(
         mode=mode,
@@ -261,6 +275,7 @@ def _evaluate_mode(
         top_k=top_k,
         recall_k=recall_k,
         max_queries=max_queries,
+        error_bucket_limit=error_bucket_limit,
     )
     metrics = pipeline.evaluate(annotations)
     return {
@@ -322,9 +337,153 @@ def _render_markdown(payload: dict[str, object]) -> str:
                 for stage, stage_latency in value.items():
                     lines.append(f"  - {stage}: {stage_latency:.3f}")
                 continue
+            if key == "error_buckets" and isinstance(value, dict):
+                lines.extend(_render_error_buckets(value))
+                continue
             lines.append(f"- {key}: {value}")
         lines.append("")
+
+    comparison = payload.get("comparison")
+    if isinstance(comparison, dict):
+        lines.extend(["## Mode Comparison"])
+        ndcg_best = comparison.get("best_by_ndcg")
+        recall_best = comparison.get("best_by_recall")
+        latency_best = comparison.get("fastest_by_total_latency")
+        if ndcg_best:
+            lines.append(f"- Best NDCG: `{ndcg_best}`")
+        if recall_best:
+            lines.append(f"- Best Recall: `{recall_best}`")
+        if latency_best:
+            lines.append(f"- Fastest total latency: `{latency_best}`")
+
+    tuning_queue = payload.get("tuning_queue")
+    if isinstance(tuning_queue, list) and tuning_queue:
+        lines.extend(["", "## Tuning Queue"])
+        for item in tuning_queue:
+            lines.append(f"- {item}")
     return "\n".join(lines).rstrip() + "\n"
+
+
+def _render_error_buckets(error_buckets: dict[str, object]) -> list[str]:
+    lines = ["- error_buckets:"]
+    top_missed = error_buckets.get("top_missed_queries")
+    top_false_positive = error_buckets.get("top_false_positive_queries")
+    common_missed = error_buckets.get("common_missed_doc_ids")
+    common_false_positive = error_buckets.get("common_false_positive_doc_ids")
+
+    if isinstance(top_missed, list):
+        lines.append("  - top_missed_queries:")
+        for row in top_missed[:5]:
+            if not isinstance(row, dict):
+                continue
+            lines.append(
+                f"    - {row.get('query')}: missing={row.get('missing_relevant_count')} relevant={row.get('relevant_count')}"
+            )
+
+    if isinstance(top_false_positive, list):
+        lines.append("  - top_false_positive_queries:")
+        for row in top_false_positive[:5]:
+            if not isinstance(row, dict):
+                continue
+            lines.append(
+                f"    - {row.get('query')}: false_positives={row.get('false_positive_count')}"
+            )
+
+    if isinstance(common_missed, list):
+        lines.append("  - common_missed_doc_ids:")
+        for row in common_missed[:5]:
+            if not isinstance(row, dict):
+                continue
+            lines.append(f"    - {row.get('doc_id')}: {row.get('count')}")
+
+    if isinstance(common_false_positive, list):
+        lines.append("  - common_false_positive_doc_ids:")
+        for row in common_false_positive[:5]:
+            if not isinstance(row, dict):
+                continue
+            lines.append(f"    - {row.get('doc_id')}: {row.get('count')}")
+
+    return lines
+
+
+def _mode_comparison(by_mode: dict[str, dict[str, object]], *, top_k: int, recall_k: int) -> dict[str, object]:
+    ndcg_key = f"ndcg@{top_k}"
+    recall_key = f"recall@{recall_k}"
+    ndcg_ranking = _rank_modes(by_mode, key=ndcg_key, reverse=True)
+    recall_ranking = _rank_modes(by_mode, key=recall_key, reverse=True)
+    latency_ranking = _rank_latency(by_mode)
+    return {
+        "ndcg_ranking": ndcg_ranking,
+        "recall_ranking": recall_ranking,
+        "latency_total_ranking": latency_ranking,
+        "best_by_ndcg": ndcg_ranking[0]["mode"] if ndcg_ranking else None,
+        "best_by_recall": recall_ranking[0]["mode"] if recall_ranking else None,
+        "fastest_by_total_latency": latency_ranking[0]["mode"] if latency_ranking else None,
+    }
+
+
+def _build_tuning_queue(by_mode: dict[str, dict[str, object]], *, top_k: int, recall_k: int) -> list[str]:
+    ndcg_key = f"ndcg@{top_k}"
+    recall_key = f"recall@{recall_k}"
+    lexical_ndcg = _mode_metric(by_mode, mode="lexical", key=ndcg_key)
+    semantic_ndcg = _mode_metric(by_mode, mode="semantic", key=ndcg_key)
+    hybrid_ndcg = _mode_metric(by_mode, mode="hybrid", key=ndcg_key)
+    lexical_recall = _mode_metric(by_mode, mode="lexical", key=recall_key)
+    semantic_recall = _mode_metric(by_mode, mode="semantic", key=recall_key)
+    hybrid_recall = _mode_metric(by_mode, mode="hybrid", key=recall_key)
+
+    queue: list[str] = []
+    if hybrid_ndcg is not None and lexical_ndcg is not None and hybrid_ndcg < lexical_ndcg:
+        queue.append("Tune RRF and reranker weights; lexical beats hybrid on ranking quality.")
+    if hybrid_recall is not None and semantic_recall is not None and hybrid_recall < semantic_recall:
+        queue.append("Increase semantic candidate depth before fusion; hybrid recall trails semantic.")
+    if lexical_recall is not None and semantic_recall is not None and lexical_recall < semantic_recall:
+        queue.append("Add lexical query expansion for identifier splitting and synonyms.")
+    if semantic_ndcg is not None and lexical_ndcg is not None and semantic_ndcg < lexical_ndcg:
+        queue.append("Improve semantic scoring with better embeddings than token overlap baseline.")
+    if not queue:
+        queue.append("Inspect top missed queries and add targeted reranker features for those patterns.")
+    return queue
+
+
+def _rank_modes(by_mode: dict[str, dict[str, object]], *, key: str, reverse: bool) -> list[dict[str, object]]:
+    rows: list[dict[str, object]] = []
+    for mode, report in by_mode.items():
+        metrics = report.get("metrics") if isinstance(report, dict) else None
+        if not isinstance(metrics, dict):
+            continue
+        value = metrics.get(key)
+        if isinstance(value, (float, int)):
+            rows.append({"mode": mode, "value": float(value)})
+    rows.sort(key=lambda item: item["value"], reverse=reverse)
+    return rows
+
+
+def _rank_latency(by_mode: dict[str, dict[str, object]]) -> list[dict[str, object]]:
+    rows: list[dict[str, object]] = []
+    for mode, report in by_mode.items():
+        metrics = report.get("metrics") if isinstance(report, dict) else None
+        if not isinstance(metrics, dict):
+            continue
+        latency = metrics.get("latency_ms")
+        if not isinstance(latency, dict):
+            continue
+        total = latency.get("total")
+        if isinstance(total, (float, int)):
+            rows.append({"mode": mode, "value": float(total)})
+    rows.sort(key=lambda item: item["value"])
+    return rows
+
+
+def _mode_metric(by_mode: dict[str, dict[str, object]], *, mode: str, key: str) -> float | None:
+    report = by_mode.get(mode)
+    metrics = report.get("metrics") if isinstance(report, dict) else None
+    if not isinstance(metrics, dict):
+        return None
+    value = metrics.get(key)
+    if isinstance(value, (float, int)):
+        return float(value)
+    return None
 
 
 def _parse_csv(value: str | None) -> list[str]:

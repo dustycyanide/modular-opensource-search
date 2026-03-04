@@ -1,0 +1,777 @@
+{
+  "annotations": "data/external/codesearchnet/resources/annotationStore.csv",
+  "queries": "data/external/codesearchnet/resources/queries.csv",
+  "top_k": 10,
+  "recall_k": 50,
+  "max_queries": 99,
+  "error_bucket_limit": 10,
+  "dataset_root": "data/external/codesearchnet",
+  "languages": [
+    "python"
+  ],
+  "max_docs": 200000,
+  "generated_at": "2026-03-04T16:36:17.781614+00:00",
+  "results": {
+    "lexical": {
+      "mode": "lexical",
+      "metrics": {
+        "query_count": 99,
+        "ndcg@10": 0.010196270827295182,
+        "mrr@10": 0.031184864518197852,
+        "recall@50": 0.01914895217848887,
+        "latency_ms": {
+          "discover": 0.000495959595959596,
+          "fuse": 0.3397727272727272,
+          "ingest": 0.0003565656565656569,
+          "lexical": 530.9959777777783,
+          "package": 0.10561616161616161,
+          "rerank": 0.24017979797979802,
+          "semantic": 0.0017474747474747485,
+          "total": 531.6957202020204
+        },
+        "error_buckets": {
+          "top_missed_queries": [
+            {
+              "query": "format date",
+              "missing_relevant_count": 32,
+              "relevant_count": 33,
+              "top_predicted_ids": [
+                "usc-isi-i2/etk/examples/ontology_api/create_kg_with_alignment_ontology.py",
+                "awslabs/serverless-application-model/examples/apps/lex-make-appointment-python/lambda_function.py",
+                "wadda/gps3/examples/human.py"
+              ],
+              "missing_relevant_ids": [
+                "abilian/abilian-core/abilian/web/admin/panels/audit.py",
+                "alexanderzaytsev/human_date/lib/human_date/view_helpers.rb",
+                "altbeacon/android-beacon-library/lib/src/main/java/org/altbeacon/beacon/service/stats.java",
+                "antaresproject/core/src/utils/date/src/dateformatter.php",
+                "bernardfw/bernard/src/bernard/i18n/_formatter.py"
+              ]
+            },
+            {
+              "query": "encode url",
+              "missing_relevant_count": 32,
+              "relevant_count": 32,
+              "top_predicted_ids": [
+                "pywbem/pywbem/examples/send_indications.py",
+                "pypa/pipenv/pipenv/vendor/urllib3/util/url.py",
+                "maas/python-libmaas/maas/client/bones/helpers.py"
+              ],
+              "missing_relevant_ids": [
+                "bmwcarit/joynr/java/core/clustercontroller/src/main/java/io/joynr/messaging/http/urlresolver.java",
+                "cloudfoundry/uaa/server/src/main/java/org/cloudfoundry/identity/uaa/oauth/uaaauthorizationendpoint.java",
+                "couchbase/couchbase-python-client/couchbase/connstr.py",
+                "defensio/defensio-python/defensio/__init__.py",
+                "dustin/twitty-twister/twittytwister/twitter.py"
+              ]
+            },
+            {
+              "query": "how to extract zip file recursively",
+              "missing_relevant_count": 32,
+              "relevant_count": 32,
+              "top_predicted_ids": [
+                "rwl/pylon/pylon/io/rst.py",
+                "klahnakoski/pylibrary/tuid/service.py",
+                "pandas-dev/pandas/pandas/core/resample.py"
+              ],
+              "missing_relevant_ids": [
+                "acciocms/core/src/app/commands/plugininstall.php",
+                "beli4l/subz-hero/src/providers/subscene.js",
+                "bokeh/bokeh/examples/app/stocks/download_sample_data.py",
+                "buildinspace/peru/peru/resources/plugins/curl/curl_plugin.py",
+                "centic9/commons-dost/src/main/java/org/dstadler/commons/zip/ziputils.java"
+              ]
+            },
+            {
+              "query": "parse command line argument",
+              "missing_relevant_count": 30,
+              "relevant_count": 30,
+              "top_predicted_ids": [
+                "scip-interfaces/pyscipopt/examples/finished/read_tsplib.py",
+                "rasbt/biopandas/docs/make_api.py",
+                "jonhadfield/creds/lib/creds/users.py"
+              ],
+              "missing_relevant_ids": [
+                "axilirator/cayman/cayman.js",
+                "baratine/baratine/framework/src/main/java/com/caucho/v5/cli/spi/commandlineparser.java",
+                "bjmorgan/vasppy/vasppy/scripts/check_species.py",
+                "bjmorgan/vasppy/vasppy/scripts/proc_poscar.py",
+                "bjmorgan/vasppy/vasppy/scripts/rotate_poscar.py"
+              ]
+            },
+            {
+              "query": "get the description of a http status code",
+              "missing_relevant_count": 29,
+              "relevant_count": 29,
+              "top_predicted_ids": [
+                "learningequality/ricecooker/examples/sample_program.py",
+                "endurantdevs/webargs-sanic/examples/user_simple_storage/extentions/helpers.py",
+                "zsethna/olga/olga/generation_probability.py"
+              ],
+              "missing_relevant_ids": [
+                "addicticks/httpsupload/src/main/java/com/addicticks/net/httpsupload/utils.java",
+                "apache/predictionio-sdk-ruby/lib/predictionio/event_client.rb",
+                "cherrylabs/arx-core/src/arx/classes/convert.php",
+                "cloudendpoints/endpoints-python/endpoints/errors.py",
+                "cmcampione/thingshub.org/server/src/server.js"
+              ]
+            },
+            {
+              "query": "create cookie",
+              "missing_relevant_count": 27,
+              "relevant_count": 29,
+              "top_predicted_ids": [
+                "splunk/splunk-sdk-python/examples/analytics/bottle.py",
+                "inm-6/hybridlfpy/examples/brunel_alpha_nest.py",
+                "aio-libs/aiohttp/aiohttp/cookiejar.py"
+              ],
+              "missing_relevant_ids": [
+                "apache/spark/sql/hive-thriftserver/src/main/java/org/apache/hive/service/cli/thrift/thrifthttpservlet.java",
+                "chriskite/anemone/lib/anemone/cookie_store.rb",
+                "concrete5/concrete5/concrete/src/cookie/responsecookiejar.php",
+                "couchbase/couchbase-lite-java-core/src/main/java/com/couchbase/lite/support/persistentcookiejar.java",
+                "cygnite/framework/src/cygnite/common/input/input.php"
+              ]
+            },
+            {
+              "query": "parse json file",
+              "missing_relevant_count": 27,
+              "relevant_count": 27,
+              "top_predicted_ids": [
+                "rwl/pylon/pylon/io/rst.py",
+                "klahnakoski/pylibrary/tuid/service.py",
+                "bdnyc/astrodbkit/astrodbkit/astrodb.py"
+              ],
+              "missing_relevant_ids": [
+                "bolt/bolt/src/storage/entity/logchange.php",
+                "campsi/campsi/lib/modules/parsejson.js",
+                "cloudfoundry/cli/cf/util/json/json_parser.go",
+                "composer/composer/src/composer/json/jsonfile.php",
+                "composer/composer/src/composer/package/loader/jsonloader.php"
+              ]
+            },
+            {
+              "query": "finding time elapsed using a timer",
+              "missing_relevant_count": 26,
+              "relevant_count": 26,
+              "top_predicted_ids": [
+                "vtkiorg/vtki/vtki/examples/examples.py",
+                "tensorflow/cleverhans/examples/nips17_adversarial_competition/dev_toolkit/run_attacks_and_defenses.py",
+                "gunthercox/chatterbot/chatterbot/parsing.py"
+              ],
+              "missing_relevant_ids": [
+                "47colborne/exel/lib/exel/processor_helper.rb",
+                "actframework/actframework/src/main/java/act/metric/simplemetricstore.java",
+                "afriemann/simple_tools/simple_tools/contextmanagers/time.py",
+                "alexmojaki/littleutils/littleutils/__init__.py",
+                "andrewramsay/sk8-drivers/pysk8/calibration/sk8_calibration_gui.py"
+              ]
+            },
+            {
+              "query": "get current ip address",
+              "missing_relevant_count": 26,
+              "relevant_count": 26,
+              "top_predicted_ids": [
+                "learningequality/ricecooker/examples/sample_program.py",
+                "programa-stic/barf-project/examples/misc/check_paths.x86.py",
+                "miserlou/zappa/zappa/cli.py"
+              ],
+              "missing_relevant_ids": [
+                "alibaba/otter/shared/common/src/main/java/com/alibaba/otter/shared/common/utils/addressutils.java",
+                "baratine/baratine/web/src/main/java/com/caucho/v5/io/socketsystem.java",
+                "briancsparks/js-aws/lib/ec2/ec2.js",
+                "cgmartin/express-api-server/src/middleware/request-logger.js",
+                "danielfrg/datasciencebox/datasciencebox/core/cloud/instance.py"
+              ]
+            },
+            {
+              "query": "how to check if a checkbox is checked",
+              "missing_relevant_count": 26,
+              "relevant_count": 26,
+              "top_predicted_ids": [
+                "markchil/gptools/gptools/utils.py",
+                "markchil/gptools/gptools/gaussian_process.py",
+                "vital-fernandez/dazer/bin/lib/math_libraries/fitting_methods.py"
+              ],
+              "missing_relevant_ids": [
+                "aloetesting/aloe_webdriver/aloe_webdriver/__init__.py",
+                "bbangert/lettuce_webdriver/lettuce_webdriver/webdriver.py",
+                "datacleaner/datacleaner/desktop/ui/src/main/java/org/datacleaner/widgets/properties/abstractmultiplecheckboxespropertywidget.java",
+                "dlr-rm/rafcon/source/rafcon/gui/utils/dialog.py",
+                "groupon/robo-remote/roboremoteclient/src/main/com/groupon/roboremote/roboremoteclient/solo.java"
+              ]
+            }
+          ],
+          "top_false_positive_queries": [],
+          "common_missed_doc_ids": [
+            {
+              "doc_id": "aleju/imgaug/imgaug/augmentables/heatmaps.py",
+              "count": 2
+            },
+            {
+              "doc_id": "aloetesting/aloe_webdriver/aloe_webdriver/__init__.py",
+              "count": 2
+            },
+            {
+              "doc_id": "ankane/pgslice/lib/pgslice/helpers.rb",
+              "count": 2
+            },
+            {
+              "doc_id": "bbangert/lettuce_webdriver/lettuce_webdriver/webdriver.py",
+              "count": 2
+            },
+            {
+              "doc_id": "blackdoor/blackdoor/src/main/java/black/door/crypto/crypto.java",
+              "count": 2
+            },
+            {
+              "doc_id": "bonigarcia/webdrivermanager/src/main/java/io/github/bonigarcia/wdm/downloader.java",
+              "count": 2
+            },
+            {
+              "doc_id": "brunocvcunha/inutils4j/src/main/java/org/brunocvcunha/inutils4j/mystringutils.java",
+              "count": 2
+            },
+            {
+              "doc_id": "chriscummins/labm8/text.py",
+              "count": 2
+            },
+            {
+              "doc_id": "cloudfoundry/cli/cf/util/json/json_parser.go",
+              "count": 2
+            },
+            {
+              "doc_id": "coveros/selenified/src/main/java/com/coveros/selenified/utilities/reporter.java",
+              "count": 2
+            }
+          ],
+          "common_false_positive_doc_ids": []
+        }
+      }
+    },
+    "semantic": {
+      "mode": "semantic",
+      "metrics": {
+        "query_count": 99,
+        "ndcg@10": 0.01840370856463801,
+        "mrr@10": 0.050701459034792375,
+        "recall@50": 0.035498947744135013,
+        "latency_ms": {
+          "discover": 0.0006141414141414143,
+          "fuse": 0.3509545454545456,
+          "ingest": 0.0003131313131313136,
+          "lexical": 0.00048181818181818184,
+          "package": 0.10605757575757575,
+          "rerank": 0.24197777777777782,
+          "semantic": 351.18021313131294,
+          "total": 351.890407070707
+        },
+        "error_buckets": {
+          "top_missed_queries": [
+            {
+              "query": "format date",
+              "missing_relevant_count": 32,
+              "relevant_count": 33,
+              "top_predicted_ids": [
+                "usc-isi-i2/etk/examples/ontology_api/create_kg_with_alignment_ontology.py",
+                "jmoiron/speedparser/speedparser/feedparsercompat.py",
+                "threatconnect-inc/tcex/tcex/tcex_ti/mappings/task.py"
+              ],
+              "missing_relevant_ids": [
+                "abilian/abilian-core/abilian/web/admin/panels/audit.py",
+                "alexanderzaytsev/human_date/lib/human_date/view_helpers.rb",
+                "altbeacon/android-beacon-library/lib/src/main/java/org/altbeacon/beacon/service/stats.java",
+                "antaresproject/core/src/utils/date/src/dateformatter.php",
+                "binux/pyspider/pyspider/libs/utils.py"
+              ]
+            },
+            {
+              "query": "encode url",
+              "missing_relevant_count": 32,
+              "relevant_count": 32,
+              "top_predicted_ids": [
+                "ellethee/argparseinator/examples/httprequest.py",
+                "ellethee/argparseinator/examples/httprequest.py",
+                "jstitch/mambupy/mambupy/mambuutil.py"
+              ],
+              "missing_relevant_ids": [
+                "bmwcarit/joynr/java/core/clustercontroller/src/main/java/io/joynr/messaging/http/urlresolver.java",
+                "cloudfoundry/uaa/server/src/main/java/org/cloudfoundry/identity/uaa/oauth/uaaauthorizationendpoint.java",
+                "couchbase/couchbase-python-client/couchbase/connstr.py",
+                "defensio/defensio-python/defensio/__init__.py",
+                "dustin/twitty-twister/twittytwister/twitter.py"
+              ]
+            },
+            {
+              "query": "how to extract zip file recursively",
+              "missing_relevant_count": 31,
+              "relevant_count": 32,
+              "top_predicted_ids": [
+                "bokeh/bokeh/examples/app/stocks/download_sample_data.py",
+                "automl/hpbandster/hpbandster/examples/plot_example_7_interactive_plot.py",
+                "microsoft/azure-devops-python-api/azure-devops/azure/devops/v5_1/git/git_client_base.py"
+              ],
+              "missing_relevant_ids": [
+                "acciocms/core/src/app/commands/plugininstall.php",
+                "beli4l/subz-hero/src/providers/subscene.js",
+                "buildinspace/peru/peru/resources/plugins/curl/curl_plugin.py",
+                "centic9/commons-dost/src/main/java/org/dstadler/commons/zip/ziputils.java",
+                "demosdemon/format-pipfile/ci/appveyor-download.py"
+              ]
+            },
+            {
+              "query": "parse command line argument",
+              "missing_relevant_count": 30,
+              "relevant_count": 30,
+              "top_predicted_ids": [
+                "pywbem/pywbem/examples/enumerator_generator.py",
+                "pywbem/pywbem/examples/enumerator_generator.py",
+                "praekeltfoundation/seaworthy/docs/apigen.py"
+              ],
+              "missing_relevant_ids": [
+                "axilirator/cayman/cayman.js",
+                "baratine/baratine/framework/src/main/java/com/caucho/v5/cli/spi/commandlineparser.java",
+                "bjmorgan/vasppy/vasppy/scripts/check_species.py",
+                "bjmorgan/vasppy/vasppy/scripts/proc_poscar.py",
+                "bjmorgan/vasppy/vasppy/scripts/rotate_poscar.py"
+              ]
+            },
+            {
+              "query": "get the description of a http status code",
+              "missing_relevant_count": 29,
+              "relevant_count": 29,
+              "top_predicted_ids": [
+                "awslabs/serverless-application-model/examples/apps/microservice-http-endpoint-python3/lambda_function.py",
+                "awslabs/serverless-application-model/examples/apps/microservice-http-endpoint-python/lambda_function.py",
+                "endurantdevs/webargs-sanic/examples/user_simple_storage/extentions/helpers.py"
+              ],
+              "missing_relevant_ids": [
+                "addicticks/httpsupload/src/main/java/com/addicticks/net/httpsupload/utils.java",
+                "apache/predictionio-sdk-ruby/lib/predictionio/event_client.rb",
+                "cherrylabs/arx-core/src/arx/classes/convert.php",
+                "cloudendpoints/endpoints-python/endpoints/errors.py",
+                "cmcampione/thingshub.org/server/src/server.js"
+              ]
+            },
+            {
+              "query": "create cookie",
+              "missing_relevant_count": 27,
+              "relevant_count": 29,
+              "top_predicted_ids": [
+                "splunk/splunk-sdk-python/examples/analytics/bottle.py",
+                "splunk/splunk-sdk-python/examples/analytics/bottle.py",
+                "splunk/splunk-sdk-python/examples/analytics/bottle.py"
+              ],
+              "missing_relevant_ids": [
+                "apache/spark/sql/hive-thriftserver/src/main/java/org/apache/hive/service/cli/thrift/thrifthttpservlet.java",
+                "chriskite/anemone/lib/anemone/cookie_store.rb",
+                "concrete5/concrete5/concrete/src/cookie/responsecookiejar.php",
+                "couchbase/couchbase-lite-java-core/src/main/java/com/couchbase/lite/support/persistentcookiejar.java",
+                "cygnite/framework/src/cygnite/common/input/input.php"
+              ]
+            },
+            {
+              "query": "parse json file",
+              "missing_relevant_count": 26,
+              "relevant_count": 27,
+              "top_predicted_ids": [
+                "intelsdi-x/snap-plugin-lib-py/examples/publisher/file.py",
+                "guma44/geoparse/geoparse/geoparse.py",
+                "the01/python-flotils/flotils/loadable.py"
+              ],
+              "missing_relevant_ids": [
+                "bolt/bolt/src/storage/entity/logchange.php",
+                "campsi/campsi/lib/modules/parsejson.js",
+                "cloudfoundry/cli/cf/util/json/json_parser.go",
+                "composer/composer/src/composer/json/jsonfile.php",
+                "composer/composer/src/composer/package/loader/jsonloader.php"
+              ]
+            },
+            {
+              "query": "read properties file",
+              "missing_relevant_count": 26,
+              "relevant_count": 27,
+              "top_predicted_ids": [
+                "pr-omethe-us/pyked/pyked/converters.py",
+                "niemasd/treeswift/treeswift/tree.py",
+                "wonambi-python/wonambi/wonambi/ioeeg/ktlx.py"
+              ],
+              "missing_relevant_ids": [
+                "acciocms/core/src/app/services/environment.php",
+                "caruby/core/lib/caruby/helpers/properties.rb",
+                "clarete/s3sync/lib/s3sync/config.rb",
+                "crs4/pydoop/pydoop/__init__.py",
+                "dehuinet/minxing-devtools-core/utils/index.js"
+              ]
+            },
+            {
+              "query": "finding time elapsed using a timer",
+              "missing_relevant_count": 26,
+              "relevant_count": 26,
+              "top_predicted_ids": [
+                "sawcordwell/pymdptoolbox/src/examples/firemdp.py",
+                "jobovy/galpy/galpy/orbit/orbittop.py",
+                "astooke/gtimer/gtimer/public/timer.py"
+              ],
+              "missing_relevant_ids": [
+                "47colborne/exel/lib/exel/processor_helper.rb",
+                "actframework/actframework/src/main/java/act/metric/simplemetricstore.java",
+                "afriemann/simple_tools/simple_tools/contextmanagers/time.py",
+                "alexmojaki/littleutils/littleutils/__init__.py",
+                "andrewramsay/sk8-drivers/pysk8/calibration/sk8_calibration_gui.py"
+              ]
+            },
+            {
+              "query": "how to check if a checkbox is checked",
+              "missing_relevant_count": 26,
+              "relevant_count": 26,
+              "top_predicted_ids": [
+                "awslabs/serverless-application-model/examples/apps/lex-make-appointment-python/lambda_function.py",
+                "splunk/splunk-sdk-python/examples/analytics/bottle.py",
+                "btr1975/ipaddresstools/ipaddresstools/ipaddresstools.py"
+              ],
+              "missing_relevant_ids": [
+                "aloetesting/aloe_webdriver/aloe_webdriver/__init__.py",
+                "bbangert/lettuce_webdriver/lettuce_webdriver/webdriver.py",
+                "datacleaner/datacleaner/desktop/ui/src/main/java/org/datacleaner/widgets/properties/abstractmultiplecheckboxespropertywidget.java",
+                "dlr-rm/rafcon/source/rafcon/gui/utils/dialog.py",
+                "groupon/robo-remote/roboremoteclient/src/main/com/groupon/roboremote/roboremoteclient/solo.java"
+              ]
+            }
+          ],
+          "top_false_positive_queries": [],
+          "common_missed_doc_ids": [
+            {
+              "doc_id": "aleju/imgaug/imgaug/augmentables/heatmaps.py",
+              "count": 2
+            },
+            {
+              "doc_id": "aloetesting/aloe_webdriver/aloe_webdriver/__init__.py",
+              "count": 2
+            },
+            {
+              "doc_id": "ankane/pgslice/lib/pgslice/helpers.rb",
+              "count": 2
+            },
+            {
+              "doc_id": "bbangert/lettuce_webdriver/lettuce_webdriver/webdriver.py",
+              "count": 2
+            },
+            {
+              "doc_id": "blackdoor/blackdoor/src/main/java/black/door/crypto/crypto.java",
+              "count": 2
+            },
+            {
+              "doc_id": "bonigarcia/webdrivermanager/src/main/java/io/github/bonigarcia/wdm/downloader.java",
+              "count": 2
+            },
+            {
+              "doc_id": "brunocvcunha/inutils4j/src/main/java/org/brunocvcunha/inutils4j/mystringutils.java",
+              "count": 2
+            },
+            {
+              "doc_id": "chriscummins/labm8/text.py",
+              "count": 2
+            },
+            {
+              "doc_id": "cloudfoundry/cli/cf/util/json/json_parser.go",
+              "count": 2
+            },
+            {
+              "doc_id": "coveros/selenified/src/main/java/com/coveros/selenified/utilities/reporter.java",
+              "count": 2
+            }
+          ],
+          "common_false_positive_doc_ids": []
+        }
+      }
+    },
+    "hybrid": {
+      "mode": "hybrid",
+      "metrics": {
+        "query_count": 99,
+        "ndcg@10": 0.02075860192861696,
+        "mrr@10": 0.07103976270642938,
+        "recall@50": 0.04082065585031143,
+        "latency_ms": {
+          "discover": 0.0042989898989898995,
+          "fuse": 70.1742121212121,
+          "ingest": 0.0002818181818181821,
+          "lexical": 786.9914212121212,
+          "package": 0.18985959595959592,
+          "rerank": 0.32757474747474746,
+          "semantic": 262.15351818181813,
+          "total": 1119.8877202020199
+        },
+        "error_buckets": {
+          "top_missed_queries": [
+            {
+              "query": "format date",
+              "missing_relevant_count": 32,
+              "relevant_count": 33,
+              "top_predicted_ids": [
+                "usc-isi-i2/etk/examples/ontology_api/create_kg_with_alignment_ontology.py",
+                "awslabs/serverless-application-model/examples/apps/lex-make-appointment-python/lambda_function.py",
+                "wadda/gps3/examples/human.py"
+              ],
+              "missing_relevant_ids": [
+                "abilian/abilian-core/abilian/web/admin/panels/audit.py",
+                "alexanderzaytsev/human_date/lib/human_date/view_helpers.rb",
+                "altbeacon/android-beacon-library/lib/src/main/java/org/altbeacon/beacon/service/stats.java",
+                "antaresproject/core/src/utils/date/src/dateformatter.php",
+                "binux/pyspider/pyspider/libs/utils.py"
+              ]
+            },
+            {
+              "query": "encode url",
+              "missing_relevant_count": 32,
+              "relevant_count": 32,
+              "top_predicted_ids": [
+                "ellethee/argparseinator/examples/httprequest.py",
+                "jstitch/mambupy/mambupy/mambuutil.py",
+                "codeinthehole/purl/purl/url.py"
+              ],
+              "missing_relevant_ids": [
+                "bmwcarit/joynr/java/core/clustercontroller/src/main/java/io/joynr/messaging/http/urlresolver.java",
+                "cloudfoundry/uaa/server/src/main/java/org/cloudfoundry/identity/uaa/oauth/uaaauthorizationendpoint.java",
+                "couchbase/couchbase-python-client/couchbase/connstr.py",
+                "defensio/defensio-python/defensio/__init__.py",
+                "dustin/twitty-twister/twittytwister/twitter.py"
+              ]
+            },
+            {
+              "query": "how to extract zip file recursively",
+              "missing_relevant_count": 31,
+              "relevant_count": 32,
+              "top_predicted_ids": [
+                "bokeh/bokeh/examples/app/stocks/download_sample_data.py",
+                "rwl/pylon/pylon/io/rst.py",
+                "klahnakoski/pylibrary/tuid/service.py"
+              ],
+              "missing_relevant_ids": [
+                "acciocms/core/src/app/commands/plugininstall.php",
+                "beli4l/subz-hero/src/providers/subscene.js",
+                "buildinspace/peru/peru/resources/plugins/curl/curl_plugin.py",
+                "centic9/commons-dost/src/main/java/org/dstadler/commons/zip/ziputils.java",
+                "demosdemon/format-pipfile/ci/appveyor-download.py"
+              ]
+            },
+            {
+              "query": "parse command line argument",
+              "missing_relevant_count": 30,
+              "relevant_count": 30,
+              "top_predicted_ids": [
+                "scip-interfaces/pyscipopt/examples/finished/read_tsplib.py",
+                "pywbem/pywbem/examples/enumerator_generator.py",
+                "praekeltfoundation/seaworthy/docs/apigen.py"
+              ],
+              "missing_relevant_ids": [
+                "axilirator/cayman/cayman.js",
+                "baratine/baratine/framework/src/main/java/com/caucho/v5/cli/spi/commandlineparser.java",
+                "bjmorgan/vasppy/vasppy/scripts/check_species.py",
+                "bjmorgan/vasppy/vasppy/scripts/proc_poscar.py",
+                "bjmorgan/vasppy/vasppy/scripts/rotate_poscar.py"
+              ]
+            },
+            {
+              "query": "get the description of a http status code",
+              "missing_relevant_count": 29,
+              "relevant_count": 29,
+              "top_predicted_ids": [
+                "learningequality/ricecooker/examples/sample_program.py",
+                "endurantdevs/webargs-sanic/examples/user_simple_storage/extentions/helpers.py",
+                "awslabs/serverless-application-model/examples/apps/microservice-http-endpoint-python3/lambda_function.py"
+              ],
+              "missing_relevant_ids": [
+                "addicticks/httpsupload/src/main/java/com/addicticks/net/httpsupload/utils.java",
+                "apache/predictionio-sdk-ruby/lib/predictionio/event_client.rb",
+                "cherrylabs/arx-core/src/arx/classes/convert.php",
+                "cloudendpoints/endpoints-python/endpoints/errors.py",
+                "cmcampione/thingshub.org/server/src/server.js"
+              ]
+            },
+            {
+              "query": "create cookie",
+              "missing_relevant_count": 26,
+              "relevant_count": 29,
+              "top_predicted_ids": [
+                "splunk/splunk-sdk-python/examples/analytics/bottle.py",
+                "splunk/splunk-sdk-python/examples/analytics/bottle.py",
+                "splunk/splunk-sdk-python/examples/analytics/bottle.py"
+              ],
+              "missing_relevant_ids": [
+                "apache/spark/sql/hive-thriftserver/src/main/java/org/apache/hive/service/cli/thrift/thrifthttpservlet.java",
+                "chriskite/anemone/lib/anemone/cookie_store.rb",
+                "concrete5/concrete5/concrete/src/cookie/responsecookiejar.php",
+                "couchbase/couchbase-lite-java-core/src/main/java/com/couchbase/lite/support/persistentcookiejar.java",
+                "cygnite/framework/src/cygnite/common/input/input.php"
+              ]
+            },
+            {
+              "query": "parse json file",
+              "missing_relevant_count": 26,
+              "relevant_count": 27,
+              "top_predicted_ids": [
+                "rwl/pylon/pylon/io/rst.py",
+                "the01/python-flotils/flotils/loadable.py",
+                "guma44/geoparse/geoparse/geoparse.py"
+              ],
+              "missing_relevant_ids": [
+                "bolt/bolt/src/storage/entity/logchange.php",
+                "campsi/campsi/lib/modules/parsejson.js",
+                "cloudfoundry/cli/cf/util/json/json_parser.go",
+                "composer/composer/src/composer/json/jsonfile.php",
+                "composer/composer/src/composer/package/loader/jsonloader.php"
+              ]
+            },
+            {
+              "query": "read properties file",
+              "missing_relevant_count": 26,
+              "relevant_count": 27,
+              "top_predicted_ids": [
+                "perrygeo/simanneal/examples/watershed/shapefile.py",
+                "rwl/pylon/pylon/io/rst.py",
+                "cloudbase/python-hnvclient/hnv/client.py"
+              ],
+              "missing_relevant_ids": [
+                "acciocms/core/src/app/services/environment.php",
+                "caruby/core/lib/caruby/helpers/properties.rb",
+                "clarete/s3sync/lib/s3sync/config.rb",
+                "crs4/pydoop/pydoop/__init__.py",
+                "dehuinet/minxing-devtools-core/utils/index.js"
+              ]
+            },
+            {
+              "query": "finding time elapsed using a timer",
+              "missing_relevant_count": 26,
+              "relevant_count": 26,
+              "top_predicted_ids": [
+                "vtkiorg/vtki/vtki/examples/examples.py",
+                "sawcordwell/pymdptoolbox/src/examples/firemdp.py",
+                "jobovy/galpy/galpy/orbit/orbittop.py"
+              ],
+              "missing_relevant_ids": [
+                "47colborne/exel/lib/exel/processor_helper.rb",
+                "actframework/actframework/src/main/java/act/metric/simplemetricstore.java",
+                "afriemann/simple_tools/simple_tools/contextmanagers/time.py",
+                "alexmojaki/littleutils/littleutils/__init__.py",
+                "andrewramsay/sk8-drivers/pysk8/calibration/sk8_calibration_gui.py"
+              ]
+            },
+            {
+              "query": "how to check if a checkbox is checked",
+              "missing_relevant_count": 26,
+              "relevant_count": 26,
+              "top_predicted_ids": [
+                "btr1975/ipaddresstools/ipaddresstools/ipaddresstools.py",
+                "joseantfer/pyny3d/pyny3d/geoms.py",
+                "django-extensions/django-extensions/django_extensions/management/commands/pipchecker.py"
+              ],
+              "missing_relevant_ids": [
+                "aloetesting/aloe_webdriver/aloe_webdriver/__init__.py",
+                "bbangert/lettuce_webdriver/lettuce_webdriver/webdriver.py",
+                "datacleaner/datacleaner/desktop/ui/src/main/java/org/datacleaner/widgets/properties/abstractmultiplecheckboxespropertywidget.java",
+                "dlr-rm/rafcon/source/rafcon/gui/utils/dialog.py",
+                "groupon/robo-remote/roboremoteclient/src/main/com/groupon/roboremote/roboremoteclient/solo.java"
+              ]
+            }
+          ],
+          "top_false_positive_queries": [],
+          "common_missed_doc_ids": [
+            {
+              "doc_id": "aleju/imgaug/imgaug/augmentables/heatmaps.py",
+              "count": 2
+            },
+            {
+              "doc_id": "aloetesting/aloe_webdriver/aloe_webdriver/__init__.py",
+              "count": 2
+            },
+            {
+              "doc_id": "ankane/pgslice/lib/pgslice/helpers.rb",
+              "count": 2
+            },
+            {
+              "doc_id": "bbangert/lettuce_webdriver/lettuce_webdriver/webdriver.py",
+              "count": 2
+            },
+            {
+              "doc_id": "blackdoor/blackdoor/src/main/java/black/door/crypto/crypto.java",
+              "count": 2
+            },
+            {
+              "doc_id": "bonigarcia/webdrivermanager/src/main/java/io/github/bonigarcia/wdm/downloader.java",
+              "count": 2
+            },
+            {
+              "doc_id": "brunocvcunha/inutils4j/src/main/java/org/brunocvcunha/inutils4j/mystringutils.java",
+              "count": 2
+            },
+            {
+              "doc_id": "chriscummins/labm8/text.py",
+              "count": 2
+            },
+            {
+              "doc_id": "cloudfoundry/cli/cf/util/json/json_parser.go",
+              "count": 2
+            },
+            {
+              "doc_id": "coveros/selenified/src/main/java/com/coveros/selenified/utilities/reporter.java",
+              "count": 2
+            }
+          ],
+          "common_false_positive_doc_ids": []
+        }
+      }
+    }
+  },
+  "comparison": {
+    "ndcg_ranking": [
+      {
+        "mode": "hybrid",
+        "value": 0.02075860192861696
+      },
+      {
+        "mode": "semantic",
+        "value": 0.01840370856463801
+      },
+      {
+        "mode": "lexical",
+        "value": 0.010196270827295182
+      }
+    ],
+    "recall_ranking": [
+      {
+        "mode": "hybrid",
+        "value": 0.04082065585031143
+      },
+      {
+        "mode": "semantic",
+        "value": 0.035498947744135013
+      },
+      {
+        "mode": "lexical",
+        "value": 0.01914895217848887
+      }
+    ],
+    "latency_total_ranking": [
+      {
+        "mode": "semantic",
+        "value": 351.890407070707
+      },
+      {
+        "mode": "lexical",
+        "value": 531.6957202020204
+      },
+      {
+        "mode": "hybrid",
+        "value": 1119.8877202020199
+      }
+    ],
+    "best_by_ndcg": "hybrid",
+    "best_by_recall": "hybrid",
+    "fastest_by_total_latency": "semantic"
+  },
+  "tuning_queue": [
+    "Add lexical query expansion for identifier splitting and synonyms."
+  ]
+}

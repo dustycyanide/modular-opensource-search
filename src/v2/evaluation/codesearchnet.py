@@ -18,12 +18,14 @@ class CodeSearchNetEvaluator:
         top_k: int = 10,
         recall_k: int = 50,
         max_queries: int = 20,
+        error_bucket_limit: int = 10,
     ) -> None:
         self.run_query = run_query
         self.queries_path = queries_path
         self.top_k = top_k
         self.recall_k = recall_k
         self.max_queries = max_queries
+        self.error_bucket_limit = max(1, error_bucket_limit)
 
     def evaluate(self, annotations_path: str) -> dict[str, Any]:
         annotations = _load_annotations(annotations_path)
@@ -42,12 +44,14 @@ class CodeSearchNetEvaluator:
                 mrr_key: 0.0,
                 recall_key: 0.0,
                 "latency_ms": {},
+                "error_buckets": _build_error_buckets([], limit=self.error_bucket_limit),
             }
 
         ndcg_scores: list[float] = []
         mrr_scores: list[float] = []
         recall_scores: list[float] = []
         latency_totals: dict[str, float] = {}
+        query_diagnostics: list[dict[str, Any]] = []
         evaluated_queries = 0
 
         for query in queries:
@@ -56,12 +60,39 @@ class CodeSearchNetEvaluator:
                 continue
             predictions, latencies = _run_query(self.run_query, query, max(self.top_k, self.recall_k))
             predicted_ids = [_doc_id_from_evidence(item) for item in predictions]
+            top_k_predictions = predicted_ids[: self.top_k]
+            recall_predictions = predicted_ids[: self.recall_k]
 
-            ndcg_scores.append(_ndcg_at_k(predicted_ids, judged, self.top_k))
-            mrr_scores.append(_mrr_at_k(predicted_ids, judged, self.top_k))
-            recall_scores.append(_recall_at_k(predicted_ids, judged, self.recall_k))
+            ndcg = _ndcg_at_k(predicted_ids, judged, self.top_k)
+            mrr = _mrr_at_k(predicted_ids, judged, self.top_k)
+            recall = _recall_at_k(predicted_ids, judged, self.recall_k)
+
+            ndcg_scores.append(ndcg)
+            mrr_scores.append(mrr)
+            recall_scores.append(recall)
             for stage, value in latencies.items():
                 latency_totals[stage] = latency_totals.get(stage, 0.0) + value
+
+            missing_relevant_ids, false_positive_ids = _query_errors(
+                judged=judged,
+                top_k_predictions=top_k_predictions,
+                recall_predictions=recall_predictions,
+            )
+            query_diagnostics.append(
+                {
+                    "query": query,
+                    "ndcg": ndcg,
+                    "mrr": mrr,
+                    "recall": recall,
+                    "first_relevant_rank": _first_relevant_rank(top_k_predictions, judged),
+                    "relevant_count": len([doc_id for doc_id, rel in judged.items() if rel > 0]),
+                    "missing_relevant_count": len(missing_relevant_ids),
+                    "false_positive_count": len(false_positive_ids),
+                    "missing_relevant_ids": missing_relevant_ids,
+                    "false_positive_ids": false_positive_ids,
+                    "top_predicted_ids": top_k_predictions,
+                }
+            )
             evaluated_queries += 1
 
         if evaluated_queries == 0:
@@ -71,6 +102,7 @@ class CodeSearchNetEvaluator:
                 mrr_key: 0.0,
                 recall_key: 0.0,
                 "latency_ms": {},
+                "error_buckets": _build_error_buckets([], limit=self.error_bucket_limit),
             }
 
         return {
@@ -81,6 +113,7 @@ class CodeSearchNetEvaluator:
             "latency_ms": {
                 stage: value / evaluated_queries for stage, value in sorted(latency_totals.items())
             },
+            "error_buckets": _build_error_buckets(query_diagnostics, limit=self.error_bucket_limit),
         }
 
 
@@ -119,8 +152,8 @@ def _load_annotations(path: str) -> dict[str, dict[str, int]]:
                 continue
             if query not in annotations:
                 annotations[query] = {}
-            current = annotations[query].get(doc_id, 0)
-            if relevance > current:
+            current = annotations[query].get(doc_id)
+            if current is None or relevance > current:
                 annotations[query][doc_id] = relevance
     return annotations
 
@@ -202,3 +235,95 @@ def _safe_mean(values: list[float]) -> float:
     if not values:
         return 0.0
     return sum(values) / len(values)
+
+
+def _first_relevant_rank(predicted_ids: list[str], judged: dict[str, int]) -> int | None:
+    for rank, doc_id in enumerate(predicted_ids, start=1):
+        if judged.get(doc_id, 0) > 0:
+            return rank
+    return None
+
+
+def _query_errors(
+    *,
+    judged: dict[str, int],
+    top_k_predictions: list[str],
+    recall_predictions: list[str],
+) -> tuple[list[str], list[str]]:
+    relevant_ids = {doc_id for doc_id, rel in judged.items() if rel > 0}
+    retrieved_recall = set(recall_predictions)
+    missing_relevant = sorted(relevant_ids - retrieved_recall)
+
+    false_positives: list[str] = []
+    for doc_id in top_k_predictions:
+        relevance = judged.get(doc_id)
+        if relevance is None:
+            continue
+        if relevance <= 0:
+            false_positives.append(doc_id)
+    return missing_relevant, false_positives
+
+
+def _build_error_buckets(query_diagnostics: list[dict[str, Any]], *, limit: int) -> dict[str, Any]:
+    missed_by_doc: dict[str, int] = {}
+    false_positive_by_doc: dict[str, int] = {}
+    top_missed_queries: list[dict[str, Any]] = []
+    top_false_positive_queries: list[dict[str, Any]] = []
+
+    for row in query_diagnostics:
+        missing_ids = row.get("missing_relevant_ids", [])
+        false_positive_ids = row.get("false_positive_ids", [])
+        if not isinstance(missing_ids, list) or not isinstance(false_positive_ids, list):
+            continue
+
+        for doc_id in missing_ids:
+            missed_by_doc[doc_id] = missed_by_doc.get(doc_id, 0) + 1
+        for doc_id in false_positive_ids:
+            false_positive_by_doc[doc_id] = false_positive_by_doc.get(doc_id, 0) + 1
+
+        if missing_ids:
+            top_missed_queries.append(
+                {
+                    "query": row.get("query"),
+                    "missing_relevant_count": len(missing_ids),
+                    "relevant_count": row.get("relevant_count", 0),
+                    "top_predicted_ids": row.get("top_predicted_ids", [])[:3],
+                    "missing_relevant_ids": missing_ids[:5],
+                }
+            )
+
+        if false_positive_ids:
+            top_false_positive_queries.append(
+                {
+                    "query": row.get("query"),
+                    "false_positive_count": len(false_positive_ids),
+                    "false_positive_ids": false_positive_ids[:5],
+                    "top_predicted_ids": row.get("top_predicted_ids", [])[:3],
+                }
+            )
+
+    top_missed_queries.sort(
+        key=lambda item: (
+            -int(item.get("missing_relevant_count", 0)),
+            -int(item.get("relevant_count", 0)),
+            str(item.get("query", "")),
+        )
+    )
+    top_false_positive_queries.sort(
+        key=lambda item: (
+            -int(item.get("false_positive_count", 0)),
+            str(item.get("query", "")),
+        )
+    )
+
+    return {
+        "top_missed_queries": top_missed_queries[:limit],
+        "top_false_positive_queries": top_false_positive_queries[:limit],
+        "common_missed_doc_ids": _top_doc_counts(missed_by_doc, limit=limit),
+        "common_false_positive_doc_ids": _top_doc_counts(false_positive_by_doc, limit=limit),
+    }
+
+
+def _top_doc_counts(counts: dict[str, int], *, limit: int) -> list[dict[str, Any]]:
+    ranked = sorted(counts.items(), key=lambda item: (-item[1], item[0]))
+    return [{"doc_id": doc_id, "count": count} for doc_id, count in ranked[:limit]]

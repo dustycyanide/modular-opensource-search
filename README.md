@@ -49,6 +49,11 @@ python3 -m venv .venv
 .venv/bin/python scripts/datasets/fetch_codesearchnet.py \
   --output-root data/external/codesearchnet
 
+# smoke slice (single language + resources)
+.venv/bin/python scripts/datasets/fetch_codesearchnet.py \
+  --output-root data/external/codesearchnet \
+  --languages python
+
 .venv/bin/python scripts/datasets/prepare_codesearchnet.py \
   --dataset-root data/external/codesearchnet
 
@@ -61,6 +66,10 @@ python3 -m venv .venv
   --dataset-root data/external/codesearchnet \
   --all-modes --top-k 10 --max-queries 99
 ```
+
+`evaluate --all-modes` now writes per-mode metrics plus error buckets (top misses,
+false positives) and a mode comparison/tuning queue section in
+`reports/codesearchnet/baseline-*.json` and `baseline-*.md`.
 
 If `GITHUB_TOKEN` is set, run/evaluate use GitHub API discovery + code search.
 If API access is unavailable, discovery falls back to local repositories under
