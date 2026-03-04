@@ -45,6 +45,21 @@ python3 -m venv .venv
   --annotations <path-to-CodeSearchNet-annotationStore.csv> \
   --queries <path-to-CodeSearchNet-queries.csv> \
   --top-k 10 --max-queries 20
+
+.venv/bin/python scripts/datasets/fetch_codesearchnet.py \
+  --output-root data/external/codesearchnet
+
+.venv/bin/python scripts/datasets/prepare_codesearchnet.py \
+  --dataset-root data/external/codesearchnet
+
+.venv/bin/python scripts/run_v2.py run \
+  --query "parse json" \
+  --dataset-root data/external/codesearchnet \
+  --mode hybrid --top-k 10
+
+.venv/bin/python scripts/run_v2.py evaluate \
+  --dataset-root data/external/codesearchnet \
+  --all-modes --top-k 10 --max-queries 99
 ```
 
 If `GITHUB_TOKEN` is set, run/evaluate use GitHub API discovery + code search.

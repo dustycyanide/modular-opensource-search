@@ -1,0 +1,37 @@
+{
+  "dataset": "codesearchnet-v2",
+  "assets": [
+    {
+      "name": "raw/go.zip",
+      "url": "https://s3.amazonaws.com/code-search-net/CodeSearchNet/v2/go.zip"
+    },
+    {
+      "name": "raw/java.zip",
+      "url": "https://s3.amazonaws.com/code-search-net/CodeSearchNet/v2/java.zip"
+    },
+    {
+      "name": "raw/javascript.zip",
+      "url": "https://s3.amazonaws.com/code-search-net/CodeSearchNet/v2/javascript.zip"
+    },
+    {
+      "name": "raw/php.zip",
+      "url": "https://s3.amazonaws.com/code-search-net/CodeSearchNet/v2/php.zip"
+    },
+    {
+      "name": "raw/python.zip",
+      "url": "https://s3.amazonaws.com/code-search-net/CodeSearchNet/v2/python.zip"
+    },
+    {
+      "name": "raw/ruby.zip",
+      "url": "https://s3.amazonaws.com/code-search-net/CodeSearchNet/v2/ruby.zip"
+    },
+    {
+      "name": "resources/queries.csv",
+      "url": "https://raw.githubusercontent.com/github/CodeSearchNet/master/resources/queries.csv"
+    },
+    {
+      "name": "resources/annotationStore.csv",
+      "url": "https://raw.githubusercontent.com/github/CodeSearchNet/master/resources/annotationStore.csv"
+    }
+  ]
+}

@@ -3,7 +3,7 @@ from __future__ import annotations
 import csv
 import math
 from pathlib import Path
-from typing import Callable, Iterable
+from typing import Any, Callable, Iterable
 from urllib.parse import urlparse
 
 from ..contracts import EvidenceItem
@@ -13,7 +13,7 @@ class CodeSearchNetEvaluator:
     def __init__(
         self,
         *,
-        run_query: Callable[[str, int], list[EvidenceItem]],
+        run_query: Callable[[str, int], list[EvidenceItem] | tuple[list[EvidenceItem], dict[str, float]]],
         queries_path: str | None = None,
         top_k: int = 10,
         recall_k: int = 50,
@@ -25,51 +25,78 @@ class CodeSearchNetEvaluator:
         self.recall_k = recall_k
         self.max_queries = max_queries
 
-    def evaluate(self, annotations_path: str) -> dict[str, float | int]:
+    def evaluate(self, annotations_path: str) -> dict[str, Any]:
         annotations = _load_annotations(annotations_path)
         queries = _load_queries(self.queries_path, annotations)
         if self.max_queries > 0:
             queries = queries[: self.max_queries]
 
+        ndcg_key = f"ndcg@{self.top_k}"
+        mrr_key = f"mrr@{self.top_k}"
+        recall_key = f"recall@{self.recall_k}"
+
         if not queries:
             return {
                 "query_count": 0,
-                "ndcg@10": 0.0,
-                "mrr@10": 0.0,
-                "recall@50": 0.0,
+                ndcg_key: 0.0,
+                mrr_key: 0.0,
+                recall_key: 0.0,
+                "latency_ms": {},
             }
 
         ndcg_scores: list[float] = []
         mrr_scores: list[float] = []
         recall_scores: list[float] = []
+        latency_totals: dict[str, float] = {}
         evaluated_queries = 0
 
         for query in queries:
             judged = annotations.get(query)
             if not judged:
                 continue
-            predictions = self.run_query(query, max(self.top_k, self.recall_k))
+            predictions, latencies = _run_query(self.run_query, query, max(self.top_k, self.recall_k))
             predicted_ids = [_doc_id_from_evidence(item) for item in predictions]
 
             ndcg_scores.append(_ndcg_at_k(predicted_ids, judged, self.top_k))
             mrr_scores.append(_mrr_at_k(predicted_ids, judged, self.top_k))
             recall_scores.append(_recall_at_k(predicted_ids, judged, self.recall_k))
+            for stage, value in latencies.items():
+                latency_totals[stage] = latency_totals.get(stage, 0.0) + value
             evaluated_queries += 1
 
         if evaluated_queries == 0:
             return {
                 "query_count": 0,
-                "ndcg@10": 0.0,
-                "mrr@10": 0.0,
-                "recall@50": 0.0,
+                ndcg_key: 0.0,
+                mrr_key: 0.0,
+                recall_key: 0.0,
+                "latency_ms": {},
             }
 
         return {
             "query_count": evaluated_queries,
-            "ndcg@10": _safe_mean(ndcg_scores),
-            "mrr@10": _safe_mean(mrr_scores),
-            "recall@50": _safe_mean(recall_scores),
+            ndcg_key: _safe_mean(ndcg_scores),
+            mrr_key: _safe_mean(mrr_scores),
+            recall_key: _safe_mean(recall_scores),
+            "latency_ms": {
+                stage: value / evaluated_queries for stage, value in sorted(latency_totals.items())
+            },
         }
+
+
+def _run_query(
+    run_query: Callable[[str, int], list[EvidenceItem] | tuple[list[EvidenceItem], dict[str, float]]],
+    query: str,
+    top_k: int,
+) -> tuple[list[EvidenceItem], dict[str, float]]:
+    result = run_query(query, top_k)
+    if isinstance(result, tuple) and len(result) == 2:
+        predictions, latencies = result
+        if isinstance(predictions, list) and isinstance(latencies, dict):
+            return predictions, {str(k): float(v) for k, v in latencies.items()}
+    if isinstance(result, list):
+        return result, {}
+    raise TypeError("run_query must return list[EvidenceItem] or (list[EvidenceItem], dict[str, float])")
 
 
 def _load_annotations(path: str) -> dict[str, dict[str, int]]:
