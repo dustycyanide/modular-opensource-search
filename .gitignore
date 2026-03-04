@@ -2,14 +2,21 @@
 __pycache__/
 *.py[cod]
 .venv/
+.pytest_cache/
 
 # Local workspace directories
 thoughts/
 repos/
+v1-archived/thoughts/
+v1-archived/repos/
 
 # Local generated artifacts
 data/*.db
 data/*report*.json
+data/external/
+data/indexes/
+v1-archived/data/*.db
+v1-archived/data/*report*.json
 
 # macOS
 .DS_Store

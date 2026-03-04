@@ -1,0 +1,108 @@
+{
+  "generated_at": "2026-03-02T01:18:59.647461+00:00",
+  "source_discovery_report": "/Users/dustycyanide/Documents/projects/modular_opensource/phase3/reports/self_improve_search/discovery_report.json",
+  "repo_profiles": "/Users/dustycyanide/Documents/projects/modular_opensource/phase2/benchmark/repo_profiles.json",
+  "thresholds": {
+    "min_quality_score": 0.55,
+    "min_high_matches": 2,
+    "min_total_matches": 3,
+    "max_high_ratio_for_adopt": 0.45,
+    "max_expected_repos": 3
+  },
+  "stability_check": {
+    "status": "stable",
+    "compared_report": "/Users/dustycyanide/Documents/projects/modular_opensource/phase3/reports/self_improve_search/discovery_report_rerun.json",
+    "agreement_ratio": 1.0,
+    "signal_drift": [],
+    "reason": "signal_stable_across_reports"
+  },
+  "final_decision_owner": "caller_agent",
+  "final_decision_status": "pending_agent_judgment",
+  "assessments": [
+    {
+      "capability": "repo_indexing_pipeline",
+      "signal_tier": "promising",
+      "signal_reason": "broad-signal",
+      "high_count": 7,
+      "medium_count": 0,
+      "high_ratio": 0.538,
+      "top_expected_repos": [
+        "chroma",
+        "meilisearch",
+        "qdrant"
+      ],
+      "final_decision": null,
+      "final_decision_owner": "caller_agent",
+      "final_decision_status": "pending_agent_judgment",
+      "stable_across_runs": true
+    },
+    {
+      "capability": "semantic_retrieval_stack",
+      "signal_tier": "promising",
+      "signal_reason": "broad-signal",
+      "high_count": 6,
+      "medium_count": 1,
+      "high_ratio": 0.462,
+      "top_expected_repos": [
+        "lancedb",
+        "meilisearch",
+        "qdrant"
+      ],
+      "final_decision": null,
+      "final_decision_owner": "caller_agent",
+      "final_decision_status": "pending_agent_judgment",
+      "stable_across_runs": true
+    },
+    {
+      "capability": "structured_filtering",
+      "signal_tier": "promising",
+      "signal_reason": "broad-signal",
+      "high_count": 13,
+      "medium_count": 0,
+      "high_ratio": 1.0,
+      "top_expected_repos": [
+        "ast-grep",
+        "chroma",
+        "haystack"
+      ],
+      "final_decision": null,
+      "final_decision_owner": "caller_agent",
+      "final_decision_status": "pending_agent_judgment",
+      "stable_across_runs": true
+    },
+    {
+      "capability": "cli_tooling_surface",
+      "signal_tier": "promising",
+      "signal_reason": "broad-signal",
+      "high_count": 11,
+      "medium_count": 0,
+      "high_ratio": 0.846,
+      "top_expected_repos": [
+        "ast-grep",
+        "chroma",
+        "haystack"
+      ],
+      "final_decision": null,
+      "final_decision_owner": "caller_agent",
+      "final_decision_status": "pending_agent_judgment",
+      "stable_across_runs": true
+    },
+    {
+      "capability": "agentic_workflows",
+      "signal_tier": "promising",
+      "signal_reason": "broad-signal",
+      "high_count": 12,
+      "medium_count": 0,
+      "high_ratio": 0.923,
+      "top_expected_repos": [
+        "ast-grep",
+        "chroma",
+        "haystack"
+      ],
+      "final_decision": null,
+      "final_decision_owner": "caller_agent",
+      "final_decision_status": "pending_agent_judgment",
+      "stable_across_runs": true
+    }
+  ]
+}
