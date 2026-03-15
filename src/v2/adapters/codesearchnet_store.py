@@ -9,6 +9,8 @@ import re
 from typing import Iterable
 from urllib.parse import urlparse
 
+from .embedding_index import EmbeddingConfig, EmbeddingIndex
+
 
 TOKEN_PATTERN = re.compile(r"[A-Za-z0-9_]+")
 
@@ -37,16 +39,18 @@ class CodeSearchNetStore:
         languages: Iterable[str] | None = None,
         partitions: Iterable[str] | None = None,
         max_docs: int = 0,
+        embedding_model_name: str = "BAAI/bge-base-en-v1.5",
     ) -> None:
         self.dataset_root = Path(dataset_root)
         self.languages = {item.strip().lower() for item in (languages or []) if item.strip()}
         self.partitions = {item.strip().lower() for item in (partitions or []) if item.strip()}
         self.max_docs = max_docs
+        self.embedding_model_name = embedding_model_name
 
         self.documents: list[CodeSearchNetDocument] = []
         self._lexical_postings: dict[str, list[tuple[int, float]]] = {}
         self._lexical_idf: dict[str, float] = {}
-        self._semantic_sets: list[set[str]] = []
+        self._semantic_index: EmbeddingIndex | None = None
         self._loaded = False
 
     def ensure_loaded(self) -> None:
@@ -92,7 +96,7 @@ class CodeSearchNetStore:
             raise RuntimeError("No normalized CodeSearchNet records available for selected filters")
 
         self._build_lexical_index()
-        self._build_semantic_sets()
+        self._build_semantic_index()
         self._loaded = True
 
     def lexical_search(
@@ -137,26 +141,12 @@ class CodeSearchNetStore:
         top_k: int,
     ) -> list[tuple[CodeSearchNetDocument, float, tuple[str, ...]]]:
         self.ensure_loaded()
-        query_tokens = set(tokenize(query_text))
-        if not query_tokens:
+        if self._semantic_index is None:
             return []
 
-        scored: list[tuple[int, float]] = []
-        for index, semantic_tokens in enumerate(self._semantic_sets):
-            if not semantic_tokens:
-                continue
-            overlap = len(query_tokens.intersection(semantic_tokens))
-            if overlap == 0:
-                continue
-            query_coverage = overlap / len(query_tokens)
-            doc_coverage = overlap / len(semantic_tokens)
-            score = (0.75 * query_coverage) + (0.25 * doc_coverage)
-            scored.append((index, score))
-
-        scored.sort(key=lambda item: item[1], reverse=True)
         out: list[tuple[CodeSearchNetDocument, float, tuple[str, ...]]] = []
-        for doc_index, score in scored[:top_k]:
-            out.append((self.documents[doc_index], score, ("semantic_overlap",)))
+        for doc_index, score in self._semantic_index.search(query_text, top_k=top_k):
+            out.append((self.documents[doc_index], score, ("semantic_embedding_match",)))
         return out
 
     def _build_lexical_index(self) -> None:
@@ -185,14 +175,20 @@ class CodeSearchNetStore:
             for token, doc_freq in df.items()
         }
 
-    def _build_semantic_sets(self) -> None:
-        semantic_sets: list[set[str]] = []
-        for doc in self.documents:
-            tokens = set(doc.docstring_tokens)
-            tokens.update(tokenize(doc.func_name))
-            tokens.update(tokenize(doc.path))
-            semantic_sets.append(tokens)
-        self._semantic_sets = semantic_sets
+    def _build_semantic_index(self) -> None:
+        self._semantic_index = EmbeddingIndex(
+            EmbeddingConfig(model_name=self.embedding_model_name)
+        )
+        self._semantic_index.build(
+            [
+                "\n".join(
+                    part
+                    for part in [doc.func_name, doc.path, doc.docstring, doc.code[:1200]]
+                    if part
+                )
+                for doc in self.documents
+            ]
+        )
 
 
 def _row_to_document(row: dict[str, object], *, default_language: str) -> CodeSearchNetDocument | None:

@@ -110,6 +110,8 @@ class CodeSearchNetEvaluator:
             ndcg_key: _safe_mean(ndcg_scores),
             mrr_key: _safe_mean(mrr_scores),
             recall_key: _safe_mean(recall_scores),
+            "queries_with_any_relevant_hit": sum(1 for value in mrr_scores if value > 0.0),
+            "queries_with_zero_hits": sum(1 for row in query_diagnostics if not row["top_predicted_ids"]),
             "latency_ms": {
                 stage: value / evaluated_queries for stage, value in sorted(latency_totals.items())
             },

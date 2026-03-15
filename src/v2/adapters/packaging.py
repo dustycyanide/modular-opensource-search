@@ -35,6 +35,9 @@ class CommitEvidencePackager:
                         "query": query.text,
                         "source": item.source,
                         "language": chunk.language,
+                        "repo_topics": chunk.metadata.get("topics", []),
+                        "discovery_reasons": chunk.metadata.get("discovery_reasons", []),
+                        "chunk_kind": chunk.metadata.get("chunk_kind"),
                     },
                 )
             )

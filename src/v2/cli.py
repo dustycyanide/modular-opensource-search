@@ -10,10 +10,11 @@ from .adapters.codesearchnet_semantic import CodeSearchNetSemanticRetriever
 from .adapters.codesearchnet_store import CodeSearchNetStore
 from .adapters.discovery import GitHubRepoDiscoverer
 from .adapters.github_api import GitHubClient
-from .adapters.ingestion import RepositoryManifestIngestor
+from .adapters.ingestion import IngestionConfig, RepositoryChunkIngestor
 from .adapters.lexical import GitHubCodeSearchLexicalRetriever
 from .adapters.packaging import CommitEvidencePackager
 from .adapters.ranking import HeuristicEvidenceReranker, ReciprocalRankFusion
+from .adapters.semantic import EmbeddingSemanticRetriever
 from .contracts import QuerySpec
 from .evaluation.codesearchnet import CodeSearchNetEvaluator
 from .pipeline import NoOpDiscoverer, NoOpIngestor, NoOpRetriever, OrchestrationPipeline
@@ -35,11 +36,16 @@ def build_parser() -> argparse.ArgumentParser:
     run_parser.add_argument("--query", required=True, help="Capability query")
     run_parser.add_argument("--top-k", type=int, default=10, help="Top-k results")
     run_parser.add_argument("--mode", choices=RETRIEVAL_MODES, default="hybrid", help="Retrieval mode")
+    run_parser.add_argument("--embedding-model", default="BAAI/bge-base-en-v1.5", help="Embedding model name")
     run_parser.add_argument("--dataset-root", default=None, help="CodeSearchNet dataset root")
     run_parser.add_argument("--languages", default=None, help="Comma-separated language filters")
     run_parser.add_argument("--max-docs", type=int, default=0, help="Optional corpus size cap")
     run_parser.add_argument("--max-repos", type=int, default=8, help="Max repositories to discover")
     run_parser.add_argument("--per-repo-hits", type=int, default=8, help="Max lexical hits per repository")
+    run_parser.add_argument("--max-files-per-repo", type=int, default=400, help="Max ingested files per repository")
+    run_parser.add_argument("--max-file-bytes", type=int, default=250000, help="Max ingested file size in bytes")
+    run_parser.add_argument("--chunk-lines", type=int, default=40, help="Lines per ingested chunk")
+    run_parser.add_argument("--overlap-lines", type=int, default=8, help="Overlapping lines between chunks")
     run_parser.add_argument(
         "--local-fallback-dir",
         default="v1-archived/repos",
@@ -55,6 +61,7 @@ def build_parser() -> argparse.ArgumentParser:
     eval_parser.add_argument("--recall-k", type=int, default=50, help="Recall cutoff")
     eval_parser.add_argument("--max-queries", type=int, default=20, help="Maximum queries to evaluate")
     eval_parser.add_argument("--mode", choices=RETRIEVAL_MODES, default="hybrid", help="Retrieval mode")
+    eval_parser.add_argument("--embedding-model", default="BAAI/bge-base-en-v1.5", help="Embedding model name")
     eval_parser.add_argument(
         "--all-modes",
         action="store_true",
@@ -72,6 +79,10 @@ def build_parser() -> argparse.ArgumentParser:
     eval_parser.add_argument("--report-dir", default="reports/codesearchnet", help="Directory for JSON/MD reports")
     eval_parser.add_argument("--max-repos", type=int, default=8, help="Max repositories to discover per query")
     eval_parser.add_argument("--per-repo-hits", type=int, default=8, help="Max lexical hits per repository")
+    eval_parser.add_argument("--max-files-per-repo", type=int, default=400, help="Max ingested files per repository")
+    eval_parser.add_argument("--max-file-bytes", type=int, default=250000, help="Max ingested file size in bytes")
+    eval_parser.add_argument("--chunk-lines", type=int, default=40, help="Lines per ingested chunk")
+    eval_parser.add_argument("--overlap-lines", type=int, default=8, help="Overlapping lines between chunks")
     eval_parser.add_argument(
         "--local-fallback-dir",
         default="v1-archived/repos",
@@ -87,10 +98,15 @@ def build_pipeline(
     *,
     mode: str,
     dataset_root: str | None,
+    embedding_model: str,
     languages: list[str],
     max_docs: int,
     max_repos: int,
     per_repo_hits: int,
+    max_files_per_repo: int,
+    max_file_bytes: int,
+    chunk_lines: int,
+    overlap_lines: int,
     local_fallback_dir: str,
     local_only: bool,
     github_token: str | None,
@@ -100,6 +116,7 @@ def build_pipeline(
             dataset_root,
             languages=languages,
             max_docs=max_docs,
+            embedding_model_name=embedding_model,
         )
         lexical = CodeSearchNetLexicalRetriever(store) if mode in {"lexical", "hybrid"} else NoOpRetriever()
         semantic = CodeSearchNetSemanticRetriever(store) if mode in {"semantic", "hybrid"} else NoOpRetriever()
@@ -123,9 +140,18 @@ def build_pipeline(
             local_fallback_dir=local_fallback_dir,
             local_only=local_only,
         ),
-        ingestor=RepositoryManifestIngestor(client, max_repos=max_repos),
+        ingestor=RepositoryChunkIngestor(
+            client,
+            config=IngestionConfig(
+                max_repos=max_repos,
+                max_files_per_repo=max_files_per_repo,
+                max_file_bytes=max_file_bytes,
+                chunk_lines=chunk_lines,
+                overlap_lines=overlap_lines,
+            ),
+        ),
         lexical=lexical if mode in {"lexical", "hybrid"} else NoOpRetriever(),
-        semantic=NoOpRetriever(),
+        semantic=EmbeddingSemanticRetriever(model_name=embedding_model) if mode in {"semantic", "hybrid"} else NoOpRetriever(),
         fuser=ReciprocalRankFusion(),
         reranker=HeuristicEvidenceReranker(),
         packager=CommitEvidencePackager(),
@@ -145,10 +171,15 @@ def main(argv: list[str] | None = None) -> int:
         pipeline = build_pipeline(
             mode=args.mode,
             dataset_root=args.dataset_root,
+            embedding_model=args.embedding_model,
             languages=_parse_csv(args.languages),
             max_docs=args.max_docs,
             max_repos=args.max_repos,
             per_repo_hits=args.per_repo_hits,
+            max_files_per_repo=args.max_files_per_repo,
+            max_file_bytes=args.max_file_bytes,
+            chunk_lines=args.chunk_lines,
+            overlap_lines=args.overlap_lines,
             local_fallback_dir=args.local_fallback_dir,
             local_only=args.local_only,
             github_token=args.github_token,
@@ -201,10 +232,15 @@ def main(argv: list[str] | None = None) -> int:
                 recall_k=args.recall_k,
                 max_queries=args.max_queries,
                 dataset_root=args.dataset_root,
+                embedding_model=args.embedding_model,
                 languages=_parse_csv(args.languages),
                 max_docs=args.max_docs,
                 max_repos=args.max_repos,
                 per_repo_hits=args.per_repo_hits,
+                max_files_per_repo=args.max_files_per_repo,
+                max_file_bytes=args.max_file_bytes,
+                chunk_lines=args.chunk_lines,
+                overlap_lines=args.overlap_lines,
                 local_fallback_dir=args.local_fallback_dir,
                 local_only=args.local_only,
                 github_token=args.github_token,
@@ -249,10 +285,15 @@ def _evaluate_mode(
     recall_k: int,
     max_queries: int,
     dataset_root: str | None,
+    embedding_model: str,
     languages: list[str],
     max_docs: int,
     max_repos: int,
     per_repo_hits: int,
+    max_files_per_repo: int,
+    max_file_bytes: int,
+    chunk_lines: int,
+    overlap_lines: int,
     local_fallback_dir: str,
     local_only: bool,
     github_token: str | None,
@@ -261,10 +302,15 @@ def _evaluate_mode(
     pipeline = build_pipeline(
         mode=mode,
         dataset_root=dataset_root,
+        embedding_model=embedding_model,
         languages=languages,
         max_docs=max_docs,
         max_repos=max_repos,
         per_repo_hits=per_repo_hits,
+        max_files_per_repo=max_files_per_repo,
+        max_file_bytes=max_file_bytes,
+        chunk_lines=chunk_lines,
+        overlap_lines=overlap_lines,
         local_fallback_dir=local_fallback_dir,
         local_only=local_only,
         github_token=github_token,

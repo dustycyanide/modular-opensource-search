@@ -1,50 +1,11 @@
 from __future__ import annotations
 
-import base64
 from pathlib import Path
 import re
 
 from ..contracts import ArtifactChunk, QuerySpec, ScoredChunk
+from .chunking import TEXT_EXTENSIONS, is_noise_path, language_from_path
 from .github_api import GitHubApiError, GitHubClient
-
-
-TEXT_EXTENSIONS = {
-    ".py",
-    ".js",
-    ".ts",
-    ".tsx",
-    ".jsx",
-    ".java",
-    ".go",
-    ".rs",
-    ".rb",
-    ".php",
-    ".cs",
-    ".md",
-    ".txt",
-    ".yaml",
-    ".yml",
-    ".json",
-    ".toml",
-    ".ini",
-    ".cfg",
-    ".xml",
-    ".html",
-    ".css",
-    ".sh",
-}
-
-NOISE_SEGMENTS = {
-    "vendor",
-    "node_modules",
-    "dist",
-    "build",
-    "target",
-    "third_party",
-    "__pycache__",
-    ".venv",
-    "generated",
-}
 
 
 class GitHubCodeSearchLexicalRetriever:
@@ -62,6 +23,9 @@ class GitHubCodeSearchLexicalRetriever:
         self.local_file_limit = local_file_limit
 
     def retrieve(self, query: QuerySpec, corpus):
+        if _looks_like_chunk_corpus(corpus):
+            return self._search_chunk_corpus(query, corpus)
+
         all_hits: list[ScoredChunk] = []
         for manifest in corpus:
             local_path = manifest.metadata.get("local_path")
@@ -82,6 +46,36 @@ class GitHubCodeSearchLexicalRetriever:
             if len(deduped) >= self.max_results:
                 break
         return deduped
+
+    def _search_chunk_corpus(self, query: QuerySpec, corpus) -> list[ScoredChunk]:
+        out: list[ScoredChunk] = []
+        for chunk in corpus:
+            snippet, rel_start, rel_end, match_score = build_snippet(chunk.content, query.text)
+            if not snippet:
+                continue
+
+            path_bonus = _path_match_score(chunk.path, query.text)
+            out.append(
+                ScoredChunk(
+                    chunk=ArtifactChunk(
+                        repo=chunk.repo,
+                        commit_sha=chunk.commit_sha,
+                        path=chunk.path,
+                        language=chunk.language,
+                        symbol=chunk.symbol,
+                        start_line=chunk.start_line + rel_start - 1,
+                        end_line=chunk.start_line + rel_end - 1,
+                        content=snippet,
+                        metadata=dict(chunk.metadata),
+                    ),
+                    score=float(match_score) + path_bonus,
+                    source="chunk_corpus_scan",
+                    reasons=("lexical_match", "chunk_corpus"),
+                )
+            )
+
+        out.sort(key=lambda item: item.score, reverse=True)
+        return out[: self.max_results]
 
     def _search_github_repo(self, query: QuerySpec, manifest: ArtifactChunk) -> list[ScoredChunk]:
         repo_name = manifest.repo
@@ -163,23 +157,15 @@ class GitHubCodeSearchLexicalRetriever:
         if len(parts) != 2:
             return None
         owner, name = parts
-        ref = commit_sha if commit_sha and commit_sha != "HEAD" else None
-        params = {"ref": ref} if ref else None
         try:
-            payload = self.client.get_json(f"/repos/{owner}/{name}/contents/{path}", params=params)
+            return self.client.get_text_file(
+                owner,
+                name,
+                path,
+                ref=commit_sha if commit_sha and commit_sha != "HEAD" else None,
+            )
         except GitHubApiError:
             return None
-
-        if not isinstance(payload, dict):
-            return None
-        encoded = payload.get("content")
-        if not isinstance(encoded, str):
-            return None
-        try:
-            decoded = base64.b64decode(encoded, validate=False)
-        except ValueError:
-            return None
-        return decoded.decode("utf-8", errors="ignore")
 
     def _search_local_repo(
         self,
@@ -273,30 +259,17 @@ def build_snippet(content: str, query_text: str, window_lines: int = 6) -> tuple
     return snippet, start_line, end_line, best_score
 
 
-def language_from_path(path: str) -> str:
-    extension = Path(path).suffix.lower()
-    return {
-        ".py": "Python",
-        ".js": "JavaScript",
-        ".ts": "TypeScript",
-        ".tsx": "TypeScript",
-        ".jsx": "JavaScript",
-        ".java": "Java",
-        ".go": "Go",
-        ".rs": "Rust",
-        ".rb": "Ruby",
-        ".php": "PHP",
-        ".cs": "C#",
-    }.get(extension, "Text")
+def _looks_like_chunk_corpus(corpus) -> bool:
+    if not corpus:
+        return False
+    return all(bool(getattr(item, "path", "")) and bool(getattr(item, "content", "")) for item in corpus)
 
 
-def is_noise_path(path: str) -> bool:
-    lower = path.lower()
-    if ".min." in lower:
-        return True
-    segments = set(segment for segment in lower.split("/") if segment)
-    if segments.intersection(NOISE_SEGMENTS):
-        return True
-    if lower.endswith(".lock"):
-        return True
-    return False
+def _path_match_score(path: str, query_text: str) -> float:
+    tokens = [
+        token
+        for token in re.split(r"\W+", query_text.lower())
+        if len(token) >= 3
+    ]
+    lowered = path.lower()
+    return 0.25 * sum(1 for token in tokens if token in lowered)

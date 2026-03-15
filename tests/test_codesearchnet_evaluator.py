@@ -104,3 +104,44 @@ def test_codesearchnet_evaluator_reports_error_buckets(tmp_path: Path) -> None:
     assert isinstance(top_false_positive, list) and top_false_positive[0]["query"] == "parse json"
     assert isinstance(common_missed, list) and common_missed[0]["doc_id"] == "foo/bar/src/parser.py"
     assert isinstance(common_false_positive, list) and common_false_positive[0]["doc_id"] == "foo/bar/src/config.py"
+
+
+def test_codesearchnet_evaluator_reports_hit_and_zero_hit_counters(tmp_path: Path) -> None:
+    annotations = tmp_path / "annotations.csv"
+    queries = tmp_path / "queries.csv"
+    annotations.write_text(
+        "Language,Query,GitHubUrl,Relevance,Notes\n"
+        "python,parse json,https://github.com/foo/bar/blob/abc123/src/parser.py#L1-L9,3,\n"
+        "python,load yaml,https://github.com/foo/bar/blob/abc123/src/config.py#L1-L9,3,\n",
+        encoding="utf-8",
+    )
+    queries.write_text(
+        "Query\n"
+        "parse json\n"
+        "load yaml\n",
+        encoding="utf-8",
+    )
+
+    def run_query(query: str, top_k: int):
+        del top_k
+        if query == "parse json":
+            return [
+                EvidenceItem(
+                    repo="foo/bar",
+                    commit_sha="abc123",
+                    path="src/parser.py",
+                    start_line=1,
+                    end_line=9,
+                    snippet="def parse_json(data): ...",
+                    score=1.0,
+                    permalink="https://github.com/foo/bar/blob/abc123/src/parser.py#L1-L9",
+                )
+            ]
+        return []
+
+    evaluator = CodeSearchNetEvaluator(run_query=run_query, queries_path=str(queries), max_queries=2)
+    metrics = evaluator.evaluate(str(annotations))
+
+    assert metrics["query_count"] == 2
+    assert metrics["queries_with_any_relevant_hit"] == 1
+    assert metrics["queries_with_zero_hits"] == 1
